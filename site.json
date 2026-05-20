@@ -1,11 +1,11 @@
 {
-  "id": "funktion8",
-  "name": "Funktion8",
+  "id": "notariat8",
+  "name": "Notariat8",
   "status": "prepared",
-  "primaryDomain": "funktion8.de",
+  "primaryDomain": "notariat8.de",
   "domains": [
-    "funktion8.de",
-    "www.funktion8.de"
+    "notariat8.de",
+    "www.notariat8.de"
   ],
   "path": ".",
   "language": {

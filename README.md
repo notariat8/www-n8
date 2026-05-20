@@ -1,6 +1,6 @@
-# Funktion8
+# Notariat8
 
-Site fuer `funktion8.de`.
+Site fuer `notariat8.de`.
 
 ## Deploybarer Root
 
@@ -13,7 +13,7 @@ Root. GitHub Pages kann deshalb ohne zusaetzlichen Build aus `main` und
 - Source: `Deploy from a branch`
 - Branch: `main`
 - Folder: `/(root)`
-- Custom domain: `funktion8.de`
+- Custom domain: `notariat8.de`
 
 ## Pflege
 

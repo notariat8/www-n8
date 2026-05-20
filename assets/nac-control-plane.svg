@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-label="Notariat8 control plane">
+  <rect width="1200" height="760" rx="40" fill="#f5f7f4"/>
+  <rect x="80" y="58" width="880" height="86" rx="20" fill="#1f2b24" opacity="0.88"/>
+  <text x="128" y="113" fill="#f5f7f4" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700">n8 Control Plane</text>
+  <text x="130" y="138" fill="#d9e0dc" font-family="Arial, Helvetica, sans-serif" font-size="18">reviewed artifacts · local gates · GitOps release</text>
+  <rect x="690" y="84" width="220" height="32" rx="16" fill="#f2c14e" opacity="0.88"/>
+  <text x="752" y="107" fill="#1f2b24" font-family="Arial, Helvetica, sans-serif" font-size="16">main validated</text>
+
+  <rect x="104" y="196" width="270" height="170" rx="18" fill="#ffffff" stroke="#d9e0dc" stroke-width="2"/>
+  <text x="138" y="246" fill="#1f2b24" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700">Policies</text>
+  <text x="140" y="284" fill="#56645d" font-family="Arial, Helvetica, sans-serif" font-size="18">notarial gates</text>
+  <text x="140" y="318" fill="#56645d" font-family="Arial, Helvetica, sans-serif" font-size="18">data protection</text>
+  <rect x="270" y="302" width="54" height="26" rx="13" fill="#f2c14e" opacity="0.75"/>
+  <text x="288" y="321" fill="#1f2b24" font-family="Arial, Helvetica, sans-serif" font-size="14">DPA</text>
+
+  <rect x="420" y="196" width="270" height="170" rx="18" fill="#ffffff" stroke="#d9e0dc" stroke-width="2"/>
+  <text x="454" y="246" fill="#1f2b24" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700">Workflow Gates</text>
+  <text x="456" y="284" fill="#56645d" font-family="Arial, Helvetica, sans-serif" font-size="18">card reader</text>
+  <text x="456" y="318" fill="#56645d" font-family="Arial, Helvetica, sans-serif" font-size="18">XNP</text>
+  <circle cx="618" cy="278" r="16" fill="#006b5a" opacity="0.45"/>
+  <circle cx="618" cy="314" r="16" fill="#f2c14e" opacity="0.55"/>
+  <circle cx="618" cy="350" r="16" fill="#4962a3" opacity="0.35"/>
+
+  <rect x="736" y="196" width="270" height="170" rx="18" fill="#ffffff" stroke="#d9e0dc" stroke-width="2"/>
+  <text x="770" y="246" fill="#1f2b24" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700">Usecases</text>
+  <rect x="768" y="276" width="122" height="28" rx="14" fill="#e8eee9"/>
+  <rect x="768" y="312" width="122" height="28" rx="14" fill="#e8eee9"/>
+  <rect x="768" y="348" width="122" height="28" rx="14" fill="#e8eee9"/>
+  <text x="796" y="296" fill="#56645d" font-family="Arial, Helvetica, sans-serif" font-size="16">HRA</text>
+  <text x="792" y="332" fill="#56645d" font-family="Arial, Helvetica, sans-serif" font-size="16">GmbH</text>
+  <text x="790" y="368" fill="#56645d" font-family="Arial, Helvetica, sans-serif" font-size="16">Grundbuch</text>
+
+  <rect x="104" y="432" width="320" height="210" rx="18" fill="#ffffff" stroke="#d9e0dc" stroke-width="2"/>
+  <text x="138" y="482" fill="#1f2b24" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700">Release Flow</text>
+  <rect x="150" y="532" width="88" height="48" rx="14" fill="#b4511d" opacity="0.18"/>
+  <rect x="282" y="532" width="88" height="48" rx="14" fill="#4962a3" opacity="0.18"/>
+  <rect x="414" y="532" width="88" height="48" rx="14" fill="#006b5a" opacity="0.18"/>
+  <rect x="546" y="532" width="88" height="48" rx="14" fill="#f2c14e" opacity="0.35"/>
+  <path d="M240 556h38M372 556h38M504 556h38" stroke="#56645d" stroke-width="3" stroke-linecap="round"/>
+  <text x="174" y="563" fill="#1f2b24" font-family="Arial, Helvetica, sans-serif" font-size="15">Prompt</text>
+  <text x="307" y="563" fill="#1f2b24" font-family="Arial, Helvetica, sans-serif" font-size="15">Change</text>
+  <text x="442" y="563" fill="#1f2b24" font-family="Arial, Helvetica, sans-serif" font-size="15">Review</text>
+  <text x="579" y="563" fill="#1f2b24" font-family="Arial, Helvetica, sans-serif" font-size="15">Merge</text>
+
+  <rect x="704" y="432" width="302" height="210" rx="18" fill="#ffffff" stroke="#d9e0dc" stroke-width="2"/>
+  <text x="738" y="482" fill="#1f2b24" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700">AI-SBOM</text>
+  <rect x="738" y="522" width="204" height="18" rx="9" fill="#e8eee9"/>
+  <rect x="738" y="522" width="160" height="18" rx="9" fill="#006b5a" opacity="0.42"/>
+  <rect x="738" y="560" width="204" height="18" rx="9" fill="#e8eee9"/>
+  <rect x="738" y="560" width="132" height="18" rx="9" fill="#f2c14e" opacity="0.55"/>
+  <rect x="738" y="598" width="204" height="18" rx="9" fill="#e8eee9"/>
+  <rect x="738" y="598" width="154" height="18" rx="9" fill="#4962a3" opacity="0.38"/>
+  <text x="738" y="654" fill="#56645d" font-family="Arial, Helvetica, sans-serif" font-size="16">model · workflow · evidence</text>
+</svg>

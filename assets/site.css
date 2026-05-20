@@ -70,15 +70,23 @@ a {
 
 .brand-mark {
   align-items: center;
-  background: var(--ink);
+  background: #5a25b6;
   border-radius: 8px;
-  color: var(--gold);
   display: inline-flex;
   flex: 0 0 44px;
   font-weight: 700;
+  gap: 1px;
   height: 44px;
   justify-content: center;
   width: 44px;
+}
+
+.brand-n {
+  color: var(--surface);
+}
+
+.brand-eight {
+  color: var(--gold);
 }
 
 .brand strong,
@@ -136,7 +144,7 @@ a {
   align-items: center;
   background:
     linear-gradient(90deg, rgba(245, 247, 244, 0.97) 0%, rgba(245, 247, 244, 0.86) 50%, rgba(245, 247, 244, 0.44) 100%),
-    url("nac-control-plane.png");
+    url("nac-control-plane.svg");
   background-position: center;
   background-size: cover;
   display: flex;
