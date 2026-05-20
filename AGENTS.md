@@ -28,3 +28,12 @@
   - Folder: `/(root)`
   - Custom domain: `notariat8.de`
 - Keep `CNAME` in the repository root with exactly `notariat8.de`.
+
+## German language style
+
+- German-language user-facing text and repository documentation must use real
+  German characters: `ä`, `ö`, `ü`, `Ä`, `Ö`, `Ü`, and `ß`.
+- Do not use ASCII transliterations such as `ae`, `oe`, `ue`, or `ss` where
+  German spelling requires the proper character.
+- Keep code identifiers, URLs, file names, branch names, commands, and external
+  product names unchanged.

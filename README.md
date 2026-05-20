@@ -1,12 +1,12 @@
 # Notariat8
 
-Site fuer `notariat8.de`.
+Site für `notariat8.de`.
 
 ## Deploybarer Root
 
-Dieses Repository enthaelt die statischen Dateien fuer diese Website direkt im
-Root. GitHub Pages kann deshalb ohne zusaetzlichen Build aus `main` und
-`/(root)` veroeffentlichen.
+Dieses Repository enthält die statischen Dateien für diese Website direkt im
+Root. GitHub Pages kann deshalb ohne zusätzlichen Build aus `main` und
+`/(root)` veröffentlichen.
 
 ## GitHub Pages
 
@@ -23,5 +23,5 @@ Root. GitHub Pages kann deshalb ohne zusaetzlichen Build aus `main` und
   [datenschutz.html](datenschutz.html).
 - Site-spezifische Assets liegen unter [assets/](assets).
 
-Vor produktivem Go-live muessen Impressum und Datenschutz final geprueft und
-mit echten Betreiberangaben vervollstaendigt werden.
+Vor produktivem Go-live müssen Impressum und Datenschutz final geprüft und
+mit echten Betreiberangaben vervollständigt werden.
