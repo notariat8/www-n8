@@ -1,0 +1,21 @@
+{
+  "id": "funktion8",
+  "name": "Funktion8",
+  "status": "prepared",
+  "primaryDomain": "funktion8.de",
+  "domains": [
+    "funktion8.de",
+    "www.funktion8.de"
+  ],
+  "path": ".",
+  "language": {
+    "primary": "de",
+    "secondary": [
+      "en"
+    ]
+  },
+  "notes": [
+    "Legal pages contain placeholders until operator details are finalized.",
+    "This repository is deployed as a single GitHub Pages site from the repository root."
+  ]
+}

@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Funktion8 | Notariat as Code</title>
+    <meta name="description" content="Notariat as Code von Funktion8: versionierte notarielle Prozesse, Enterprise GitOps, Governance und lokale Arbeitsplatz-Gates fuer NoC.">
+    <meta name="theme-color" content="#f5f7f4">
+    <link rel="canonical" href="https://funktion8.de/">
+    <link rel="alternate" hreflang="de" href="https://funktion8.de/">
+    <link rel="alternate" hreflang="en" href="https://funktion8.de/en/">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="assets/site.css">
+    <script src="assets/site.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Zum Inhalt springen</a>
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="Funktion8 Startseite">
+        <span class="brand-mark" aria-hidden="true">F8</span>
+        <span>
+          <strong>Funktion8</strong>
+          <small>Notariat as Code</small>
+        </span>
+      </a>
+      <button class="nav-toggle" type="button" aria-label="Navigation oeffnen" aria-expanded="false" aria-controls="site-nav">☰</button>
+      <nav class="site-nav" id="site-nav" aria-label="Hauptnavigation">
+        <a href="#modell">Modell</a>
+        <a href="#governance">Governance</a>
+        <a href="#artefakte">Artefakte</a>
+        <a href="https://github.com/ofunk/NaC">GitHub</a>
+        <a class="language-link" href="en/" lang="en">EN</a>
+      </nav>
+    </header>
+
+    <main id="content">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-content">
+          <p class="eyebrow">Funktion8 fuer regulierte notarielle Prozessarbeit</p>
+          <h1 id="hero-title">Notariat as Code</h1>
+          <p class="lead">NoC ueberfuehrt notarielle Ablaufe in versionierte, pruefbare und freigabefaehige Betriebsartefakte. Das LLM ist die Eingabeoberflaeche, fachliche Wahrheit entsteht durch Review, Freigabe und nachvollziehbare Aenderung.</p>
+          <div class="hero-actions" aria-label="Primaere Aktionen">
+            <a class="button primary" href="#modell">Betriebsmodell ansehen</a>
+            <a class="button secondary" href="https://github.com/ofunk/NaC">Referenzrepo oeffnen</a>
+          </div>
+          <dl class="hero-facts" aria-label="NoC Kurzstatus">
+            <div>
+              <dt>Fuehrende Sprache</dt>
+              <dd>Deutsch</dd>
+            </div>
+            <div>
+              <dt>Aenderungsfluss</dt>
+              <dd>Enterprise GitOps</dd>
+            </div>
+            <div>
+              <dt>Ausfuehrung</dt>
+              <dd>Lokaler Notariatsarbeitsplatz</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="band intro" aria-label="Positionierung">
+        <div class="content-grid two">
+          <div>
+            <p class="section-kicker">Zielbild</p>
+            <h2>Ein kontrollierter Arbeitsraum fuer notarielle Digitalisierung.</h2>
+          </div>
+          <p>NoC trennt installierbare Plugins, ausfuehrbare Workflows und konkrete Usecases. Kartenleser-, XNP-, Register- und Portalpfade werden als Gates behandelt, nicht als lose Integrationen. Jede fachliche Aenderung wird versioniert, validiert und vor produktiver Nutzung freigegeben.</p>
+        </div>
+      </section>
+
+      <section class="section" id="modell" aria-labelledby="modell-title">
+        <div class="section-heading">
+          <p class="section-kicker">Betriebsmodell</p>
+          <h2 id="modell-title">Vom Prompt zur freigegebenen Prozessversion.</h2>
+        </div>
+        <div class="card-grid">
+          <article class="card">
+            <span class="card-number">01</span>
+            <h3>Eingabe</h3>
+            <p>Fachliche Aenderungswuensche werden strukturiert erfasst. Das Modell hilft bei Formulierung und Orientierung, ersetzt aber keine fachliche Entscheidung.</p>
+          </article>
+          <article class="card">
+            <span class="card-number">02</span>
+            <h3>Versionierung</h3>
+            <p>Policies, Workflows, Usecases, Knowledge Graphs und SBOM-Artefakte liegen als nachvollziehbare Aenderung im Repository.</p>
+          </article>
+          <article class="card">
+            <span class="card-number">03</span>
+            <h3>Freigabe</h3>
+            <p>Sensible Schritte laufen ueber Vier-Augen-Prinzip, Review und dokumentierte Begruendung. Abschluss bedeutet gepruefter Stand in `main`.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="band" id="governance" aria-labelledby="governance-title">
+        <div class="section-heading">
+          <p class="section-kicker">Governance</p>
+          <h2 id="governance-title">Regeln zuerst, Automatisierung danach.</h2>
+        </div>
+        <div class="governance-list">
+          <div>
+            <h3>Recht und Regulierung</h3>
+            <p>Gesetzliche, regulatorische und revisionssichere Anforderungen haben Vorrang vor Automatisierungskomfort.</p>
+          </div>
+          <div>
+            <h3>Datenschutz und AVV</h3>
+            <p>Keine echten Secrets oder personenbezogenen Daten im Repo. SaaS-Verarbeitung mit personenbezogenen Daten erfordert AVV-Pruefung.</p>
+          </div>
+          <div>
+            <h3>Lokaler Arbeitsplatz</h3>
+            <p>NoC fuehrt notarielle Gates lokal im genehmigten Workspace aus. Omnistation ist kein Ausfuehrungsort fuer NoC.</p>
+          </div>
+          <div>
+            <h3>Mehrsprachigkeit</h3>
+            <p>Deutsch ist fuer deutsches Recht und notarielle Usecases fuehrend; Englisch dient als Orientierung und Spiegelung.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="artefakte" aria-labelledby="artefakte-title">
+        <div class="section-heading">
+          <p class="section-kicker">Artefakte</p>
+          <h2 id="artefakte-title">Die Arbeitsflaechen sind bewusst getrennt.</h2>
+        </div>
+        <div class="artifact-layout">
+          <article>
+            <h3>Plugins</h3>
+            <p>Installierbare Schnittstellen und Arbeitsplatzadapter, etwa Kartenleser-, Register- oder Portalpfade.</p>
+          </article>
+          <article>
+            <h3>Workflows</h3>
+            <p>Ausfuehrbare notarielle Ablaufketten mit deterministischen Checks, Gates und Evidenzpunkten.</p>
+          </article>
+          <article>
+            <h3>Usecases</h3>
+            <p>Konkrete notarielle Vorgangsarten mit eigenem Knowledge Graph und fachlicher Fallstruktur.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="cta-band" aria-labelledby="cta-title">
+        <div>
+          <p class="section-kicker">Naechster Schritt</p>
+          <h2 id="cta-title">Referenzstand pruefen, dann gezielt pilotieren.</h2>
+        </div>
+        <a class="button primary" href="https://github.com/ofunk/NaC">NaC auf GitHub</a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2026 Funktion8. Notariat as Code ist ein kontrolliertes Betriebsmodell fuer NoC.</p>
+      <nav aria-label="Footer Navigation">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="en/" lang="en">English</a>
+      </nav>
+    </footer>
+  </body>
+</html>

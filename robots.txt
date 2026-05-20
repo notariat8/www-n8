@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://funktion8.de/sitemap.xml

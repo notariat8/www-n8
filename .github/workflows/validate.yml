@@ -1,0 +1,33 @@
+name: Validate site
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate static site root
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          test -f index.html
+          test -f CNAME
+          test -f robots.txt
+          test -f sitemap.xml
+          test -f impressum.html
+          test -f datenschutz.html
+          test -f en/index.html
+          test -f assets/site.css
+          test -f assets/site.js
+
+          grep -qx 'funktion8.de' CNAME
+          grep -q '<link rel="canonical" href="https://funktion8.de/">' index.html
+          grep -q '<link rel="alternate" hreflang="en" href="https://funktion8.de/en/">' index.html
