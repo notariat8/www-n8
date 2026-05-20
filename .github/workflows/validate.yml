@@ -35,11 +35,12 @@ jobs:
           grep -q 'brand-n">n</span><span class="brand-eight">8' index.html
           grep -q 'NaC überführt notarielle Abläufe' index.html
           grep -q 'NaC Control Plane' assets/nac-control-plane.svg
-          grep -q 'https://github.com/notariat8/www-n8' index.html
-          grep -q 'https://github.com/notariat8/www-n8' en/index.html
+          grep -q 'https://github.com/notariat8/NaC' index.html
+          grep -q 'https://github.com/notariat8/NaC' en/index.html
           grep -q '<link rel="canonical" href="https://notariat8.de/">' index.html
           grep -q '<link rel="alternate" hreflang="en" href="https://notariat8.de/en/">' index.html
           ! grep -R '\bNoC\b' index.html en/index.html assets/nac-control-plane.svg
           ! grep -R 'nac-control-plane\.png' index.html en/index.html assets/site.css
           ! grep -R 'github.com/ofunk/NaC\|github.com/ofunk' index.html en/index.html
+          ! grep -R 'github.com/notariat8/www-n8' index.html en/index.html
           ! grep -RE 'fuer|Fuer|ueber|Ueber|pruef|Pruef|freigabefaeh|Oberflaeche|oeffnen|Aender|aender|Ausfuehr|fuehrt|Fuehr|Arbeitsflaechen|Naechster|geprueft|Begruendung|Zurueck|ergaenzt|muessen|enthaelt|vollstaendigt|Veroeffentlichung|ladungsfaehige|zusaetzlichen|veroeffentlichen|Primaer' index.html impressum.html datenschutz.html 404.html README.md
