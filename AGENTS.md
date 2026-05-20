@@ -8,10 +8,30 @@
   - `git remote -v`
   - `gh auth status`
 - Do not retry `git push` blindly after an HTTPS credential failure.
+- Do not try random SSH keys, alternate remotes, or repeated HTTPS pushes.
+- Known working local publish route: use the repository deploy key
+  `/home/ubuntu/.ssh/id_ed25519_www_n8_deploy_20260520` against
+  `git@github.com:notariat8/www-n8.git`. The public key in GitHub must match
+  local fingerprint
+  `SHA256:mY5GxmGGHGV/BvlybApP4ou5Tm45q/CEiBJARlRHa7Y` and have `Read/write`
+  access. A deploy key with a different fingerprint is not usable from this
+  workspace even if it is named similarly.
+- Push command:
+  `git -c core.sshCommand='ssh -i /home/ubuntu/.ssh/id_ed25519_www_n8_deploy_20260520 -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new' push git@github.com:notariat8/www-n8.git main:main`
 - If local `git push` cannot authenticate, use the GitHub connector for
   `notariat8/www-n8` instead of circling on local credentials.
+- Before using connector write operations, confirm repository permissions via
+  the connector. If `notariat8/www-n8` reports `push: false`, stop immediately
+  and tell the user that the GitHub App/Connector needs write access for this
+  repository. Do not attempt another local push workaround.
 - For structural repository changes through the connector, use Git objects:
   create blobs, create a tree, create a commit, then update `main`.
+- Connector publish recipe when `push: true`:
+  1. Use current `origin/main` as parent and `origin/main^{tree}` as base tree.
+  2. Create blobs for each changed file that must be published.
+  3. Create a tree with those blob SHAs and the correct paths/modes.
+  4. Create a commit with parent `origin/main`.
+  5. Update `refs/heads/main` to that commit with `force: false`.
 - After any publish step, verify the remote state, not only the local tree:
   - `git fetch origin`
   - `git ls-tree -r --name-only origin/main`
