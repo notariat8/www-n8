@@ -460,7 +460,7 @@ h3 {
   .hero {
     background:
       linear-gradient(180deg, rgba(245, 247, 244, 0.98) 0%, rgba(245, 247, 244, 0.89) 62%, rgba(245, 247, 244, 0.66) 100%),
-      url("nac-control-plane.png");
+      url("nac-control-plane.svg");
     background-position: center;
     min-height: 70vh;
   }

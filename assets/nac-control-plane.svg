@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-label="Notariat8 control plane">
   <rect width="1200" height="760" rx="40" fill="#f5f7f4"/>
   <rect x="80" y="58" width="880" height="86" rx="20" fill="#1f2b24" opacity="0.88"/>
-  <text x="128" y="113" fill="#f5f7f4" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700">n8 Control Plane</text>
+  <text x="128" y="113" fill="#f5f7f4" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700">NaC Control Plane</text>
   <text x="130" y="138" fill="#d9e0dc" font-family="Arial, Helvetica, sans-serif" font-size="18">reviewed artifacts · local gates · GitOps release</text>
   <rect x="690" y="84" width="220" height="32" rx="16" fill="#f2c14e" opacity="0.88"/>
   <text x="752" y="107" fill="#1f2b24" font-family="Arial, Helvetica, sans-serif" font-size="16">main validated</text>

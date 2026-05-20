@@ -27,9 +27,15 @@ jobs:
           test -f en/index.html
           test -f assets/site.css
           test -f assets/site.js
+          test -f assets/nac-control-plane.svg
+          ! test -e assets/nac-control-plane.png
 
           grep -qx 'notariat8.de' CNAME
           grep -q '<strong>Notariat8</strong>' index.html
           grep -q 'brand-n">n</span><span class="brand-eight">8' index.html
+          grep -q 'NaC ueberfuehrt notarielle Ablaufe' index.html
+          grep -q 'NaC Control Plane' assets/nac-control-plane.svg
           grep -q '<link rel="canonical" href="https://notariat8.de/">' index.html
           grep -q '<link rel="alternate" hreflang="en" href="https://notariat8.de/en/">' index.html
+          ! grep -R '\bNoC\b' index.html en/index.html assets/nac-control-plane.svg
+          ! grep -R 'nac-control-plane\.png' index.html en/index.html assets/site.css
