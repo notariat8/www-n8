@@ -10,6 +10,7 @@
     <link rel="alternate" hreflang="de" href="https://notariat8.de/">
     <link rel="alternate" hreflang="en" href="https://notariat8.de/en/">
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <meta name="nac-app-url" content="https://app.notariat8.de/">
     <link rel="stylesheet" href="assets/site.css?v=20260520-nac">
     <script src="assets/site.js" defer></script>
   </head>
@@ -28,6 +29,7 @@
         <a href="#modell">Modell</a>
         <a href="#governance">Governance</a>
         <a href="#artefakte">Artefakte</a>
+        <a href="#app">App</a>
         <a href="https://github.com/notariat8/NaC">GitHub</a>
         <a class="language-link" href="en/" lang="en">EN</a>
       </nav>
@@ -41,6 +43,7 @@
           <p class="lead">NaC überführt notarielle Abläufe in versionierte, prüfbare und freigabefähige Betriebsartefakte. Das LLM ist die Eingabeoberfläche, fachliche Wahrheit entsteht durch Review, Freigabe und nachvollziehbare Änderung.</p>
           <div class="hero-actions" aria-label="Primäre Aktionen">
             <a class="button primary" href="#modell">Betriebsmodell ansehen</a>
+            <a class="button secondary" href="#app">Zur NaC-App</a>
             <a class="button secondary" href="https://github.com/notariat8/NaC">Referenzrepo öffnen</a>
           </div>
           <dl class="hero-facts" aria-label="NaC Kurzstatus">
@@ -137,6 +140,34 @@
             <h3>Usecases</h3>
             <p>Konkrete notarielle Vorgangsarten mit eigenem Knowledge Graph und fachlicher Fallstruktur.</p>
           </article>
+        </div>
+      </section>
+
+      <section class="band app-transition" id="app" aria-labelledby="app-title">
+        <div class="section-heading">
+          <p class="section-kicker">App-Zugang</p>
+          <h2 id="app-title">Öffentliche Seite hier, SaaS-App dort.</h2>
+          <p>Notariat8 sammelt hier keine Mandatsdaten, keine Dokumente und keine Zugangsdaten. Die Felder geben nur unverbindliche Hinweise an die NaC-App weiter.</p>
+        </div>
+        <div class="app-transition-grid">
+          <form class="app-transition-panel" data-nac-transition="customer">
+            <div>
+              <h3>Bestandskunde</h3>
+              <p>Geben Sie einen Tenant-Hinweis ein, damit die App den Einstieg vorsortieren kann.</p>
+            </div>
+            <label for="tenant-hint">Tenant-Hinweis</label>
+            <input id="tenant-hint" name="tenant_hint" type="text" inputmode="text" autocomplete="organization" maxlength="120" placeholder="z. B. notariat-musterstadt">
+            <button class="button primary" type="submit">App öffnen</button>
+          </form>
+          <form class="app-transition-panel" data-nac-transition="prospect">
+            <div>
+              <h3>Neukunde</h3>
+              <p>Geben Sie einen Domain-Hinweis für die spätere Domain-Readiness in NaC ein.</p>
+            </div>
+            <label for="domain-hint">Domain-Hinweis</label>
+            <input id="domain-hint" name="domain_hint" type="text" inputmode="url" autocomplete="url" maxlength="120" placeholder="z. B. kanzlei.example">
+            <button class="button secondary" type="submit">Readiness vormerken</button>
+          </form>
         </div>
       </section>
 

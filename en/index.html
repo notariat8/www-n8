@@ -10,6 +10,7 @@
     <link rel="alternate" hreflang="de" href="https://notariat8.de/">
     <link rel="alternate" hreflang="en" href="https://notariat8.de/en/">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <meta name="nac-app-url" content="https://app.notariat8.de/">
     <link rel="stylesheet" href="../assets/site.css?v=20260520-nac">
     <script src="../assets/site.js" defer></script>
   </head>
@@ -28,6 +29,7 @@
         <a href="#model">Model</a>
         <a href="#governance">Governance</a>
         <a href="#artifacts">Artifacts</a>
+        <a href="#app">App</a>
         <a href="https://github.com/notariat8/NaC">GitHub</a>
         <a class="language-link" href="../" lang="de">DE</a>
       </nav>
@@ -41,6 +43,7 @@
           <p class="lead">NaC turns notarial procedures into versioned, reviewable and approvable operating artifacts. The LLM is the input surface; domain truth is created through review, approval and traceable change.</p>
           <div class="hero-actions" aria-label="Primary actions">
             <a class="button primary" href="#model">View operating model</a>
+            <a class="button secondary" href="#app">Go to NaC app</a>
             <a class="button secondary" href="https://github.com/notariat8/NaC">Open reference repo</a>
           </div>
           <dl class="hero-facts" aria-label="NaC summary">
@@ -137,6 +140,34 @@
             <h3>Use cases</h3>
             <p>Concrete notarial matter types with their own knowledge graph and domain case structure.</p>
           </article>
+        </div>
+      </section>
+
+      <section class="band app-transition" id="app" aria-labelledby="app-title">
+        <div class="section-heading">
+          <p class="section-kicker">App access</p>
+          <h2 id="app-title">Public website here, SaaS app there.</h2>
+          <p>Notariat8 does not collect matter data, documents or credentials here. These fields only pass non-binding hints to the NaC app.</p>
+        </div>
+        <div class="app-transition-grid">
+          <form class="app-transition-panel" data-nac-transition="customer">
+            <div>
+              <h3>Existing customer</h3>
+              <p>Enter a tenant hint so the app can pre-sort the entry path.</p>
+            </div>
+            <label for="tenant-hint">Tenant hint</label>
+            <input id="tenant-hint" name="tenant_hint" type="text" inputmode="text" autocomplete="organization" maxlength="120" placeholder="e.g. notary-sampletown">
+            <button class="button primary" type="submit">Open app</button>
+          </form>
+          <form class="app-transition-panel" data-nac-transition="prospect">
+            <div>
+              <h3>New customer</h3>
+              <p>Enter a domain hint for later domain readiness in NaC.</p>
+            </div>
+            <label for="domain-hint">Domain hint</label>
+            <input id="domain-hint" name="domain_hint" type="text" inputmode="url" autocomplete="url" maxlength="120" placeholder="e.g. office.example">
+            <button class="button secondary" type="submit">Mark readiness</button>
+          </form>
         </div>
       </section>
 
