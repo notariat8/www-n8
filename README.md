@@ -19,6 +19,7 @@ Root. GitHub Pages kann deshalb ohne zusätzlichen Build aus `main` und
 
 - Inhalte der deutschen Hauptseite stehen in [index.html](index.html).
 - Die englische Orientierung steht in [en/index.html](en/index.html).
+- Repository-Governance steht in [repo-governance.html](repo-governance.html).
 - Rechtliche Platzhalter stehen in [impressum.html](impressum.html) und
   [datenschutz.html](datenschutz.html).
 - Site-spezifische Assets liegen unter [assets/](assets).

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Repository-Governance | Notariat8</title>
+    <meta name="description" content="Repository-Governance für die notariat8-Repositories: Schutz der Default-Branches, Veröffentlichungsregeln und dokumentierte Ausnahme für private Repositories.">
+    <meta name="theme-color" content="#f5f7f4">
+    <link rel="canonical" href="https://notariat8.de/repo-governance.html">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="assets/site.css?v=20260520-nac">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Notariat8 Startseite">
+        <span class="brand-mark" aria-hidden="true"><span class="brand-n">n</span><span class="brand-eight">8</span></span>
+        <span>
+          <strong>Notariat8</strong>
+          <small>Notariat as Code</small>
+        </span>
+      </a>
+      <nav class="site-nav legal-nav" aria-label="Seitennavigation">
+        <a href="index.html">Start</a>
+        <a href="index.html#governance">Governance</a>
+        <a href="https://github.com/notariat8">GitHub</a>
+      </nav>
+    </header>
+
+    <main class="legal-page">
+      <p class="section-kicker">Repository-Governance</p>
+      <h1>Geschützte Default-Branches für notariat8.</h1>
+      <p>Die Default-Branches der öffentlichen notariat8-Repositories sind gegen Force-Push und Löschen geschützt. Status-Checks oder Pull-Request-Pflichten werden erst als harte Merge-Regel aktiviert, wenn das jeweilige Repository einen passenden, stabilen GitHub-Actions-Check hat.</p>
+
+      <div class="legal-box">
+        <h2>Geltende Grundregel</h2>
+        <p>Für geschützte Default-Branches gilt: kein Force-Push, kein Löschen, keine erzwungenen Status-Checks ohne vorhandene CI und keine erzwungene Pull-Request-Pflicht für reine Hotfix- oder Pages-Veröffentlichungen. Normale Commits auf den Default-Branch bleiben möglich, solange das Repository keine strengere Regel dokumentiert.</p>
+      </div>
+
+      <div class="legal-box">
+        <h2>Repository-Status</h2>
+        <div class="repo-table-wrap">
+          <table class="repo-table">
+            <thead>
+              <tr>
+                <th scope="col">Repository</th>
+                <th scope="col">Sichtbarkeit</th>
+                <th scope="col">Default-Branch</th>
+                <th scope="col">Schutz</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"><a class="text-link" href="https://github.com/notariat8/NaC">NaC</a></th>
+                <td data-label="Sichtbarkeit">öffentlich</td>
+                <td data-label="Default-Branch"><code>main</code></td>
+                <td data-label="Schutz">Force-Push und Löschen blockiert.</td>
+              </tr>
+              <tr>
+                <th scope="row"><a class="text-link" href="https://github.com/notariat8/www-n8">www-n8</a></th>
+                <td data-label="Sichtbarkeit">öffentlich</td>
+                <td data-label="Default-Branch"><code>main</code></td>
+                <td data-label="Schutz">Force-Push und Löschen blockiert; GitHub Pages veröffentlicht aus <code>main</code>.</td>
+              </tr>
+              <tr>
+                <th scope="row"><a class="text-link" href="https://github.com/notariat8/demo8notariat">demo8notariat</a></th>
+                <td data-label="Sichtbarkeit">öffentlich</td>
+                <td data-label="Default-Branch"><code>main</code></td>
+                <td data-label="Schutz">Force-Push und Löschen blockiert.</td>
+              </tr>
+              <tr>
+                <th scope="row">oci-landing-zone</th>
+                <td data-label="Sichtbarkeit">privat</td>
+                <td data-label="Default-Branch"><code>main</code></td>
+                <td data-label="Schutz">Nicht technisch geschützt: GitHub verlangt dafür GitHub Pro oder öffentliches Repository.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="legal-box">
+        <h2>Arbeitsablauf</h2>
+        <p>Änderungen werden vor Veröffentlichung lokal geprüft und nachvollziehbar committed. Für produktionskritische Änderungen wird ein Pull Request bevorzugt. Für dringende Korrekturen an dieser statischen Website bleibt ein direkter, nicht erzwungener Hotfix auf <code>main</code> zulässig, solange Force-Push und Branch-Löschung gesperrt bleiben.</p>
+      </div>
+
+      <div class="legal-box">
+        <h2>Ausbau mit CI</h2>
+        <p>Sobald ein Repository einen stabilen GitHub-Actions-Check hat, kann dieser als Required Status Check aktiviert werden. Der Name des Checks muss eindeutig sein, damit GitHub Merge-Entscheidungen nicht durch mehrdeutige Check-Namen blockiert.</p>
+      </div>
+
+      <p><a class="text-link" href="index.html">Zurück zur Startseite</a></p>
+    </main>
+  </body>
+</html>

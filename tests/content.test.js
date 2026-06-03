@@ -15,3 +15,15 @@ test("home pages do not expose roadmap-style next-step CTA copy", () => {
     assert.doesNotMatch(html, /Next step|Review the reference state/i, label);
   }
 });
+
+test("repository governance page documents every notariat8 repository", () => {
+  const html = readFileSync("repo-governance.html", "utf8");
+
+  for (const repo of ["NaC", "www-n8", "demo8notariat", "oci-landing-zone"]) {
+    assert.match(html, new RegExp(repo.replace("-", "\\-")), repo);
+  }
+
+  assert.match(html, /Force-Push/i);
+  assert.match(html, /Löschen/i);
+  assert.match(html, /GitHub Pro oder öffentliches Repository/i);
+});
