@@ -1,4 +1,4 @@
-const { readFileSync } = require("node:fs");
+const { existsSync, readFileSync } = require("node:fs");
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
 
@@ -142,9 +142,10 @@ test("home pages expose a data-free use case viewer for the top ten final workfl
   assert.match(english, /github\.com\/notariat8\/NaC\/tree\/main\/usecases\/immobilienkaufvertrag/i);
 });
 
-test("customer homepage styling does not use internal control-plane artwork", () => {
+test("site does not ship internal control-plane artwork", () => {
   const css = readFileSync("assets/site.css", "utf8");
 
+  assert.equal(existsSync("assets/nac-control-plane.svg"), false);
   assert.doesNotMatch(css, /nac-control-plane\.svg/i);
 });
 
