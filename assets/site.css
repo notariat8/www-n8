@@ -18,6 +18,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 88px;
 }
 
 body {
@@ -268,6 +269,10 @@ h3 {
   padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 5vw, 5rem);
 }
 
+section[id] {
+  scroll-margin-top: 88px;
+}
+
 .band {
   background: var(--surface);
   border-block: 1px solid var(--line);
@@ -367,6 +372,144 @@ h3 {
 
 .artifact-layout article:nth-child(4) {
   border-left-color: var(--copper);
+}
+
+.usecase-viewer {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(16rem, 0.82fr) minmax(0, 1.4fr);
+  margin: 0 auto 1rem;
+  max-width: 1180px;
+}
+
+.usecase-browser,
+.usecase-panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1.25rem;
+}
+
+.viewer-label {
+  color: var(--copper);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin: 0 0 0.85rem;
+  text-transform: uppercase;
+}
+
+.usecase-tabs {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.usecase-tab {
+  align-items: flex-start;
+  background: #fbfcfb;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  cursor: pointer;
+  display: flex;
+  font: inherit;
+  font-weight: 700;
+  gap: 0.65rem;
+  line-height: 1.25;
+  min-height: 46px;
+  padding: 0.72rem 0.8rem;
+  text-align: left;
+  width: 100%;
+}
+
+.usecase-tab span {
+  color: var(--blue);
+  flex: 0 0 1.6rem;
+  font-weight: 700;
+}
+
+.usecase-tab:hover,
+.usecase-tab:focus-visible,
+.usecase-tab[aria-selected="true"] {
+  border-color: var(--green);
+  outline: none;
+}
+
+.usecase-tab[aria-selected="true"] {
+  background: #eef7f4;
+  box-shadow: inset 4px 0 0 var(--green);
+}
+
+.usecase-panel {
+  min-height: 100%;
+}
+
+.usecase-panel[hidden] {
+  display: none;
+}
+
+.usecase-panel > p:not(.viewer-label) {
+  color: var(--muted);
+  margin: 0;
+}
+
+.process-steps {
+  counter-reset: process-step;
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  list-style: none;
+  margin: 1.25rem 0;
+  padding: 0;
+}
+
+.process-steps li {
+  background: #fbfcfb;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  font-size: 0.88rem;
+  font-weight: 700;
+  min-height: 68px;
+  padding: 0.72rem;
+}
+
+.process-steps li::before {
+  color: var(--blue);
+  content: counter(process-step, decimal-leading-zero);
+  counter-increment: process-step;
+  display: block;
+  font-size: 0.75rem;
+  margin-bottom: 0.35rem;
+}
+
+.viewer-meta {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0 0 1.25rem;
+}
+
+.viewer-meta div {
+  border-top: 1px solid var(--line);
+  padding-top: 0.7rem;
+}
+
+.viewer-meta dt {
+  color: var(--muted);
+  font-size: 0.78rem;
+  margin-bottom: 0.2rem;
+}
+
+.viewer-meta dd {
+  font-weight: 700;
+  margin: 0;
+}
+
+.viewer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
 }
 
 .app-transition {
@@ -595,7 +738,13 @@ h3 {
   .card-grid,
   .governance-list,
   .artifact-layout,
+  .usecase-viewer,
   .app-transition-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .process-steps,
+  .viewer-meta {
     grid-template-columns: 1fr;
   }
 

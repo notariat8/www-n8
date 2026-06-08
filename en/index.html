@@ -27,7 +27,7 @@
       <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-nav">☰</button>
       <nav class="site-nav" id="site-nav" aria-label="Main navigation">
         <a href="#benefits">Benefits</a>
-        <a href="#process">Use cases</a>
+        <a href="#process">Use-case viewer</a>
         <a href="#governance">Trust</a>
         <a href="#app">App</a>
         <a href="https://github.com/notariat8/NaC">GitHub</a>
@@ -99,9 +99,248 @@
 
       <section class="section" id="process" aria-labelledby="process-title">
         <div class="section-heading">
-          <p class="section-kicker">Use cases</p>
+          <p class="section-kicker">Use-case viewer</p>
           <h2 id="process-title">Use cases as final workflows.</h2>
           <p>The process view: use case, BPMN modeling, final workflow and GitHub reference belong together. This is real, only without data.</p>
+        </div>
+        <div class="usecase-viewer" data-usecase-viewer>
+          <div class="usecase-browser" aria-label="Canonical top 10">
+            <p class="viewer-label">Canonical top 10</p>
+            <div class="usecase-tabs" role="tablist" aria-label="Choose use case">
+              <button class="usecase-tab is-active" type="button" role="tab" id="tab-en-immobilienkaufvertrag" aria-controls="panel-en-immobilienkaufvertrag" aria-selected="true" data-usecase-tab="en-immobilienkaufvertrag"><span>01</span>Real estate purchase agreement</button>
+              <button class="usecase-tab" type="button" role="tab" id="tab-en-grundschuld-hypothekenbestellung" aria-controls="panel-en-grundschuld-hypothekenbestellung" aria-selected="false" data-usecase-tab="en-grundschuld-hypothekenbestellung"><span>02</span>Land charge / mortgage order</button>
+              <button class="usecase-tab" type="button" role="tab" id="tab-en-online-gmbh-gruendung" aria-controls="panel-en-online-gmbh-gruendung" aria-selected="false" data-usecase-tab="en-online-gmbh-gruendung"><span>03</span>GmbH-/UG formation</button>
+              <button class="usecase-tab" type="button" role="tab" id="tab-en-handelsregisteranmeldung" aria-controls="panel-en-handelsregisteranmeldung" aria-selected="false" data-usecase-tab="en-handelsregisteranmeldung"><span>04</span>Commercial register filing</button>
+              <button class="usecase-tab" type="button" role="tab" id="tab-en-unterschriftsbeglaubigung" aria-controls="panel-en-unterschriftsbeglaubigung" aria-selected="false" data-usecase-tab="en-unterschriftsbeglaubigung"><span>05</span>Signature certification</button>
+              <button class="usecase-tab" type="button" role="tab" id="tab-en-testament-erbvertrag" aria-controls="panel-en-testament-erbvertrag" aria-selected="false" data-usecase-tab="en-testament-erbvertrag"><span>06</span>Will / inheritance contract</button>
+              <button class="usecase-tab" type="button" role="tab" id="tab-en-erbscheinsantrag-nachlass" aria-controls="panel-en-erbscheinsantrag-nachlass" aria-selected="false" data-usecase-tab="en-erbscheinsantrag-nachlass"><span>07</span>Certificate of inheritance / estate</button>
+              <button class="usecase-tab" type="button" role="tab" id="tab-en-vorsorgevollmacht-patientenverfuegung" aria-controls="panel-en-vorsorgevollmacht-patientenverfuegung" aria-selected="false" data-usecase-tab="en-vorsorgevollmacht-patientenverfuegung"><span>08</span>Power of attorney and advance directive</button>
+              <button class="usecase-tab" type="button" role="tab" id="tab-en-schenkungsvertrag-uebertragungsvertrag" aria-controls="panel-en-schenkungsvertrag-uebertragungsvertrag" aria-selected="false" data-usecase-tab="en-schenkungsvertrag-uebertragungsvertrag"><span>09</span>Gift / transfer agreement</button>
+              <button class="usecase-tab" type="button" role="tab" id="tab-en-ehevertrag-scheidungsfolgenvereinbarung" aria-controls="panel-en-ehevertrag-scheidungsfolgenvereinbarung" aria-selected="false" data-usecase-tab="en-ehevertrag-scheidungsfolgenvereinbarung"><span>10</span>Marriage contract / divorce settlement</button>
+            </div>
+          </div>
+          <div class="usecase-panels">
+            <article class="usecase-panel is-active" role="tabpanel" id="panel-en-immobilienkaufvertrag" aria-labelledby="tab-en-immobilienkaufvertrag" data-usecase-panel="en-immobilienkaufvertrag">
+              <p class="viewer-label">Real final workflow, only without client data</p>
+              <h3>Real estate purchase agreement</h3>
+              <p>The workflow runs from structured intake through draft and notarization to completion with land register and payment references.</p>
+              <ol class="process-steps">
+                <li>Intake</li>
+                <li>Land register</li>
+                <li>Draft</li>
+                <li>Notarization</li>
+                <li>Completion</li>
+              </ol>
+              <dl class="viewer-meta">
+                <div><dt>Status</dt><dd>Reference available</dd></div>
+                <div><dt>BPMN</dt><dd>modeled</dd></div>
+                <div><dt>Mandatory</dt><dd>review and documentation</dd></div>
+              </dl>
+              <div class="viewer-actions">
+                <a class="button secondary" href="https://github.com/notariat8/NaC/tree/main/usecases/immobilienkaufvertrag">Use case on GitHub</a>
+                <a class="button secondary" href="https://github.com/notariat8/NaC/blob/main/bpmn/immobilienkaufvertrag.bpmn">View BPMN</a>
+                <a class="button primary" href="https://app.notariat8.de/?source=www-n8&amp;entry=usecase&amp;usecase=immobilienkaufvertrag">Test in app</a>
+              </div>
+            </article>
+            <article class="usecase-panel" role="tabpanel" id="panel-en-grundschuld-hypothekenbestellung" aria-labelledby="tab-en-grundschuld-hypothekenbestellung" data-usecase-panel="en-grundschuld-hypothekenbestellung" hidden>
+              <p class="viewer-label">Real final workflow, only without client data</p>
+              <h3>Land charge / mortgage order</h3>
+              <p>The workflow combines land register context, lender requirements, draft, notarization and filing in one reviewable flow.</p>
+              <ol class="process-steps">
+                <li>Intake</li>
+                <li>Lender terms</li>
+                <li>Draft</li>
+                <li>Notarization</li>
+                <li>Filing</li>
+              </ol>
+              <dl class="viewer-meta">
+                <div><dt>Status</dt><dd>Reference available</dd></div>
+                <div><dt>BPMN</dt><dd>modeled</dd></div>
+                <div><dt>Mandatory</dt><dd>review and documentation</dd></div>
+              </dl>
+              <div class="viewer-actions">
+                <a class="button secondary" href="https://github.com/notariat8/NaC/tree/main/usecases/grundschuld-hypothekenbestellung">Use case on GitHub</a>
+                <a class="button secondary" href="https://github.com/notariat8/NaC/blob/main/bpmn/usecases/grundschuld-hypothekenbestellung.bpmn">View BPMN</a>
+                <a class="button primary" href="https://app.notariat8.de/?source=www-n8&amp;entry=usecase&amp;usecase=grundschuld-hypothekenbestellung">Test in app</a>
+              </div>
+            </article>
+            <article class="usecase-panel" role="tabpanel" id="panel-en-online-gmbh-gruendung" aria-labelledby="tab-en-online-gmbh-gruendung" data-usecase-panel="en-online-gmbh-gruendung" hidden>
+              <p class="viewer-label">Real final workflow, only without client data</p>
+              <h3>GmbH-/UG formation</h3>
+              <p>The workflow shows digital company formation with party intake, articles, notarization, register filing and evidence.</p>
+              <ol class="process-steps">
+                <li>Parties</li>
+                <li>Articles</li>
+                <li>Notarization</li>
+                <li>Register</li>
+                <li>Evidence</li>
+              </ol>
+              <dl class="viewer-meta">
+                <div><dt>Status</dt><dd>Reference available</dd></div>
+                <div><dt>BPMN</dt><dd>modeled</dd></div>
+                <div><dt>Mandatory</dt><dd>review and documentation</dd></div>
+              </dl>
+              <div class="viewer-actions">
+                <a class="button secondary" href="https://github.com/notariat8/NaC/tree/main/usecases/online-gmbh-gruendung">Use case on GitHub</a>
+                <a class="button secondary" href="https://github.com/notariat8/NaC/blob/main/bpmn/usecases/online-gmbh-gruendung.bpmn">View BPMN</a>
+                <a class="button primary" href="https://app.notariat8.de/?source=www-n8&amp;entry=usecase&amp;usecase=online-gmbh-gruendung">Test in app</a>
+              </div>
+            </article>
+            <article class="usecase-panel" role="tabpanel" id="panel-en-handelsregisteranmeldung" aria-labelledby="tab-en-handelsregisteranmeldung" data-usecase-panel="en-handelsregisteranmeldung" hidden>
+              <p class="viewer-label">Real final workflow, only without client data</p>
+              <h3>Commercial register filing</h3>
+              <p>The workflow connects the filing basis, representation review, draft, signature and register submission.</p>
+              <ol class="process-steps">
+                <li>Trigger</li>
+                <li>Representation</li>
+                <li>Draft</li>
+                <li>Signature</li>
+                <li>Register</li>
+              </ol>
+              <dl class="viewer-meta">
+                <div><dt>Status</dt><dd>Reference available</dd></div>
+                <div><dt>BPMN</dt><dd>modeled</dd></div>
+                <div><dt>Mandatory</dt><dd>review and documentation</dd></div>
+              </dl>
+              <div class="viewer-actions">
+                <a class="button secondary" href="https://github.com/notariat8/NaC/tree/main/usecases/handelsregisteranmeldung">Use case on GitHub</a>
+                <a class="button secondary" href="https://github.com/notariat8/NaC/blob/main/bpmn/usecases/handelsregisteranmeldung.bpmn">View BPMN</a>
+                <a class="button primary" href="https://app.notariat8.de/?source=www-n8&amp;entry=usecase&amp;usecase=handelsregisteranmeldung">Test in app</a>
+              </div>
+            </article>
+            <article class="usecase-panel" role="tabpanel" id="panel-en-unterschriftsbeglaubigung" aria-labelledby="tab-en-unterschriftsbeglaubigung" data-usecase-panel="en-unterschriftsbeglaubigung" hidden>
+              <p class="viewer-label">Real final workflow, only without client data</p>
+              <h3>Signature certification</h3>
+              <p>The workflow keeps identity, representation, document review, certification and issued copy together as one closed process.</p>
+              <ol class="process-steps">
+                <li>Identity</li>
+                <li>Representation</li>
+                <li>Document</li>
+                <li>Certification</li>
+                <li>Issued copy</li>
+              </ol>
+              <dl class="viewer-meta">
+                <div><dt>Status</dt><dd>Reference available</dd></div>
+                <div><dt>BPMN</dt><dd>modeled</dd></div>
+                <div><dt>Mandatory</dt><dd>review and documentation</dd></div>
+              </dl>
+              <div class="viewer-actions">
+                <a class="button secondary" href="https://github.com/notariat8/NaC/tree/main/usecases/unterschriftsbeglaubigung">Use case on GitHub</a>
+                <a class="button secondary" href="https://github.com/notariat8/NaC/blob/main/bpmn/usecases/unterschriftsbeglaubigung.bpmn">View BPMN</a>
+                <a class="button primary" href="https://app.notariat8.de/?source=www-n8&amp;entry=usecase&amp;usecase=unterschriftsbeglaubigung">Test in app</a>
+              </div>
+            </article>
+            <article class="usecase-panel" role="tabpanel" id="panel-en-testament-erbvertrag" aria-labelledby="tab-en-testament-erbvertrag" data-usecase-panel="en-testament-erbvertrag" hidden>
+              <p class="viewer-label">Real final workflow, only without client data</p>
+              <h3>Will / inheritance contract</h3>
+              <p>The workflow shows consultation, draft, notarization, custody and register reference without real personal data.</p>
+              <ol class="process-steps">
+                <li>Consultation</li>
+                <li>Draft</li>
+                <li>Notarization</li>
+                <li>Custody</li>
+                <li>Evidence</li>
+              </ol>
+              <dl class="viewer-meta">
+                <div><dt>Status</dt><dd>Reference available</dd></div>
+                <div><dt>BPMN</dt><dd>modeled</dd></div>
+                <div><dt>Mandatory</dt><dd>review and documentation</dd></div>
+              </dl>
+              <div class="viewer-actions">
+                <a class="button secondary" href="https://github.com/notariat8/NaC/tree/main/usecases/testament-erbvertrag">Use case on GitHub</a>
+                <a class="button secondary" href="https://github.com/notariat8/NaC/blob/main/bpmn/usecases/testament-erbvertrag.bpmn">View BPMN</a>
+                <a class="button primary" href="https://app.notariat8.de/?source=www-n8&amp;entry=usecase&amp;usecase=testament-erbvertrag">Test in app</a>
+              </div>
+            </article>
+            <article class="usecase-panel" role="tabpanel" id="panel-en-erbscheinsantrag-nachlass" aria-labelledby="tab-en-erbscheinsantrag-nachlass" data-usecase-panel="en-erbscheinsantrag-nachlass" hidden>
+              <p class="viewer-label">Real final workflow, only without client data</p>
+              <h3>Certificate of inheritance / estate</h3>
+              <p>The workflow organizes succession, civil status documents, application, sworn statement, notarization and court reference.</p>
+              <ol class="process-steps">
+                <li>Succession</li>
+                <li>Documents</li>
+                <li>Application</li>
+                <li>Notarization</li>
+                <li>Court</li>
+              </ol>
+              <dl class="viewer-meta">
+                <div><dt>Status</dt><dd>Reference available</dd></div>
+                <div><dt>BPMN</dt><dd>modeled</dd></div>
+                <div><dt>Mandatory</dt><dd>review and documentation</dd></div>
+              </dl>
+              <div class="viewer-actions">
+                <a class="button secondary" href="https://github.com/notariat8/NaC/tree/main/usecases/erbscheinsantrag-nachlass">Use case on GitHub</a>
+                <a class="button secondary" href="https://github.com/notariat8/NaC/blob/main/bpmn/usecases/erbscheinsantrag-nachlass.bpmn">View BPMN</a>
+                <a class="button primary" href="https://app.notariat8.de/?source=www-n8&amp;entry=usecase&amp;usecase=erbscheinsantrag-nachlass">Test in app</a>
+              </div>
+            </article>
+            <article class="usecase-panel" role="tabpanel" id="panel-en-vorsorgevollmacht-patientenverfuegung" aria-labelledby="tab-en-vorsorgevollmacht-patientenverfuegung" data-usecase-panel="en-vorsorgevollmacht-patientenverfuegung" hidden>
+              <p class="viewer-label">Real final workflow, only without client data</p>
+              <h3>Power of attorney and advance directive</h3>
+              <p>The workflow makes parties, scope, identity, notarization or certification, registration and issued copies visible.</p>
+              <ol class="process-steps">
+                <li>Parties</li>
+                <li>Scope</li>
+                <li>Identity</li>
+                <li>Deed</li>
+                <li>Register</li>
+              </ol>
+              <dl class="viewer-meta">
+                <div><dt>Status</dt><dd>Reference available</dd></div>
+                <div><dt>BPMN</dt><dd>modeled</dd></div>
+                <div><dt>Mandatory</dt><dd>review and documentation</dd></div>
+              </dl>
+              <div class="viewer-actions">
+                <a class="button secondary" href="https://github.com/notariat8/NaC/tree/main/usecases/vorsorgevollmacht-patientenverfuegung">Use case on GitHub</a>
+                <a class="button secondary" href="https://github.com/notariat8/NaC/blob/main/bpmn/usecases/vorsorgevollmacht-patientenverfuegung.bpmn">View BPMN</a>
+                <a class="button primary" href="https://app.notariat8.de/?source=www-n8&amp;entry=usecase&amp;usecase=vorsorgevollmacht-patientenverfuegung">Test in app</a>
+              </div>
+            </article>
+            <article class="usecase-panel" role="tabpanel" id="panel-en-schenkungsvertrag-uebertragungsvertrag" aria-labelledby="tab-en-schenkungsvertrag-uebertragungsvertrag" data-usecase-panel="en-schenkungsvertrag-uebertragungsvertrag" hidden>
+              <p class="viewer-label">Real final workflow, only without client data</p>
+              <h3>Gift / transfer agreement</h3>
+              <p>The workflow brings parties, object, land register or register context, draft, notarization and completion together.</p>
+              <ol class="process-steps">
+                <li>Parties</li>
+                <li>Object</li>
+                <li>Draft</li>
+                <li>Notarization</li>
+                <li>Completion</li>
+              </ol>
+              <dl class="viewer-meta">
+                <div><dt>Status</dt><dd>Reference available</dd></div>
+                <div><dt>BPMN</dt><dd>modeled</dd></div>
+                <div><dt>Mandatory</dt><dd>review and documentation</dd></div>
+              </dl>
+              <div class="viewer-actions">
+                <a class="button secondary" href="https://github.com/notariat8/NaC/tree/main/usecases/schenkungsvertrag-uebertragungsvertrag">Use case on GitHub</a>
+                <a class="button secondary" href="https://github.com/notariat8/NaC/blob/main/bpmn/usecases/schenkungsvertrag-uebertragungsvertrag.bpmn">View BPMN</a>
+                <a class="button primary" href="https://app.notariat8.de/?source=www-n8&amp;entry=usecase&amp;usecase=schenkungsvertrag-uebertragungsvertrag">Test in app</a>
+              </div>
+            </article>
+            <article class="usecase-panel" role="tabpanel" id="panel-en-ehevertrag-scheidungsfolgenvereinbarung" aria-labelledby="tab-en-ehevertrag-scheidungsfolgenvereinbarung" data-usecase-panel="en-ehevertrag-scheidungsfolgenvereinbarung" hidden>
+              <p class="viewer-label">Real final workflow, only without client data</p>
+              <h3>Marriage contract / divorce settlement</h3>
+              <p>The workflow structures parties, regulated areas, draft, notarization, issued copy and later traceability.</p>
+              <ol class="process-steps">
+                <li>Parties</li>
+                <li>Terms</li>
+                <li>Draft</li>
+                <li>Notarization</li>
+                <li>Issued copy</li>
+              </ol>
+              <dl class="viewer-meta">
+                <div><dt>Status</dt><dd>Reference available</dd></div>
+                <div><dt>BPMN</dt><dd>modeled</dd></div>
+                <div><dt>Mandatory</dt><dd>review and documentation</dd></div>
+              </dl>
+              <div class="viewer-actions">
+                <a class="button secondary" href="https://github.com/notariat8/NaC/tree/main/usecases/ehevertrag-scheidungsfolgenvereinbarung">Use case on GitHub</a>
+                <a class="button secondary" href="https://github.com/notariat8/NaC/blob/main/bpmn/usecases/ehevertrag-scheidungsfolgenvereinbarung.bpmn">View BPMN</a>
+                <a class="button primary" href="https://app.notariat8.de/?source=www-n8&amp;entry=usecase&amp;usecase=ehevertrag-scheidungsfolgenvereinbarung">Test in app</a>
+              </div>
+            </article>
+          </div>
         </div>
         <div class="artifact-layout use-case-layout">
           <article>

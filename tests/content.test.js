@@ -122,6 +122,26 @@ test("home pages keep GitHub and BPMN modeling visible from the homepage", () =>
   assert.match(english, /process view: use case, BPMN modeling, final workflow and GitHub reference/i);
 });
 
+test("home pages expose a data-free use case viewer for the top ten final workflows", () => {
+  const german = readFileSync("index.html", "utf8");
+  const english = readFileSync("en/index.html", "utf8");
+
+  assert.match(german, /Use-Case-Viewer/i);
+  assert.match(german, /Kanonische Top 10/i);
+  assert.match(german, /Immobilienkaufvertrag/i);
+  assert.match(german, /GmbH-\/UG-Gründung/i);
+  assert.match(german, /Vorsorgevollmacht und Patientenverfügung/i);
+  assert.match(german, /github\.com\/notariat8\/NaC\/tree\/main\/usecases\/immobilienkaufvertrag/i);
+  assert.match(german, /github\.com\/notariat8\/NaC\/blob\/main\/bpmn\/immobilienkaufvertrag\.bpmn/i);
+  assert.match(german, /app\.notariat8\.de\/\?source=www-n8&amp;entry=usecase&amp;usecase=immobilienkaufvertrag/i);
+  assert.match(german, /realer finaler Workflow, nur ohne Mandatsdaten/i);
+
+  assert.match(english, /Use-case viewer/i);
+  assert.match(english, /Canonical top 10/i);
+  assert.match(english, /Real final workflow, only without client data/i);
+  assert.match(english, /github\.com\/notariat8\/NaC\/tree\/main\/usecases\/immobilienkaufvertrag/i);
+});
+
 test("customer homepage styling does not use internal control-plane artwork", () => {
   const css = readFileSync("assets/site.css", "utf8");
 
