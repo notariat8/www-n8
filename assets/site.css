@@ -69,24 +69,11 @@ a {
 }
 
 .brand-mark {
-  align-items: center;
-  background: #5a25b6;
   border-radius: 8px;
-  display: inline-flex;
   flex: 0 0 44px;
-  font-weight: 700;
-  gap: 1px;
   height: 44px;
-  justify-content: center;
+  object-fit: contain;
   width: 44px;
-}
-
-.brand-n {
-  color: var(--surface);
-}
-
-.brand-eight {
-  color: var(--gold);
 }
 
 .brand strong,
@@ -146,18 +133,31 @@ a {
 
 .hero {
   align-items: center;
-  background:
-    linear-gradient(90deg, rgba(245, 247, 244, 0.97) 0%, rgba(245, 247, 244, 0.86) 50%, rgba(245, 247, 244, 0.44) 100%),
-    url("nac-control-plane.svg");
-  background-position: center;
-  background-size: cover;
+  background: linear-gradient(120deg, #f5f7f4 0%, #eef4ef 58%, #ffffff 100%);
   display: flex;
   min-height: 72vh;
+  overflow: hidden;
   padding: clamp(4rem, 10vw, 8rem) clamp(1rem, 5vw, 5rem);
+  position: relative;
+}
+
+.hero::after {
+  background: url("https://bild8.de/assets/8/svg/n8.svg") center / contain no-repeat;
+  content: "";
+  height: clamp(14rem, 32vw, 28rem);
+  opacity: 0.08;
+  pointer-events: none;
+  position: absolute;
+  right: clamp(1rem, 8vw, 8rem);
+  top: 50%;
+  transform: translateY(-50%);
+  width: clamp(14rem, 32vw, 28rem);
 }
 
 .hero-content {
   max-width: 780px;
+  position: relative;
+  z-index: 1;
 }
 
 .eyebrow,
@@ -561,11 +561,17 @@ h3 {
   }
 
   .hero {
-    background:
-      linear-gradient(180deg, rgba(245, 247, 244, 0.98) 0%, rgba(245, 247, 244, 0.89) 62%, rgba(245, 247, 244, 0.66) 100%),
-      url("nac-control-plane.svg");
-    background-position: center;
     min-height: 70vh;
+  }
+
+  .hero::after {
+    bottom: 2rem;
+    height: 16rem;
+    opacity: 0.05;
+    right: -4rem;
+    top: auto;
+    transform: none;
+    width: 16rem;
   }
 
   h1 {
