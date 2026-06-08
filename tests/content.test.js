@@ -48,6 +48,25 @@ test("home pages keep internal operating language off the customer-facing surfac
   }
 });
 
+test("home pages position use cases as bounded template workflows with GitHub as reference", () => {
+  const german = readFileSync("index.html", "utf8");
+  const english = readFileSync("en/index.html", "utf8");
+
+  assert.match(german, /Use Cases als Muster-Workflows/i);
+  assert.match(german, /GitHub als Referenzstand/i);
+  assert.match(german, /Abweichungen begründen/i);
+  assert.match(german, /standardisierter und besser/i);
+  assert.doesNotMatch(german, /Gemeinsam betrachten wir/i);
+  assert.doesNotMatch(german, /Geeignete digitale Unterstützung/i);
+
+  assert.match(english, /Use cases as template workflows/i);
+  assert.match(english, /GitHub as the reference/i);
+  assert.match(english, /justify deviations/i);
+  assert.match(english, /more standardized and better/i);
+  assert.doesNotMatch(english, /We look together/i);
+  assert.doesNotMatch(english, /Suitable digital support/i);
+});
+
 test("customer homepage styling does not use internal control-plane artwork", () => {
   const css = readFileSync("assets/site.css", "utf8");
 
