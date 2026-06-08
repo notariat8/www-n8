@@ -126,6 +126,11 @@ test("home pages expose a data-free use case viewer for the top ten final workfl
   const german = readFileSync("index.html", "utf8");
   const english = readFileSync("en/index.html", "utf8");
 
+  for (const html of [german, english]) {
+    assert.match(html, /assets\/site\.css\?v=20260608-usecase-viewer/i);
+    assert.match(html, /assets\/site\.js\?v=20260608-usecase-viewer/i);
+  }
+
   assert.match(german, /Use-Case-Viewer/i);
   assert.match(german, /Kanonische Top 10/i);
   assert.match(german, /Immobilienkaufvertrag/i);
