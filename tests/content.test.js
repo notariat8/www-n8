@@ -48,23 +48,71 @@ test("home pages keep internal operating language off the customer-facing surfac
   }
 });
 
-test("home pages position use cases as bounded template workflows with GitHub as reference", () => {
+test("home pages position use cases as bounded final workflows with GitHub as reference", () => {
   const german = readFileSync("index.html", "utf8");
   const english = readFileSync("en/index.html", "utf8");
 
-  assert.match(german, /Use Cases als Muster-Workflows/i);
+  assert.match(german, /Use Cases als finale Workflows/i);
+  assert.match(german, /Jeder Use Case ist für sich geschlossen/i);
+  assert.match(german, /Parallelbetrieb möglich/i);
+  assert.match(german, /wichtigsten 10 Use Cases digital first/i);
   assert.match(german, /GitHub als Referenzstand/i);
+  assert.match(german, /Git-Audit/i);
+  assert.match(german, /\bPRs\b/i);
+  assert.match(german, /real, nur ohne Daten/i);
   assert.match(german, /Abweichungen begründen/i);
   assert.match(german, /standardisierter und besser/i);
   assert.doesNotMatch(german, /Gemeinsam betrachten wir/i);
   assert.doesNotMatch(german, /Geeignete digitale Unterstützung/i);
+  assert.doesNotMatch(german, /Muster-Workflow|Musterprozess/i);
 
-  assert.match(english, /Use cases as template workflows/i);
+  assert.match(english, /Use cases as final workflows/i);
+  assert.match(english, /Each use case stands on its own/i);
+  assert.match(english, /Parallel operation is possible/i);
+  assert.match(english, /10 most important use cases are implemented digital first/i);
   assert.match(english, /GitHub as the reference/i);
+  assert.match(english, /Git audit/i);
+  assert.match(english, /\bPRs\b/i);
+  assert.match(english, /real, only without data/i);
   assert.match(english, /justify deviations/i);
   assert.match(english, /more standardized and better/i);
   assert.doesNotMatch(english, /We look together/i);
   assert.doesNotMatch(english, /Suitable digital support/i);
+  assert.doesNotMatch(english, /template workflow|template process/i);
+});
+
+test("home pages state mandatory documentation, human review, and app test boundary", () => {
+  const german = readFileSync("index.html", "utf8");
+  const english = readFileSync("en/index.html", "utf8");
+
+  assert.match(german, /Dokumentation ist Pflicht/i);
+  assert.match(german, /Human in the loop ist Pflicht/i);
+  assert.match(german, /Prozess-View/i);
+  assert.match(german, /app\.notariat8\.de/i);
+  assert.match(german, /Datenschutzerklärung/i);
+  assert.match(german, /GitHub-Referenzstand/i);
+  assert.match(german, /Pflichten im finalen Workflow/i);
+
+  assert.match(english, /Documentation is mandatory/i);
+  assert.match(english, /Human in the loop is mandatory/i);
+  assert.match(english, /process view/i);
+  assert.match(english, /app\.notariat8\.de/i);
+  assert.match(english, /privacy notice/i);
+  assert.match(english, /GitHub reference/i);
+  assert.match(english, /Mandatory parts of the final workflow/i);
+});
+
+test("home pages keep GitHub and BPMN modeling visible from the homepage", () => {
+  const german = readFileSync("index.html", "utf8");
+  const english = readFileSync("en/index.html", "utf8");
+
+  assert.match(german, /<a href="https:\/\/github\.com\/notariat8\/NaC">GitHub<\/a>/);
+  assert.match(german, /BPMN-Modellierung/i);
+  assert.match(german, /Prozess-View: Use Case, BPMN-Modellierung, finaler Workflow und GitHub-Referenzstand/i);
+
+  assert.match(english, /<a href="https:\/\/github\.com\/notariat8\/NaC">GitHub<\/a>/);
+  assert.match(english, /BPMN modeling/i);
+  assert.match(english, /process view: use case, BPMN modeling, final workflow and GitHub reference/i);
 });
 
 test("customer homepage styling does not use internal control-plane artwork", () => {

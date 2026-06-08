@@ -349,6 +349,10 @@ h3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.use-case-layout {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .artifact-layout article {
   border-left: 6px solid var(--gold);
 }
@@ -359,6 +363,10 @@ h3 {
 
 .artifact-layout article:nth-child(3) {
   border-left-color: var(--blue);
+}
+
+.artifact-layout article:nth-child(4) {
+  border-left-color: var(--copper);
 }
 
 .app-transition {
@@ -595,6 +603,12 @@ h3 {
   .site-footer {
     align-items: flex-start;
     flex-direction: column;
+  }
+}
+
+@media (min-width: 861px) and (max-width: 1100px) {
+  .use-case-layout {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
