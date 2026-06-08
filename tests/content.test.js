@@ -75,11 +75,13 @@ test("home pages position use cases as bounded final workflows with GitHub as re
   assert.match(german, /Parallelbetrieb möglich/i);
   assert.match(german, /wichtigsten 10 Use Cases digital first/i);
   assert.match(german, /GitHub als Referenzstand/i);
-  assert.match(german, /Git-Audit/i);
-  assert.match(german, /\bPRs\b/i);
+  assert.match(german, /nachvollziehbare Änderungshistorie/i);
+  assert.match(german, /Pull Requests/i);
   assert.match(german, /real, nur ohne Daten/i);
   assert.match(german, /Abweichungen begründen/i);
   assert.match(german, /standardisierter und besser/i);
+  assert.doesNotMatch(german, /Git-Audit/i);
+  assert.doesNotMatch(german, /\bPRs\b/i);
   assert.doesNotMatch(german, /Gemeinsam betrachten wir/i);
   assert.doesNotMatch(german, /Geeignete digitale Unterstützung/i);
   assert.doesNotMatch(german, /Muster-Workflow|Musterprozess/i);
@@ -89,14 +91,31 @@ test("home pages position use cases as bounded final workflows with GitHub as re
   assert.match(english, /Parallel operation is possible/i);
   assert.match(english, /10 most important use cases are implemented digital first/i);
   assert.match(english, /GitHub as the reference/i);
-  assert.match(english, /Git audit/i);
-  assert.match(english, /\bPRs\b/i);
+  assert.match(english, /traceable change history/i);
+  assert.match(english, /pull requests/i);
   assert.match(english, /real, only without data/i);
   assert.match(english, /justify deviations/i);
   assert.match(english, /more standardized and better/i);
+  assert.doesNotMatch(english, /Git audit/i);
+  assert.doesNotMatch(english, /\bPRs\b/i);
   assert.doesNotMatch(english, /We look together/i);
   assert.doesNotMatch(english, /Suitable digital support/i);
   assert.doesNotMatch(english, /template workflow|template process/i);
+});
+
+test("home pages explain GitHub review terms with accessible links", () => {
+  const german = readFileSync("index.html", "utf8");
+  const english = readFileSync("en/index.html", "utf8");
+  const commitDocs = "https://docs.github.com/github/committing-changes-to-your-project/creating-and-editing-commits/about-commits";
+  const pullRequestDocs = "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests";
+
+  assert.match(german, new RegExp(`<a class="text-link" href="${commitDocs}">nachvollziehbare Änderungshistorie</a>`));
+  assert.match(german, new RegExp(`<a class="text-link" href="${pullRequestDocs}">Pull Requests</a>`));
+  assert.match(german, /was geändert wurde, warum es freigegeben wurde/i);
+
+  assert.match(english, new RegExp(`<a class="text-link" href="${commitDocs}">traceable change history</a>`));
+  assert.match(english, new RegExp(`<a class="text-link" href="${pullRequestDocs}">pull requests</a>`));
+  assert.match(english, /what changed, why it was approved/i);
 });
 
 test("home pages state mandatory documentation, human review, and app test boundary", () => {
