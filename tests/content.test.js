@@ -55,6 +55,17 @@ test("home pages keep internal operating language off the customer-facing surfac
   }
 });
 
+test("positioning copy stays focused on control without public-website disclaimer", () => {
+  const german = readFileSync("index.html", "utf8");
+  const english = readFileSync("en/index.html", "utf8");
+
+  assert.match(german, /Standards werden sichtbar, Zuständigkeiten bleiben verständlich\./i);
+  assert.doesNotMatch(german, /sensible Informationen gehören nicht auf eine öffentliche Website/i);
+
+  assert.match(english, /standards stay visible, responsibilities remain understandable\./i);
+  assert.doesNotMatch(english, /sensitive information does not belong on a public website/i);
+});
+
 test("home pages position use cases as bounded final workflows with GitHub as reference", () => {
   const german = readFileSync("index.html", "utf8");
   const english = readFileSync("en/index.html", "utf8");
