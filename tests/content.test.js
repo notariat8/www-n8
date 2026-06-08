@@ -7,6 +7,13 @@ const pages = [
   ["English home page", "en/index.html"],
 ];
 
+const sitePages = [
+  ...pages,
+  ["Privacy page", "datenschutz.html"],
+  ["Legal notice page", "impressum.html"],
+  ["Repository governance page", "repo-governance.html"],
+];
+
 test("home pages do not expose roadmap-style next-step CTA copy", () => {
   for (const [label, file] of pages) {
     const html = readFileSync(file, "utf8");
@@ -16,8 +23,8 @@ test("home pages do not expose roadmap-style next-step CTA copy", () => {
   }
 });
 
-test("home pages use the canonical Notariat8 brand asset", () => {
-  for (const [label, file] of pages) {
+test("site pages use the canonical Notariat8 brand asset", () => {
+  for (const [label, file] of sitePages) {
     const html = readFileSync(file, "utf8");
 
     assert.match(html, /https:\/\/bild8\.de\/assets\/8\/svg\/n8\.svg/i, label);
@@ -128,7 +135,12 @@ test("repository governance page documents every notariat8 repository", () => {
     assert.match(html, new RegExp(repo.replace("-", "\\-")), repo);
   }
 
-  assert.match(html, /Force-Push/i);
-  assert.match(html, /Löschen/i);
-  assert.match(html, /GitHub Pro oder öffentliches Repository/i);
+  assert.match(html, /Veröffentlichungsregeln für die gültige Fassung/i);
+  assert.match(html, /rückwirkend überschrieben oder gelöscht/i);
+  assert.match(html, /Vier-Augen-Freigabe/i);
+  assert.match(html, /Prüfung als Veröffentlichungsbedingung/i);
+  assert.match(html, /für die Veröffentlichung freigegebene Hauptfassung/i);
+  assert.match(html, /Technischer Name/i);
+  assert.doesNotMatch(html, /Geschützte Default-Branches/i);
+  assert.match(html, /GitHub Pro oder ein öffentliches Repository/i);
 });
