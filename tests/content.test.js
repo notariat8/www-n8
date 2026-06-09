@@ -104,7 +104,6 @@ test("home pages keep internal operating language off the customer-facing surfac
     /\bWorkspace\b/i,
     /\bRepo(?:sitory)?\b/i,
     /Force-Push/i,
-    /\bSBOM\b/i,
     /\bGates?\b/i,
     /\bEnterprise GitOps\b/i,
     /\bTenant\b/i,
@@ -117,6 +116,48 @@ test("home pages keep internal operating language off the customer-facing surfac
 
     for (const term of blockedTerms) {
       assert.doesNotMatch(html, term, label);
+    }
+  }
+});
+
+test("public pages do not expose style-guide blocked terms", () => {
+  const styleGuide = readStyleGuide();
+
+  for (const [label, file] of sitePages) {
+    const html = readFileSync(file, "utf8");
+    const publicText = htmlToPublicText(html);
+
+    for (const { term } of styleGuide.blockedTerms) {
+      assert.doesNotMatch(publicText, termRegExp(term), `${label}: ${term}`);
+    }
+  }
+});
+
+test("public pages explain style-guide explain-only terms in visible context", () => {
+  const styleGuide = readStyleGuide();
+
+  for (const [label, file] of sitePages) {
+    const html = readFileSync(file, "utf8");
+    const publicText = htmlToPublicText(html);
+
+    for (const { term, requiredNearbyAny = [] } of styleGuide.explainOnlyTerms) {
+      const pattern = termRegExp(term);
+      const match = pattern.exec(publicText);
+
+      if (!match) {
+        continue;
+      }
+
+      const context = surroundingText(publicText, match.index);
+      const hasExplanation = requiredNearbyAny.some((phrase) =>
+        new RegExp(escapeRegExp(phrase), "i").test(context)
+      );
+
+      assert.equal(
+        hasExplanation,
+        true,
+        `${label}: ${term} must be explained near first visible use`
+      );
     }
   }
 });
