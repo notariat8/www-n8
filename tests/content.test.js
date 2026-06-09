@@ -398,7 +398,7 @@ test("home pages expose a data-free process viewer for selected approved flows",
   const english = readFileSync("en/index.html", "utf8");
 
   for (const html of [german, english]) {
-    assert.match(html, /assets\/site\.css\?v=20260608-usecase-viewer/i);
+    assert.match(html, /assets\/site\.css\?v=20260609-process-steps/i);
     assert.match(html, /assets\/site\.js\?v=20260608-usecase-viewer/i);
   }
 
@@ -416,6 +416,27 @@ test("home pages expose a data-free process viewer for selected approved flows",
   assert.match(english, /Selected matters/i);
   assert.match(english, /Approved work and review flow, only without client data/i);
   assert.match(english, /github\.com\/notariat8\/NaC\/tree\/main\/usecases\/immobilienkaufvertrag/i);
+});
+
+test("real estate process steps use review-oriented labels that fit the step tiles", () => {
+  const german = readFileSync("index.html", "utf8");
+  const english = readFileSync("en/index.html", "utf8");
+  const css = readFileSync("assets/site.css", "utf8");
+
+  assert.doesNotMatch(german, />Grundbuchstand</i);
+  assert.match(german, />Grundbuch prüfen</i);
+  assert.match(english, />Land register review</i);
+
+  assert.match(
+    css,
+    /\.process-steps \{[\s\S]*grid-template-columns: repeat\(auto-fit, minmax\(112px, 1fr\)\);/,
+    "process step tiles must keep public labels wide enough to stay readable"
+  );
+  assert.match(
+    css,
+    /\.process-steps li \{[\s\S]*overflow-wrap: break-word;/,
+    "process step tiles must still guard against unexpectedly long labels"
+  );
 });
 
 test("site does not ship internal control-plane artwork", () => {

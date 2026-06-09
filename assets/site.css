@@ -457,7 +457,7 @@ section[id] {
   counter-reset: process-step;
   display: grid;
   gap: 0.5rem;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
   list-style: none;
   margin: 1.25rem 0;
   padding: 0;
@@ -470,7 +470,10 @@ section[id] {
   color: var(--ink);
   font-size: 0.88rem;
   font-weight: 700;
+  line-height: 1.25;
   min-height: 68px;
+  min-width: 0;
+  overflow-wrap: break-word;
   padding: 0.72rem;
 }
 
