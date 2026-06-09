@@ -64,7 +64,17 @@ Bevorzugte Richtungen:
 - `Pull Request`: Änderungsvorschlag mit Prüfung und Freigabe
 - `Commit`: nachvollziehbarer Änderungseintrag
 - `GitHub`: Ort des Referenzstands, nicht Entwicklerplattform als Selbstzweck
-- `BPMN`: fachliche Prozessmodellierung
+- `Use Case`: fachlich abgegrenzter Vorgang, Vorgang, ausgewählter Vorgang
+- `Use-Case-Viewer`: Vorgangsübersicht
+- `Notariatsprozesse`: digitale Vorgangsbearbeitung, notarielle Vorgänge, freigegebene Arbeits- und Prüfabläufe
+- `Prozesse`: Vorgänge oder Abläufe, je nach Kontext
+- `Workflow`: freigegebener Arbeits- und Prüfablauf, Ablauf mit Prüfpunkten, Vorgangsbearbeitung
+- `BPMN`: fachliche Prozessmodellierung (BPMN)
+- `digital first`: zuerst digital abgebildet oder vorrangig digital bearbeitet
+
+Auf der deutschen öffentlichen Seite sollen `Use Case`, `Use-Case-Viewer`, `Prozess-View`, `Notariatsprozesse`, generisches `Prozesse`, generisches `Workflow` und `digital first` nicht sichtbar stehen. Der fachliche Begriff ist der Vorgang; der prüfbare Ablauf ist der freigegebene Arbeits- und Prüfablauf.
+
+Auf der englischen öffentlichen Seite gelten entsprechend `matter`, `matter overview`, `digital matter handling`, `approved work and review flow` und `process modeling (BPMN)`. `use case`, `use-case viewer`, `process view`, `digital notarial processes`, generisches `workflow` und `digital first` sind dort ebenfalls zu vermeiden.
 
 ## Mandantenfähigkeit
 

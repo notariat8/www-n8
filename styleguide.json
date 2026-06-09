@@ -160,11 +160,100 @@
       ]
     },
     {
+      "avoid": "Use Case",
+      "prefer": [
+        "fachlich abgegrenzter Vorgang",
+        "Vorgang",
+        "ausgewählter Vorgang"
+      ]
+    },
+    {
+      "avoid": "use case",
+      "prefer": [
+        "professionally bounded matter",
+        "matter",
+        "selected matter"
+      ]
+    },
+    {
+      "avoid": "Use-Case-Viewer",
+      "prefer": [
+        "Vorgangsübersicht"
+      ]
+    },
+    {
+      "avoid": "Use-case viewer",
+      "prefer": [
+        "matter overview"
+      ]
+    },
+    {
+      "avoid": "Prozess-View",
+      "prefer": [
+        "Vorgangsübersicht"
+      ]
+    },
+    {
+      "avoid": "Notariatsprozesse",
+      "prefer": [
+        "digitale Vorgangsbearbeitung",
+        "notarielle Vorgänge",
+        "freigegebene Arbeits- und Prüfabläufe"
+      ]
+    },
+    {
+      "avoid": "Prozesse",
+      "prefer": [
+        "Vorgänge",
+        "Abläufe"
+      ]
+    },
+    {
+      "avoid": "process view",
+      "prefer": [
+        "matter overview"
+      ]
+    },
+    {
+      "avoid": "Digital notarial processes",
+      "prefer": [
+        "Digital matter handling"
+      ]
+    },
+    {
       "avoid": "Workflow",
       "prefer": [
         "fachlich freigegebener Arbeits- und Prüfablauf",
         "Ablauf mit Prüfpunkten",
         "Vorgangsbearbeitung"
+      ]
+    },
+    {
+      "avoid": "workflow",
+      "prefer": [
+        "approved work and review flow",
+        "flow with review points",
+        "matter handling"
+      ]
+    },
+    {
+      "avoid": "BPMN-Modellierung",
+      "prefer": [
+        "fachliche Prozessmodellierung (BPMN)"
+      ]
+    },
+    {
+      "avoid": "BPMN modeling",
+      "prefer": [
+        "process modeling (BPMN)"
+      ]
+    },
+    {
+      "avoid": "digital first",
+      "prefer": [
+        "zuerst digital abgebildet",
+        "selected for digital handling first",
+        "vorrangig digital bearbeitet"
       ]
     }
   ],
