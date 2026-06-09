@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "mode": "strict-conservative",
+  "surface": "external-public",
+  "languages": ["de", "en"],
+  "audiences": [
+    "Notariate",
+    "Rechtsanwälte",
+    "Notarkammern",
+    "Partner",
+    "Behörden"
+  ],
+  "toneRules": {
+    "required": [
+      "sachlich",
+      "zurückhaltend",
+      "juristisch anschlussfähig",
+      "organisatorisch klar",
+      "prüfbar",
+      "fachlich nüchtern"
+    ],
+    "avoid": [
+      "werbliche Überhöhung",
+      "Pitch-Sprache",
+      "Entwicklerjargon ohne Erklärung",
+      "pauschale Sicherheitsversprechen",
+      "pauschale Compliance-Versprechen",
+      "juristische Begriffe als technische Dekoration"
+    ]
+  },
+  "sourcePriority": [
+    {
+      "rank": 1,
+      "label": "Notar.de, Bundesnotarkammer, Notarkammern",
+      "useFor": "notarielle und juristische Begriffe"
+    },
+    {
+      "rank": 2,
+      "label": "BMJ und amtliche Quellen",
+      "useFor": "rechtliche Einordnung und Begriffe"
+    },
+    {
+      "rank": 3,
+      "label": "Gesetzestexte und amtliche EU-Quellen",
+      "useFor": "rechtliche und regulatorische Anforderungen"
+    },
+    {
+      "rank": 4,
+      "label": "BSI, NIST und vergleichbare Fachstellen",
+      "useFor": "Sicherheit, Software-Lieferketten, SBOM"
+    },
+    {
+      "rank": 5,
+      "label": "ofunk/claude-fuer-deutsches-recht",
+      "useFor": "Formulierungs- und Strukturhilfe, nicht als Autorität"
+    }
+  ],
+  "blockedTerms": [
+    {
+      "term": "Tenant",
+      "scope": "public-html",
+      "reason": "Technischer Innenbegriff; öffentlich durch organisationsbezogene Trennung oder Mandantenfähigkeit erklären."
+    },
+    {
+      "term": "Control Plane",
+      "scope": "public-html",
+      "reason": "Externer Zweck nicht freigegeben."
+    }
+  ],
+  "explainOnlyTerms": [
+    {
+      "term": "SBOM",
+      "firstUse": "Software Bill of Materials (SBOM), deutsch: Software-Stückliste",
+      "allowedContext": [
+        "Open Source",
+        "Komponenten",
+        "Versionen",
+        "Abhängigkeiten",
+        "freigegebene Fassung",
+        "Nachvollziehbarkeit",
+        "Sicherheitsmeldungen",
+        "Lizenzfragen"
+      ],
+      "requiredNearbyAny": [
+        "Software Bill of Materials",
+        "Software-Stückliste"
+      ],
+      "notA": [
+        "Sicherheitsgarantie",
+        "Rechtskonformitätsgarantie",
+        "Schwachstellenbewertung"
+      ]
+    },
+    {
+      "term": "Mandantenfähigkeit",
+      "firstUse": "organisationsbezogene Trennung von Arbeitsbereichen, Zuständigkeiten, Daten, Freigaben und Arbeitsständen",
+      "allowedContext": [
+        "Sicherheit",
+        "Governance",
+        "Organisation",
+        "Trennung",
+        "Arbeitsbereiche",
+        "Zuständigkeiten",
+        "Daten",
+        "Freigaben",
+        "Arbeitsstände"
+      ],
+      "requiredNearbyAny": [
+        "Organisation",
+        "organisationsbezogen",
+        "getrennt geführt",
+        "organizational separation"
+      ]
+    },
+    {
+      "term": "GitOps",
+      "firstUse": "dokumentierte, versionierte und freigegebene Fassungen",
+      "allowedContext": [
+        "Referenzstand",
+        "freigegebene Fassung",
+        "Änderungshistorie",
+        "Prüfung",
+        "Freigabe"
+      ],
+      "requiredNearbyAny": [
+        "dokumentierte",
+        "versionierte",
+        "freigegebene Fassungen",
+        "reference state"
+      ]
+    }
+  ],
+  "preferredTerms": [
+    {
+      "avoid": "Repo",
+      "prefer": [
+        "Referenzstand",
+        "Ablage für freigegebene Fassungen",
+        "nachvollziehbare Änderungshistorie"
+      ]
+    },
+    {
+      "avoid": "Repository",
+      "prefer": [
+        "Referenzstand",
+        "Ablage für freigegebene Fassungen",
+        "nachvollziehbare Änderungshistorie"
+      ]
+    },
+    {
+      "avoid": "Pull Request",
+      "prefer": [
+        "Änderungsvorschlag mit Prüfung und Freigabe"
+      ]
+    },
+    {
+      "avoid": "Commit",
+      "prefer": [
+        "nachvollziehbarer Änderungseintrag"
+      ]
+    },
+    {
+      "avoid": "Workflow",
+      "prefer": [
+        "fachlich freigegebener Arbeits- und Prüfablauf",
+        "Ablauf mit Prüfpunkten",
+        "Vorgangsbearbeitung"
+      ]
+    }
+  ],
+  "contextRules": [
+    {
+      "term": "Vollzug",
+      "allowedWhen": [
+        "beurkundeter Vorgang",
+        "beglaubigter Vorgang",
+        "Registervollzug",
+        "Grundbuchvollzug",
+        "Einreichung",
+        "Anzeige",
+        "Genehmigung",
+        "Zustimmung",
+        "Frist",
+        "Nachweis",
+        "behördliche Rückmeldung"
+      ],
+      "avoidWhen": [
+        "generischer Workflow",
+        "technischer Ablauf",
+        "allgemeine Prozessbeschreibung"
+      ],
+      "forbiddenConfusion": "Vollstreckung"
+    }
+  ],
+  "reviewChecklist": [
+    "Ist der Text für Notariate, Rechtsanwälte, Notarkammern, Partner und Behörden geeignet?",
+    "Ist die Aussage sachlich prüfbar?",
+    "Sind technische Begriffe erklärt oder juristisch-organisatorisch übersetzt?",
+    "Werden juristische Begriffe zweckgenau verwendet?",
+    "Sind Sicherheits- und Governance-Aussagen belegt oder zurückhaltend formuliert?",
+    "Widerspricht der Text keinem blockierten Begriff und keiner Erklärungspflicht?"
+  ]
+}

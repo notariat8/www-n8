@@ -1,4 +1,4 @@
-const { existsSync, readFileSync } = require("node:fs");
+const { existsSync, readFileSync, readdirSync } = require("node:fs");
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
 
@@ -7,12 +7,79 @@ const pages = [
   ["English home page", "en/index.html"],
 ];
 
+function htmlPagesIn(dir, labelPrefix) {
+  return readdirSync(dir)
+    .filter((file) => file.endsWith(".html"))
+    .sort()
+    .map((file) => [
+      `${labelPrefix} ${file}`,
+      dir === "." ? file : `${dir}/${file}`,
+    ]);
+}
+
 const sitePages = [
-  ...pages,
-  ["Privacy page", "datenschutz.html"],
-  ["Legal notice page", "impressum.html"],
-  ["Repository governance page", "repo-governance.html"],
+  ...htmlPagesIn(".", "Root page"),
+  ...htmlPagesIn("en", "English page"),
 ];
+
+const brandedSitePages = sitePages.filter(([, file]) => file !== "404.html");
+
+const styleGuidePath = "styleguide.json";
+const agentStyleGuidePath = "docs/agent-style-guide.md";
+
+function readStyleGuide() {
+  assert.equal(existsSync(styleGuidePath), true, "styleguide.json must exist");
+  return JSON.parse(readFileSync(styleGuidePath, "utf8"));
+}
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function termRegExp(term) {
+  return new RegExp(`\\b${escapeRegExp(term)}\\b`, "i");
+}
+
+function decodeHtmlEntities(value) {
+  return value
+    .replace(/&amp;/g, "&")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&uuml;/g, "ü")
+    .replace(/&Uuml;/g, "Ü")
+    .replace(/&ouml;/g, "ö")
+    .replace(/&Ouml;/g, "Ö")
+    .replace(/&auml;/g, "ä")
+    .replace(/&Auml;/g, "Ä")
+    .replace(/&szlig;/g, "ß");
+}
+
+function publicAttributeText(html) {
+  const publicAttributePattern = /\s(?:aria-label|aria-description|alt|title|placeholder|content)=("([^"]*)"|'([^']*)')/gi;
+
+  return Array.from(
+    html.matchAll(publicAttributePattern),
+    (match) => match[2] ?? match[3] ?? ""
+  ).join(" ");
+}
+
+function htmlToPublicText(html) {
+  const publicHtml = html
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ");
+  const attributes = publicAttributeText(publicHtml);
+  const bodyText = publicHtml.replace(/<[^>]+>/g, " ");
+
+  return decodeHtmlEntities(`${bodyText} ${attributes}`)
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function surroundingText(text, matchIndex, windowSize = 700) {
+  return text.slice(
+    Math.max(0, matchIndex - windowSize),
+    Math.min(text.length, matchIndex + windowSize)
+  );
+}
 
 test("home pages do not expose roadmap-style next-step CTA copy", () => {
   for (const [label, file] of pages) {
@@ -23,13 +90,60 @@ test("home pages do not expose roadmap-style next-step CTA copy", () => {
   }
 });
 
-test("site pages use the canonical Notariat8 brand asset", () => {
-  for (const [label, file] of sitePages) {
+test("branded site pages use the canonical Notariat8 brand asset", () => {
+  for (const [label, file] of brandedSitePages) {
     const html = readFileSync(file, "utf8");
 
     assert.match(html, /https:\/\/bild8\.de\/assets\/8\/svg\/n8\.svg/i, label);
     assert.doesNotMatch(html, /brand-n|brand-eight/i, label);
   }
+});
+
+test("style guide artifacts exist and declare strict external-public governance", () => {
+  const styleGuide = readStyleGuide();
+  const agentGuide = readFileSync(agentStyleGuidePath, "utf8");
+
+  assert.equal(styleGuide.mode, "strict-conservative");
+  assert.equal(styleGuide.surface, "external-public");
+  assert.deepEqual(styleGuide.languages, ["de", "en"]);
+  assert.ok(styleGuide.audiences.includes("Notariate"));
+  assert.ok(styleGuide.audiences.includes("Rechtsanwälte"));
+  assert.ok(styleGuide.audiences.includes("Notarkammern"));
+  assert.ok(styleGuide.audiences.includes("Partner"));
+  assert.ok(styleGuide.audiences.includes("Behörden"));
+  assert.match(agentGuide, /streng konservativ/i);
+  assert.match(agentGuide, /Notariate, Rechtsanwälte, Notarkammern/i);
+  assert.doesNotMatch(JSON.stringify(styleGuide), /sform|sfrom/i);
+  assert.doesNotMatch(agentGuide, /sform|sfrom/i);
+});
+
+test("style guide classifies required public terms", () => {
+  const styleGuide = readStyleGuide();
+  const blockedTerms = new Set(styleGuide.blockedTerms.map(({ term }) => term));
+  const explainOnlyTerms = new Map(
+    styleGuide.explainOnlyTerms.map((entry) => [entry.term, entry])
+  );
+
+  assert.equal(blockedTerms.has("Tenant"), true);
+  assert.equal(blockedTerms.has("Control Plane"), true);
+  assert.equal(blockedTerms.has("SBOM"), false);
+  assert.equal(blockedTerms.has("Mandantenfähigkeit"), false);
+  assert.equal(blockedTerms.has("GitOps"), false);
+
+  for (const term of ["SBOM", "Mandantenfähigkeit", "GitOps"]) {
+    assert.equal(explainOnlyTerms.has(term), true, term);
+    assert.ok(
+      explainOnlyTerms.get(term).requiredNearbyAny.length > 0,
+      `${term} needs explanation phrases`
+    );
+  }
+});
+
+test("AGENTS points public text changes to the agent style guide", () => {
+  const agents = readFileSync("AGENTS.md", "utf8");
+
+  assert.match(agents, /docs\/agent-style-guide\.md/i);
+  assert.match(agents, /öffentlich sichtbaren Texten/i);
 });
 
 test("home pages keep internal operating language off the customer-facing surface", () => {
@@ -38,7 +152,6 @@ test("home pages keep internal operating language off the customer-facing surfac
     /\bWorkspace\b/i,
     /\bRepo(?:sitory)?\b/i,
     /Force-Push/i,
-    /\bSBOM\b/i,
     /\bGates?\b/i,
     /\bEnterprise GitOps\b/i,
     /\bTenant\b/i,
@@ -51,6 +164,48 @@ test("home pages keep internal operating language off the customer-facing surfac
 
     for (const term of blockedTerms) {
       assert.doesNotMatch(html, term, label);
+    }
+  }
+});
+
+test("public pages do not expose style-guide blocked terms", () => {
+  const styleGuide = readStyleGuide();
+
+  for (const [label, file] of sitePages) {
+    const html = readFileSync(file, "utf8");
+    const publicText = htmlToPublicText(html);
+
+    for (const { term } of styleGuide.blockedTerms) {
+      assert.doesNotMatch(publicText, termRegExp(term), `${label}: ${term}`);
+    }
+  }
+});
+
+test("public pages explain style-guide explain-only terms in visible context", () => {
+  const styleGuide = readStyleGuide();
+
+  for (const [label, file] of sitePages) {
+    const html = readFileSync(file, "utf8");
+    const publicText = htmlToPublicText(html);
+
+    for (const { term, requiredNearbyAny = [] } of styleGuide.explainOnlyTerms) {
+      const pattern = termRegExp(term);
+      const match = pattern.exec(publicText);
+
+      if (!match) {
+        continue;
+      }
+
+      const context = surroundingText(publicText, match.index);
+      const hasExplanation = requiredNearbyAny.some((phrase) =>
+        new RegExp(escapeRegExp(phrase), "i").test(context)
+      );
+
+      assert.equal(
+        hasExplanation,
+        true,
+        `${label}: ${term} must be explained near first visible use`
+      );
     }
   }
 });

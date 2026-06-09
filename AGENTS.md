@@ -49,6 +49,16 @@
   - Custom domain: `notariat8.de`
 - Keep `CNAME` in the repository root with exactly `notariat8.de`.
 
+## Public website style guide
+
+- Before changes to öffentlich sichtbaren Texten / publicly visible website
+  text, read `docs/agent-style-guide.md` and apply `styleguide.json`.
+- Public copy must stay strict-conservative, externally suitable, legally
+  and notarially understandable, and factually checkable for Notariate,
+  Rechtsanwälte, Notarkammern, Partner, and Behörden.
+- Do not introduce blocked public terms from `styleguide.json`. Terms marked
+  as explanation-only must be explained in their first visible context.
+
 ## German language style
 
 - German-language user-facing text and repository documentation must use real
