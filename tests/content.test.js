@@ -225,32 +225,34 @@ test("home pages position use cases as bounded final workflows with GitHub as re
   const german = readFileSync("index.html", "utf8");
   const english = readFileSync("en/index.html", "utf8");
 
-  assert.match(german, /Use Cases als finale Workflows/i);
+  assert.match(german, /Fachlich abgegrenzte Vorgänge als freigegebene Arbeits- und Prüfabläufe/i);
   assert.match(german, /Jeder Use Case ist für sich geschlossen/i);
   assert.match(german, /Parallelbetrieb möglich/i);
   assert.match(german, /wichtigsten 10 Use Cases digital first/i);
   assert.match(german, /GitHub als Referenzstand/i);
   assert.match(german, /nachvollziehbare Änderungshistorie/i);
   assert.match(german, /Pull Requests/i);
+  assert.match(german, /Änderungsvorschläge mit Prüfung und Freigabe/i);
   assert.match(german, /real, nur ohne Daten/i);
   assert.match(german, /Abweichungen begründen/i);
-  assert.match(german, /standardisierter und besser/i);
+  assert.match(german, /einheitlicher und nachvollziehbarer/i);
   assert.doesNotMatch(german, /Git-Audit/i);
   assert.doesNotMatch(german, /\bPRs\b/i);
   assert.doesNotMatch(german, /Gemeinsam betrachten wir/i);
   assert.doesNotMatch(german, /Geeignete digitale Unterstützung/i);
   assert.doesNotMatch(german, /Muster-Workflow|Musterprozess/i);
 
-  assert.match(english, /Use cases as final workflows/i);
+  assert.match(english, /Professionally bounded matters as approved work and review flows/i);
   assert.match(english, /Each use case stands on its own/i);
   assert.match(english, /Parallel operation is possible/i);
   assert.match(english, /10 most important use cases are implemented digital first/i);
   assert.match(english, /GitHub as the reference/i);
   assert.match(english, /traceable change history/i);
   assert.match(english, /pull requests/i);
+  assert.match(english, /change proposals with review and approval/i);
   assert.match(english, /real, only without data/i);
   assert.match(english, /justify deviations/i);
-  assert.match(english, /more standardized and better/i);
+  assert.match(english, /more consistent and traceable/i);
   assert.doesNotMatch(english, /Git audit/i);
   assert.doesNotMatch(english, /\bPRs\b/i);
   assert.doesNotMatch(english, /We look together/i);
@@ -266,10 +268,12 @@ test("home pages explain GitHub review terms with accessible links", () => {
 
   assert.match(german, new RegExp(`<a class="text-link" href="${commitDocs}">nachvollziehbare Änderungshistorie</a>`));
   assert.match(german, new RegExp(`<a class="text-link" href="${pullRequestDocs}">Pull Requests</a>`));
+  assert.match(german, /Änderungsvorschläge mit Prüfung und Freigabe/i);
   assert.match(german, /was geändert wurde, warum es freigegeben wurde/i);
 
   assert.match(english, new RegExp(`<a class="text-link" href="${commitDocs}">traceable change history</a>`));
   assert.match(english, new RegExp(`<a class="text-link" href="${pullRequestDocs}">pull requests</a>`));
+  assert.match(english, /change proposals with review and approval/i);
   assert.match(english, /what changed, why it was approved/i);
 });
 
@@ -284,6 +288,10 @@ test("home pages state mandatory documentation, human review, and app test bound
   assert.match(german, /Datenschutzerklärung/i);
   assert.match(german, /GitHub-Referenzstand/i);
   assert.match(german, /Pflichten im finalen Workflow/i);
+  assert.match(german, /Mandantenfähigkeit/i);
+  assert.match(german, /je Organisation getrennt geführt/i);
+  assert.match(german, /Software Bill of Materials \(SBOM\)/i);
+  assert.match(german, /Software-Stückliste/i);
 
   assert.match(english, /Documentation is mandatory/i);
   assert.match(english, /Human in the loop is mandatory/i);
@@ -292,6 +300,10 @@ test("home pages state mandatory documentation, human review, and app test bound
   assert.match(english, /privacy notice/i);
   assert.match(english, /GitHub reference/i);
   assert.match(english, /Mandatory parts of the final workflow/i);
+  assert.match(english, /Organizational separation/i);
+  assert.match(english, /kept separate by organization/i);
+  assert.match(english, /Software Bill of Materials \(SBOM\)/i);
+  assert.match(english, /security notices and license questions/i);
 });
 
 test("home pages keep GitHub and BPMN modeling visible from the homepage", () => {
@@ -300,11 +312,11 @@ test("home pages keep GitHub and BPMN modeling visible from the homepage", () =>
 
   assert.match(german, /<a href="https:\/\/github\.com\/notariat8\/NaC">GitHub<\/a>/);
   assert.match(german, /BPMN-Modellierung/i);
-  assert.match(german, /Prozess-View: Use Case, BPMN-Modellierung, finaler Workflow und GitHub-Referenzstand/i);
+  assert.match(german, /Prozess-View: Use Case als fachlich abgegrenzter Vorgang, BPMN-Modellierung, freigegebener Arbeits- und Prüfablauf und GitHub-Referenzstand/i);
 
   assert.match(english, /<a href="https:\/\/github\.com\/notariat8\/NaC">GitHub<\/a>/);
   assert.match(english, /BPMN modeling/i);
-  assert.match(english, /process view: use case, BPMN modeling, final workflow and GitHub reference/i);
+  assert.match(english, /process view: use case as a professionally bounded matter, BPMN modeling, approved work and review flow and GitHub reference/i);
 });
 
 test("home pages expose a data-free use case viewer for the top ten final workflows", () => {
@@ -354,4 +366,8 @@ test("repository governance page documents every notariat8 repository", () => {
   assert.match(html, /Technischer Name/i);
   assert.doesNotMatch(html, /Geschützte Default-Branches/i);
   assert.match(html, /GitHub Pro oder ein öffentliches Repository/i);
+  assert.match(html, /Änderungsvorschlag mit Prüfung und Freigabe/i);
+  assert.match(html, /Software Bill of Materials \(SBOM\)/i);
+  assert.match(html, /Software-Stückliste/i);
+  assert.match(html, /Sie ersetzt keine eigene Sicherheits- oder Rechtsprüfung/i);
 });
