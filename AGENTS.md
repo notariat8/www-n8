@@ -38,6 +38,9 @@
   - fetch critical files through the GitHub connector when useful.
 - Do not tell the user GitHub is fixed until `origin/main` shows the intended
   files and removed paths are actually gone.
+- After creating or updating a pull request, always tell the user what they
+  need to do next for the work to move forward, such as review, approve, merge,
+  wait for checks, or provide more input.
 
 ## GitHub Pages shape
 
