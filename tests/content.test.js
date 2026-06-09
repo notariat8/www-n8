@@ -123,6 +123,9 @@ test("style guide classifies required public terms", () => {
   const explainOnlyTerms = new Map(
     styleGuide.explainOnlyTerms.map((entry) => [entry.term, entry])
   );
+  const preferredTerms = new Map(
+    styleGuide.preferredTerms.map((entry) => [entry.avoid, entry])
+  );
 
   assert.equal(blockedTerms.has("Tenant"), true);
   assert.equal(blockedTerms.has("Control Plane"), true);
@@ -135,6 +138,29 @@ test("style guide classifies required public terms", () => {
     assert.ok(
       explainOnlyTerms.get(term).requiredNearbyAny.length > 0,
       `${term} needs explanation phrases`
+    );
+  }
+
+  for (const term of [
+    "Use Case",
+    "use case",
+    "Use-Case-Viewer",
+    "Use-case viewer",
+    "Prozess-View",
+    "Notariatsprozesse",
+    "Prozesse",
+    "process view",
+    "Digital notarial processes",
+    "Workflow",
+    "workflow",
+    "BPMN-Modellierung",
+    "BPMN modeling",
+    "digital first",
+  ]) {
+    assert.equal(preferredTerms.has(term), true, term);
+    assert.ok(
+      preferredTerms.get(term).prefer.length > 0,
+      `${term} needs preferred public wording`
     );
   }
 });
@@ -166,6 +192,54 @@ test("home pages keep internal operating language off the customer-facing surfac
       assert.doesNotMatch(html, term, label);
     }
   }
+});
+
+test("german home page translates public process terms into notarial language", () => {
+  const html = readFileSync("index.html", "utf8");
+  const publicText = htmlToPublicText(html);
+
+  assert.doesNotMatch(publicText, /Use[- ]Case(?:s)?/i);
+  assert.doesNotMatch(publicText, /Prozess-View/i);
+  assert.doesNotMatch(publicText, /\bWorkflow\b/i);
+  assert.doesNotMatch(publicText, /digital first/i);
+  assert.doesNotMatch(publicText, /finale[rsn]? Workflow/i);
+  assert.doesNotMatch(publicText, /Notariatsprozesse/i);
+  assert.doesNotMatch(publicText, /Prozessübersicht/i);
+  assert.doesNotMatch(publicText, /\bProzesse\b/i);
+  assert.doesNotMatch(publicText, /Das ist real|real, nur ohne Daten/i);
+
+  assert.match(publicText, /Digitale Vorgangsbearbeitung/i);
+  assert.match(publicText, /Vorgangsübersicht/i);
+  assert.match(publicText, /fachlich abgegrenzten Vorgang/i);
+  assert.match(publicText, /freigegebener Arbeits- und Prüfablauf/i);
+  assert.match(publicText, /fachliche Prozessmodellierung \(BPMN\)/i);
+  assert.match(publicText, /zuerst digital abgebildet/i);
+  assert.match(publicText, /Der öffentliche Stand zeigt Struktur und Prüfung, nicht Mandatsdaten\./i);
+  assert.match(publicText, /n8 zeigt Vorgänge\. Die App testet Abläufe\./i);
+});
+
+test("english home page translates public process terms into professional matter language", () => {
+  const html = readFileSync("en/index.html", "utf8");
+  const publicText = htmlToPublicText(html);
+
+  assert.doesNotMatch(publicText, /Use[- ]case(?:s)?/i);
+  assert.doesNotMatch(publicText, /process view/i);
+  assert.doesNotMatch(publicText, /\bworkflow\b/i);
+  assert.doesNotMatch(publicText, /digital first/i);
+  assert.doesNotMatch(publicText, /final workflow/i);
+  assert.doesNotMatch(publicText, /Digital notarial processes/i);
+  assert.doesNotMatch(publicText, /process overview/i);
+  assert.doesNotMatch(publicText, /shows processes/i);
+  assert.doesNotMatch(publicText, /This is real|real, only without data/i);
+
+  assert.match(publicText, /Digital matter handling/i);
+  assert.match(publicText, /Matter overview/i);
+  assert.match(publicText, /professionally bounded matter/i);
+  assert.match(publicText, /approved work and review flow/i);
+  assert.match(publicText, /process modeling \(BPMN\)/i);
+  assert.match(publicText, /selected for digital handling first/i);
+  assert.match(publicText, /The public reference shows structure and review, not client data\./i);
+  assert.match(publicText, /n8 shows matters\. The app tests flows\./i);
 });
 
 test("public pages do not expose style-guide blocked terms", () => {
@@ -221,19 +295,19 @@ test("positioning copy stays focused on control without public-website disclaime
   assert.doesNotMatch(english, /sensitive information does not belong on a public website/i);
 });
 
-test("home pages position use cases as bounded final workflows with GitHub as reference", () => {
+test("home pages position matters as bounded approved flows with GitHub as reference", () => {
   const german = readFileSync("index.html", "utf8");
   const english = readFileSync("en/index.html", "utf8");
 
   assert.match(german, /Fachlich abgegrenzte Vorgänge als freigegebene Arbeits- und Prüfabläufe/i);
-  assert.match(german, /Jeder Use Case ist für sich geschlossen/i);
+  assert.match(german, /Jeder Vorgang ist für sich geschlossen/i);
   assert.match(german, /Parallelbetrieb möglich/i);
-  assert.match(german, /wichtigsten 10 Use Cases digital first/i);
+  assert.match(german, /wichtigsten 10 Vorgänge zuerst digital abgebildet/i);
   assert.match(german, /GitHub als Referenzstand/i);
   assert.match(german, /nachvollziehbare Änderungshistorie/i);
   assert.match(german, /Pull Requests/i);
   assert.match(german, /Änderungsvorschläge mit Prüfung und Freigabe/i);
-  assert.match(german, /real, nur ohne Daten/i);
+  assert.match(german, /öffentliche Stand zeigt Struktur und Prüfung, nicht Mandatsdaten/i);
   assert.match(german, /Abweichungen begründen/i);
   assert.match(german, /einheitlicher und nachvollziehbarer/i);
   assert.doesNotMatch(german, /Git-Audit/i);
@@ -243,14 +317,14 @@ test("home pages position use cases as bounded final workflows with GitHub as re
   assert.doesNotMatch(german, /Muster-Workflow|Musterprozess/i);
 
   assert.match(english, /Professionally bounded matters as approved work and review flows/i);
-  assert.match(english, /Each use case stands on its own/i);
+  assert.match(english, /Each matter stands on its own/i);
   assert.match(english, /Parallel operation is possible/i);
-  assert.match(english, /10 most important use cases are implemented digital first/i);
+  assert.match(english, /10 most important matters are selected for digital handling first/i);
   assert.match(english, /GitHub as the reference/i);
   assert.match(english, /traceable change history/i);
   assert.match(english, /pull requests/i);
   assert.match(english, /change proposals with review and approval/i);
-  assert.match(english, /real, only without data/i);
+  assert.match(english, /public reference shows structure and review, not client data/i);
   assert.match(english, /justify deviations/i);
   assert.match(english, /more consistent and traceable/i);
   assert.doesNotMatch(english, /Git audit/i);
@@ -283,11 +357,11 @@ test("home pages state mandatory documentation, human review, and app test bound
 
   assert.match(german, /Dokumentation ist Pflicht/i);
   assert.match(german, /Human in the loop ist Pflicht/i);
-  assert.match(german, /Prozess-View/i);
+  assert.match(german, /Vorgangsübersicht/i);
   assert.match(german, /app\.notariat8\.de/i);
   assert.match(german, /Datenschutzerklärung/i);
   assert.match(german, /GitHub-Referenzstand/i);
-  assert.match(german, /Pflichten im finalen Workflow/i);
+  assert.match(german, /Pflichten im freigegebenen Arbeits- und Prüfablauf/i);
   assert.match(german, /Mandantenfähigkeit/i);
   assert.match(german, /je Organisation getrennt geführt/i);
   assert.match(german, /Software Bill of Materials \(SBOM\)/i);
@@ -295,11 +369,11 @@ test("home pages state mandatory documentation, human review, and app test bound
 
   assert.match(english, /Documentation is mandatory/i);
   assert.match(english, /Human in the loop is mandatory/i);
-  assert.match(english, /process view/i);
+  assert.match(english, /matter overview/i);
   assert.match(english, /app\.notariat8\.de/i);
   assert.match(english, /privacy notice/i);
   assert.match(english, /GitHub reference/i);
-  assert.match(english, /Mandatory parts of the final workflow/i);
+  assert.match(english, /Mandatory parts of the approved work and review flow/i);
   assert.match(english, /Organizational separation/i);
   assert.match(english, /kept separate by organization/i);
   assert.match(english, /Software Bill of Materials \(SBOM\)/i);
@@ -311,15 +385,15 @@ test("home pages keep GitHub and BPMN modeling visible from the homepage", () =>
   const english = readFileSync("en/index.html", "utf8");
 
   assert.match(german, /<a href="https:\/\/github\.com\/notariat8\/NaC">GitHub<\/a>/);
-  assert.match(german, /BPMN-Modellierung/i);
-  assert.match(german, /Prozess-View: Use Case als fachlich abgegrenzter Vorgang, BPMN-Modellierung, freigegebener Arbeits- und Prüfablauf und GitHub-Referenzstand/i);
+  assert.match(german, /fachliche Prozessmodellierung \(BPMN\)/i);
+  assert.match(german, /Vorgangsübersicht verbindet den fachlich abgegrenzten Vorgang, die fachliche Prozessmodellierung \(BPMN\), den freigegebenen Arbeits- und Prüfablauf und den GitHub-Referenzstand/i);
 
   assert.match(english, /<a href="https:\/\/github\.com\/notariat8\/NaC">GitHub<\/a>/);
-  assert.match(english, /BPMN modeling/i);
-  assert.match(english, /process view: use case as a professionally bounded matter, BPMN modeling, approved work and review flow and GitHub reference/i);
+  assert.match(english, /process modeling \(BPMN\)/i);
+  assert.match(english, /matter overview connects the professionally bounded matter, process modeling \(BPMN\), the approved work and review flow and the GitHub reference/i);
 });
 
-test("home pages expose a data-free use case viewer for the top ten final workflows", () => {
+test("home pages expose a data-free process viewer for selected approved flows", () => {
   const german = readFileSync("index.html", "utf8");
   const english = readFileSync("en/index.html", "utf8");
 
@@ -328,19 +402,19 @@ test("home pages expose a data-free use case viewer for the top ten final workfl
     assert.match(html, /assets\/site\.js\?v=20260608-usecase-viewer/i);
   }
 
-  assert.match(german, /Use-Case-Viewer/i);
-  assert.match(german, /Kanonische Top 10/i);
+  assert.match(german, /Vorgangsübersicht/i);
+  assert.match(german, /Ausgewählte Vorgänge/i);
   assert.match(german, /Immobilienkaufvertrag/i);
   assert.match(german, /GmbH-\/UG-Gründung/i);
   assert.match(german, /Vorsorgevollmacht und Patientenverfügung/i);
   assert.match(german, /github\.com\/notariat8\/NaC\/tree\/main\/usecases\/immobilienkaufvertrag/i);
   assert.match(german, /github\.com\/notariat8\/NaC\/blob\/main\/bpmn\/immobilienkaufvertrag\.bpmn/i);
   assert.match(german, /app\.notariat8\.de\/\?source=www-n8&amp;entry=usecase&amp;usecase=immobilienkaufvertrag/i);
-  assert.match(german, /realer finaler Workflow, nur ohne Mandatsdaten/i);
+  assert.match(german, /freigegebener Arbeits- und Prüfablauf, nur ohne Mandatsdaten/i);
 
-  assert.match(english, /Use-case viewer/i);
-  assert.match(english, /Canonical top 10/i);
-  assert.match(english, /Real final workflow, only without client data/i);
+  assert.match(english, /Matter overview/i);
+  assert.match(english, /Selected matters/i);
+  assert.match(english, /Approved work and review flow, only without client data/i);
   assert.match(english, /github\.com\/notariat8\/NaC\/tree\/main\/usecases\/immobilienkaufvertrag/i);
 });
 
