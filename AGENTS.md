@@ -41,6 +41,9 @@
 - After creating or updating a pull request, always tell the user what they
   need to do next for the work to move forward, such as review, approve, merge,
   wait for checks, or provide more input.
+- After every completed job, check whether cleanup is possible and sensible.
+  Report what can be cleaned up, perform safe cleanup when approved or already
+  authorized, and tell the user when no further cleanup is needed.
 
 ## GitHub Pages shape
 
