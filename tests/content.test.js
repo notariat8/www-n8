@@ -14,6 +14,47 @@ const sitePages = [
   ["Repository governance page", "repo-governance.html"],
 ];
 
+const styleGuidePath = "styleguide.json";
+const agentStyleGuidePath = "docs/agent-style-guide.md";
+
+function readStyleGuide() {
+  assert.equal(existsSync(styleGuidePath), true, "styleguide.json must exist");
+  return JSON.parse(readFileSync(styleGuidePath, "utf8"));
+}
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function termRegExp(term) {
+  return new RegExp(`\\b${escapeRegExp(term)}\\b`, "i");
+}
+
+function htmlToPublicText(html) {
+  return html
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&uuml;/g, "ü")
+    .replace(/&Uuml;/g, "Ü")
+    .replace(/&ouml;/g, "ö")
+    .replace(/&Ouml;/g, "Ö")
+    .replace(/&auml;/g, "ä")
+    .replace(/&Auml;/g, "Ä")
+    .replace(/&szlig;/g, "ß")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function surroundingText(text, matchIndex, windowSize = 700) {
+  return text.slice(
+    Math.max(0, matchIndex - windowSize),
+    Math.min(text.length, matchIndex + windowSize)
+  );
+}
+
 test("home pages do not expose roadmap-style next-step CTA copy", () => {
   for (const [label, file] of pages) {
     const html = readFileSync(file, "utf8");
@@ -30,6 +71,31 @@ test("site pages use the canonical Notariat8 brand asset", () => {
     assert.match(html, /https:\/\/bild8\.de\/assets\/8\/svg\/n8\.svg/i, label);
     assert.doesNotMatch(html, /brand-n|brand-eight/i, label);
   }
+});
+
+test("style guide artifacts exist and declare strict external-public governance", () => {
+  const styleGuide = readStyleGuide();
+  const agentGuide = readFileSync(agentStyleGuidePath, "utf8");
+
+  assert.equal(styleGuide.mode, "strict-conservative");
+  assert.equal(styleGuide.surface, "external-public");
+  assert.deepEqual(styleGuide.languages, ["de", "en"]);
+  assert.ok(styleGuide.audiences.includes("Notariate"));
+  assert.ok(styleGuide.audiences.includes("Rechtsanwälte"));
+  assert.ok(styleGuide.audiences.includes("Notarkammern"));
+  assert.ok(styleGuide.audiences.includes("Partner"));
+  assert.ok(styleGuide.audiences.includes("Behörden"));
+  assert.match(agentGuide, /streng konservativ/i);
+  assert.match(agentGuide, /Notariate, Rechtsanwälte, Notarkammern/i);
+  assert.doesNotMatch(JSON.stringify(styleGuide), /sform|sfrom/i);
+  assert.doesNotMatch(agentGuide, /sform|sfrom/i);
+});
+
+test("AGENTS points public text changes to the agent style guide", () => {
+  const agents = readFileSync("AGENTS.md", "utf8");
+
+  assert.match(agents, /docs\/agent-style-guide\.md/i);
+  assert.match(agents, /öffentlich sichtbaren Texten/i);
 });
 
 test("home pages keep internal operating language off the customer-facing surface", () => {
