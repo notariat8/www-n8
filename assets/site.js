@@ -18,25 +18,40 @@ if (navToggle && siteNav) {
 const appUrlMeta = document.querySelector('meta[name="nac-app-url"]');
 const transitionForms = document.querySelectorAll("[data-nac-transition]");
 
+const appBaseUrl = () => {
+  const appUrl = appUrlMeta?.getAttribute("content") || "https://app.notariat8.de";
+
+  return new URL(appUrl, window.location.href);
+};
+
+const addTrimmedParam = (url, key, value) => {
+  const hint = String(value || "").trim();
+
+  if (hint) {
+    url.searchParams.set(key, hint.slice(0, 120));
+  }
+};
+
 const buildAppUrl = (form) => {
-  const appUrl = appUrlMeta?.getAttribute("content") || "https://app.notariat8.de/";
-  const url = new URL(appUrl, window.location.href);
+  const baseUrl = appBaseUrl();
   const formData = new FormData(form);
   const transitionType = form.dataset.nacTransition;
 
-  url.searchParams.set("source", "www-n8");
+  if (transitionType === "prospect") {
+    const url = new URL("/onboarding/readiness", baseUrl);
 
-  if (transitionType) {
-    url.searchParams.set("entry", transitionType);
+    url.searchParams.set("source", "notariat8");
+    url.searchParams.set("audience", "customer");
+    addTrimmedParam(url, "domain_hint", formData.get("domain_hint"));
+
+    return url;
   }
 
-  for (const [key, value] of formData.entries()) {
-    const hint = String(value).trim();
+  const url = new URL("/login", baseUrl);
 
-    if (hint) {
-      url.searchParams.set(key, hint.slice(0, 120));
-    }
-  }
+  url.searchParams.set("source", "notariat8");
+  url.searchParams.set("entry", transitionType || "customer");
+  addTrimmedParam(url, "tenant_hint", formData.get("tenant_hint"));
 
   return url;
 };
