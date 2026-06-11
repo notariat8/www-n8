@@ -380,6 +380,47 @@ test("home pages state mandatory documentation, human review, and app test bound
   assert.match(english, /security notices and license questions/i);
 });
 
+test("privacy notice explains tracking status, app transitions, and external targets", () => {
+  const html = readFileSync("datenschutz.html", "utf8");
+
+  assert.match(html, /keine Analyse-Cookies/i);
+  assert.match(html, /kein clientseitiges Tracking/i);
+  assert.doesNotMatch(html, /keine Formulare/i);
+  assert.match(html, /optionale Hinweise/i);
+  assert.match(html, /app\.notariat8\.de/i);
+  assert.match(html, /nicht auf dieser Website gespeichert/i);
+  assert.match(html, /bild8\.de/i);
+  assert.match(html, /GitHub/i);
+  assert.match(html, /technisch erforderliche Zugriffsdaten/i);
+});
+
+test("app transition script targets exposed application routes", () => {
+  const script = readFileSync("assets/site.js", "utf8");
+
+  assert.match(script, /onboarding\/readiness/i);
+  assert.match(script, /login/i);
+  assert.match(script, /source", "notariat8"/i);
+  assert.match(script, /audience", "customer"/i);
+  assert.match(script, /domain_hint/i);
+  assert.doesNotMatch(script, /tenant_slug/i);
+  assert.doesNotMatch(script, /admin_email/i);
+  assert.doesNotMatch(script, /url\.searchParams\.set\("entry", transitionType\)/);
+});
+
+test("home pages do not link app transition actions to the unexposed app root", () => {
+  const german = readFileSync("index.html", "utf8");
+  const english = readFileSync("en/index.html", "utf8");
+
+  for (const html of [german, english]) {
+    assert.match(html, /<meta name="nac-app-url" content="https:\/\/app\.notariat8\.de">/i);
+    assert.match(html, /assets\/site\.js\?v=20260611-app-routes/i);
+    assert.match(html, /app\.notariat8\.de\/login\?source=notariat8&amp;entry=usecase/i);
+    assert.doesNotMatch(html, /<meta name="nac-app-url" content="https:\/\/app\.notariat8\.de\/">/i);
+    assert.doesNotMatch(html, /app\.notariat8\.de\/\?source=/i);
+    assert.doesNotMatch(html, /source=www-n8/i);
+  }
+});
+
 test("home pages keep GitHub and BPMN modeling visible from the homepage", () => {
   const german = readFileSync("index.html", "utf8");
   const english = readFileSync("en/index.html", "utf8");
@@ -399,7 +440,7 @@ test("home pages expose a data-free process viewer for selected approved flows",
 
   for (const html of [german, english]) {
     assert.match(html, /assets\/site\.css\?v=20260609-process-steps/i);
-    assert.match(html, /assets\/site\.js\?v=20260608-usecase-viewer/i);
+    assert.match(html, /assets\/site\.js\?v=20260611-app-routes/i);
   }
 
   assert.match(german, /Vorgangsübersicht/i);
@@ -409,7 +450,7 @@ test("home pages expose a data-free process viewer for selected approved flows",
   assert.match(german, /Vorsorgevollmacht und Patientenverfügung/i);
   assert.match(german, /github\.com\/notariat8\/NaC\/tree\/main\/usecases\/immobilienkaufvertrag/i);
   assert.match(german, /github\.com\/notariat8\/NaC\/blob\/main\/bpmn\/immobilienkaufvertrag\.bpmn/i);
-  assert.match(german, /app\.notariat8\.de\/\?source=www-n8&amp;entry=usecase&amp;usecase=immobilienkaufvertrag/i);
+  assert.match(german, /app\.notariat8\.de\/login\?source=notariat8&amp;entry=usecase&amp;usecase=immobilienkaufvertrag/i);
   assert.match(german, /freigegebener Arbeits- und Prüfablauf, nur ohne Mandatsdaten/i);
 
   assert.match(english, /Matter overview/i);
