@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="bpmn-svg" width="2151" height="320" viewBox="50 58 2151 320" role="img" aria-label="Vorsorgevollmacht und Patientenverfügung">
+<style>
+  svg { background: #ffffff; font-family: Arial, Helvetica, sans-serif; }
+  .flow { fill: none; stroke: #41516b; stroke-width: 2.2; }
+  .flow-label { font-size: 13px; fill: #41516b; text-anchor: middle; font-weight: 700; }
+  .node.task rect { fill: #fbfcfb; stroke: #006b5a; stroke-width: 2; }
+  .node.event circle { fill: #eef7f4; stroke: #006b5a; stroke-width: 3; }
+  .node.event.end circle { fill: #fff8e2; stroke: #b4511d; }
+  .node.gateway polygon { fill: #fff8e2; stroke: #b4511d; stroke-width: 2; }
+  .node-label { text-anchor: middle; dominant-baseline: middle; font-size: 14px; font-weight: 700; fill: #1f2b24; }
+  .node-badge { text-anchor: middle; font-size: 12px; fill: #56645d; }
+</style>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+<path d="M 0 0 L 10 5 L 0 10 z" fill="#41516b"/>
+</marker>
+</defs>
+<polyline class="flow" points="166,178 330,178" marker-end="url(#arrow)"/>
+<polyline class="flow" points="490,178 545,178" marker-end="url(#arrow)"/>
+<polyline class="flow" points="705,178 760,178" marker-end="url(#arrow)"/>
+<polyline class="flow" points="920,178 975,178" marker-end="url(#arrow)"/>
+<polyline class="flow" points="1135,178 1190,178" marker-end="url(#arrow)"/>
+<polyline class="flow" points="1350,178 1405,178" marker-end="url(#arrow)"/>
+<polyline class="flow" points="1565,178 1620,178" marker-end="url(#arrow)"/>
+<polyline class="flow" points="1780,178 1835,178" marker-end="url(#arrow)"/>
+<polyline class="flow" points="1995,178 2065,178" marker-end="url(#arrow)"/>
+<g class="node event start"><circle cx="148" cy="178" r="18"/><text class="node-label" x="148" y="178">Vorgang anlegen</text><text class="node-badge" x="148" y="214">Notariat · personal</text></g>
+<g class="node task userTask"><rect x="330" y="138" width="160" height="80" rx="8"/><text class="node-label" x="410" y="170">Auftrag und Beteiligte</text><text class="node-label" x="410" y="186">aufnehmen</text><text class="node-badge" x="410" y="236">Notariatsfachkraft · personal</text></g>
+<g class="node task businessRuleTask"><rect x="545" y="138" width="160" height="80" rx="8"/><text class="node-label" x="625" y="170">Zuständigkeit, Form</text><text class="node-label" x="625" y="186">und Fristen prüfen</text><text class="node-badge" x="625" y="236">Notariat · internal</text></g>
+<g class="node task userTask"><rect x="760" y="138" width="160" height="80" rx="8"/><text class="node-label" x="840" y="170">Unterlagen und</text><text class="node-label" x="840" y="186">Nachweise prüfen</text><text class="node-badge" x="840" y="236">Notariatsfachkraft · email</text></g>
+<g class="node task userTask"><rect x="975" y="138" width="160" height="80" rx="8"/><text class="node-label" x="1055" y="170">Entwurf und Abstimmung</text><text class="node-label" x="1055" y="186">erstellen</text><text class="node-badge" x="1055" y="236">Notariatsfachkraft · email</text></g>
+<g class="node task manualTask"><rect x="1190" y="138" width="160" height="80" rx="8"/><text class="node-label" x="1270" y="170">Identität und</text><text class="node-label" x="1270" y="186">Vertretung prüfen</text><text class="node-badge" x="1270" y="236">Notarin/Notar · personal</text></g>
+<g class="node task manualTask"><rect x="1405" y="138" width="160" height="80" rx="8"/><text class="node-label" x="1485" y="170">Beurkundung oder</text><text class="node-label" x="1485" y="186">Erklärung durchführen</text><text class="node-badge" x="1485" y="236">Notarin/Notar · personal</text></g>
+<g class="node task sendTask"><rect x="1620" y="138" width="160" height="80" rx="8"/><text class="node-label" x="1700" y="170">Registrierung oder</text><text class="node-label" x="1700" y="186">Versand ausführen</text><text class="node-badge" x="1700" y="236">Notariatsfachkraft · post</text></g>
+<g class="node task userTask"><rect x="1835" y="138" width="160" height="80" rx="8"/><text class="node-label" x="1915" y="170">Nachweis und Fristen</text><text class="node-label" x="1915" y="186">nachhalten</text><text class="node-badge" x="1915" y="236">Notariatsfachkraft · court</text></g>
+<g class="node event end"><circle cx="2083" cy="178" r="18"/><text class="node-label" x="2083" y="178">Vorgang abgeschlossen</text><text class="node-badge" x="2083" y="214">Notariat · internal</text></g>
+</svg>

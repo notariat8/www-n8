@@ -413,7 +413,7 @@ test("home pages do not link app transition actions to the unexposed app root", 
 
   for (const html of [german, english]) {
     assert.match(html, /<meta name="nac-app-url" content="https:\/\/app\.notariat8\.de">/i);
-    assert.match(html, /assets\/site\.js\?v=20260611-app-routes/i);
+    assert.match(html, /assets\/site\.js\?v=20260613-process-model/i);
     assert.match(html, /app\.notariat8\.de\/login\?source=notariat8&amp;entry=usecase/i);
     assert.doesNotMatch(html, /<meta name="nac-app-url" content="https:\/\/app\.notariat8\.de\/">/i);
     assert.doesNotMatch(html, /app\.notariat8\.de\/\?source=/i);
@@ -439,8 +439,8 @@ test("home pages expose a data-free process viewer for selected approved flows",
   const english = readFileSync("en/index.html", "utf8");
 
   for (const html of [german, english]) {
-    assert.match(html, /assets\/site\.css\?v=20260609-process-steps/i);
-    assert.match(html, /assets\/site\.js\?v=20260611-app-routes/i);
+    assert.match(html, /assets\/site\.css\?v=20260613-process-model/i);
+    assert.match(html, /assets\/site\.js\?v=20260613-process-model/i);
   }
 
   assert.match(german, /Vorgangsübersicht/i);
@@ -449,7 +449,8 @@ test("home pages expose a data-free process viewer for selected approved flows",
   assert.match(german, /GmbH-\/UG-Gründung/i);
   assert.match(german, /Vorsorgevollmacht und Patientenverfügung/i);
   assert.match(german, /github\.com\/notariat8\/NaC\/tree\/main\/usecases\/immobilienkaufvertrag/i);
-  assert.match(german, /github\.com\/notariat8\/NaC\/blob\/main\/bpmn\/immobilienkaufvertrag\.bpmn/i);
+  assert.match(german, /prozessmodell\.html\?vorgang=immobilienkaufvertrag/i);
+  assert.doesNotMatch(german, /github\.com\/notariat8\/NaC\/blob\/main\/bpmn\/immobilienkaufvertrag\.bpmn">Prozessmodell ansehen/i);
   assert.match(german, /app\.notariat8\.de\/login\?source=notariat8&amp;entry=usecase&amp;usecase=immobilienkaufvertrag/i);
   assert.match(german, /freigegebener Arbeits- und Prüfablauf, nur ohne Mandatsdaten/i);
 
@@ -457,6 +458,26 @@ test("home pages expose a data-free process viewer for selected approved flows",
   assert.match(english, /Selected matters/i);
   assert.match(english, /Approved work and review flow, only without client data/i);
   assert.match(english, /github\.com\/notariat8\/NaC\/tree\/main\/usecases\/immobilienkaufvertrag/i);
+  assert.match(english, /process-model\.html\?matter=immobilienkaufvertrag/i);
+  assert.doesNotMatch(english, /github\.com\/notariat8\/NaC\/blob\/main\/bpmn\/immobilienkaufvertrag\.bpmn">View process model/i);
+});
+
+test("public process model pages render BPMN assets without making GitHub the viewer", () => {
+  const german = readFileSync("prozessmodell.html", "utf8");
+  const english = readFileSync("en/process-model.html", "utf8");
+
+  assert.equal(existsSync("assets/bpmn/immobilienkaufvertrag.svg"), true);
+  assert.match(german, /data-process-model-viewer/i);
+  assert.match(german, /assets\/bpmn\/immobilienkaufvertrag\.svg/i);
+  assert.match(german, /Technischen Referenzstand öffnen/i);
+  assert.match(german, /github\.com\/notariat8\/NaC\/blob\/main\/bpmn\/immobilienkaufvertrag\.bpmn/i);
+  assert.doesNotMatch(german, /href="https:\/\/github\.com\/notariat8\/NaC\/blob\/main\/bpmn\/[^"]+">Prozessmodell ansehen/i);
+
+  assert.match(english, /data-process-model-viewer/i);
+  assert.match(english, /\.\.\/assets\/bpmn\/immobilienkaufvertrag\.svg/i);
+  assert.match(english, /Open technical reference/i);
+  assert.match(english, /github\.com\/notariat8\/NaC\/blob\/main\/bpmn\/immobilienkaufvertrag\.bpmn/i);
+  assert.doesNotMatch(english, /href="https:\/\/github\.com\/notariat8\/NaC\/blob\/main\/bpmn\/[^"]+">View process model/i);
 });
 
 test("real estate process steps use review-oriented labels that fit the step tiles", () => {
