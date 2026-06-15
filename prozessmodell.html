@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prozessmodell ansehen | Notariat8</title>
+    <meta name="description" content="Notariat8 zeigt freigegebene BPMN-Prozessmodelle als öffentliche, mandatsdatenfreie Ansicht.">
+    <meta name="theme-color" content="#f5f7f4">
+    <link rel="canonical" href="https://notariat8.de/prozessmodell.html">
+    <link rel="alternate" hreflang="de" href="https://notariat8.de/prozessmodell.html">
+    <link rel="alternate" hreflang="en" href="https://notariat8.de/en/process-model.html">
+    <link rel="icon" href="https://bild8.de/assets/8/svg/n8.svg" type="image/svg+xml">
+    <meta name="nac-app-url" content="https://app.notariat8.de">
+    <link rel="stylesheet" href="assets/site.css?v=20260613-process-model">
+    <script src="assets/site.js?v=20260613-process-model" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Zum Inhalt springen</a>
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="Notariat8 Startseite">
+        <img class="brand-mark" src="https://bild8.de/assets/8/svg/n8.svg" width="44" height="44" alt="" aria-hidden="true">
+        <span>
+          <strong>Notariat8</strong>
+          <small>Digitale Vorgangsbearbeitung</small>
+        </span>
+      </a>
+      <button class="nav-toggle" type="button" aria-label="Navigation öffnen" aria-expanded="false" aria-controls="site-nav">☰</button>
+      <nav class="site-nav" id="site-nav" aria-label="Hauptnavigation">
+        <a href="./#nutzen">Nutzen</a>
+        <a href="./#ablauf">Vorgänge</a>
+        <a href="./#governance">Sicherheit</a>
+        <a href="./#app">App</a>
+        <a href="https://github.com/notariat8/NaC">GitHub</a>
+        <a class="language-link" href="en/process-model.html" lang="en">EN</a>
+      </nav>
+    </header>
+
+    <main id="content" class="process-model-page" data-process-model-viewer data-lang="de" data-param-name="vorgang" data-asset-prefix="assets/bpmn/">
+      <section class="section process-model-hero" aria-labelledby="process-model-title">
+        <div class="section-heading">
+          <p class="section-kicker">Prozessmodell</p>
+          <h1 id="process-model-title" data-process-title>Immobilienkaufvertrag</h1>
+          <p data-process-summary>Der Ablauf führt von der strukturierten Aufnahme über Entwurf und Beurkundung bis zum Vollzug mit Grundbuch- und Zahlungsbezug.</p>
+        </div>
+        <div class="process-model-actions">
+          <a class="button secondary" href="./#ablauf">Zurück zu den Vorgängen</a>
+          <a class="button secondary" href="https://github.com/notariat8/NaC/blob/main/bpmn/immobilienkaufvertrag.bpmn" data-process-reference>Technischen Referenzstand öffnen</a>
+          <a class="button primary" href="https://app.notariat8.de/login?source=notariat8&amp;entry=usecase&amp;usecase=immobilienkaufvertrag" data-process-app>In der App testen</a>
+        </div>
+      </section>
+
+      <section class="section process-model-shell" aria-label="BPMN-Prozessmodell">
+        <div class="process-model-selector" data-process-model-options aria-label="Vorgang wählen">
+          <a class="is-active" href="prozessmodell.html?vorgang=immobilienkaufvertrag" data-process-model-option="immobilienkaufvertrag">Immobilienkaufvertrag</a>
+        </div>
+
+        <figure class="process-model-canvas">
+          <div class="process-model-scroll">
+            <img data-process-svg src="assets/bpmn/immobilienkaufvertrag.svg" alt="BPMN-Prozessmodell Immobilienkaufvertrag">
+          </div>
+          <figcaption>Öffentliche BPMN-Ansicht ohne Mandatsdaten. Maßgeblich bleibt der freigegebene Referenzstand.</figcaption>
+        </figure>
+
+        <div class="process-model-details">
+          <article>
+            <p class="viewer-label">Schritte</p>
+            <ol class="process-model-steps" data-process-steps>
+              <li>Aufnahme</li>
+              <li>Grundbuch prüfen</li>
+              <li>Entwurf</li>
+              <li>Beurkundung</li>
+              <li>Vollzug</li>
+            </ol>
+          </article>
+          <article>
+            <p class="viewer-label">Einordnung</p>
+            <dl class="viewer-meta compact">
+              <div><dt>Stand</dt><dd>öffentlich sichtbar</dd></div>
+              <div><dt>Inhalt</dt><dd>Struktur und Prüfung</dd></div>
+              <div><dt>Nicht enthalten</dt><dd>Mandatsdaten</dd></div>
+            </dl>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2026 Notariat8. Digitale Vorgangsbearbeitung mit klarer Kontrolle.</p>
+      <nav aria-label="Footer Navigation">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="en/process-model.html" lang="en">English</a>
+      </nav>
+    </footer>
+  </body>
+</html>
