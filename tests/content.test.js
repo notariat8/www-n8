@@ -533,6 +533,29 @@ test("process model pages explain duration, parallel work and critical path as p
   assert.match(script, /standard_external/i);
 });
 
+test("process model pages make XNP and XJustiz boundaries visible without production claims", () => {
+  const german = readFileSync("prozessmodell.html", "utf8");
+  const english = readFileSync("en/process-model.html", "utf8");
+  const germanPublicText = htmlToPublicText(german);
+  const englishPublicText = htmlToPublicText(english);
+
+  assert.match(germanPublicText, /XNP und Kartenleser bleiben ein lokales Arbeitsplatz-Gate vor Signatur und Einreichung/i);
+  assert.match(germanPublicText, /XNotar und XJustiz bleiben der Übergabepfad für Register- und Grundbuchbezug/i);
+  assert.match(germanPublicText, /NaC zeigt Struktur und Prüfung, ersetzt diese Systeme nicht und zeigt keine Mandatsdaten/i);
+  assert.match(germanPublicText, /XNP, Kartenleser und Signaturpfad am Arbeitsplatz/i);
+  assert.match(germanPublicText, /XNotar\/XJustiz für Register und Grundbuch/i);
+  assert.match(germanPublicText, /NaC ersetzt keine Fach- oder Einreichungssysteme/i);
+  assert.doesNotMatch(germanPublicText, /produktive XNP-Anbindung|XNP produktiv|produktiv an XNP/i);
+
+  assert.match(englishPublicText, /XNP and card reader remain a local workstation gate before signature and filing/i);
+  assert.match(englishPublicText, /XNotar and XJustiz remain the handover path for register and land-register context/i);
+  assert.match(englishPublicText, /NaC shows structure and review, does not replace those systems and shows no client data/i);
+  assert.match(englishPublicText, /XNP, card reader and signature path at the workstation/i);
+  assert.match(englishPublicText, /XNotar\/XJustiz for registers and land register/i);
+  assert.match(englishPublicText, /NaC does not replace professional or filing systems/i);
+  assert.doesNotMatch(englishPublicText, /production XNP integration|XNP production|productive XNP/i);
+});
+
 test("real estate process steps use review-oriented labels that fit the step tiles", () => {
   const german = readFileSync("index.html", "utf8");
   const english = readFileSync("en/index.html", "utf8");
