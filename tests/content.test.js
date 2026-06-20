@@ -444,6 +444,8 @@ test("home pages expose a data-free process viewer for selected approved flows",
   }
 
   assert.match(german, /Vorgangsübersicht/i);
+  assert.match(german, /Prozessmodell live ansehen/i);
+  assert.match(german, /href="prozessmodell\.html\?vorgang=immobilienkaufvertrag"/i);
   assert.match(german, /Ausgewählte Vorgänge/i);
   assert.match(german, /Immobilienkaufvertrag/i);
   assert.match(german, /GmbH-\/UG-Gründung/i);
@@ -455,6 +457,8 @@ test("home pages expose a data-free process viewer for selected approved flows",
   assert.match(german, /freigegebener Arbeits- und Prüfablauf, nur ohne Mandatsdaten/i);
 
   assert.match(english, /Matter overview/i);
+  assert.match(english, /View live process model/i);
+  assert.match(english, /href="process-model\.html\?matter=immobilienkaufvertrag"/i);
   assert.match(english, /Selected matters/i);
   assert.match(english, /Approved work and review flow, only without client data/i);
   assert.match(english, /github\.com\/notariat8\/NaC\/tree\/main\/usecases\/immobilienkaufvertrag/i);
