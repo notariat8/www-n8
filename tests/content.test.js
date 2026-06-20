@@ -480,6 +480,28 @@ test("public process model pages render BPMN assets without making GitHub the vi
   assert.doesNotMatch(english, /href="https:\/\/github\.com\/notariat8\/NaC\/blob\/main\/bpmn\/[^"]+">View process model/i);
 });
 
+test("process model pages explain duration, parallel work and critical path as planning values", () => {
+  const german = readFileSync("prozessmodell.html", "utf8");
+  const english = readFileSync("en/process-model.html", "utf8");
+  const script = readFileSync("assets/site.js", "utf8");
+
+  assert.match(german, /Dauer und kritischer Pfad/i);
+  assert.match(german, /Planwerte, keine amtlichen Durchschnittswerte/i);
+  assert.match(german, /Parallel möglich/i);
+  assert.match(german, /Blockiert den kritischen Pfad/i);
+  assert.doesNotMatch(german, /Oracle|OCI|Cloud Infrastructure/i);
+
+  assert.match(english, /Duration and critical path/i);
+  assert.match(english, /Planning values, not official averages/i);
+  assert.match(english, /Can run in parallel/i);
+  assert.match(english, /Blocks the critical path/i);
+  assert.doesNotMatch(english, /Oracle|OCI|Cloud Infrastructure/i);
+
+  assert.match(script, /durationBands/i);
+  assert.match(script, /criticalPathNotes/i);
+  assert.match(script, /standard_external/i);
+});
+
 test("real estate process steps use review-oriented labels that fit the step tiles", () => {
   const german = readFileSync("index.html", "utf8");
   const english = readFileSync("en/index.html", "utf8");
