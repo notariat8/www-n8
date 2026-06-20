@@ -86,6 +86,32 @@ document.querySelectorAll("[data-usecase-viewer]").forEach((viewer) => {
   });
 });
 
+const defaultDurationBands = {
+  de: [
+    { label: "Interne Prüfung", value: "Stunden bis Tage", kind: "same_day_or_internal" },
+    { label: "Externe Rückläufe", value: "Wochen", kind: "standard_external" },
+    { label: "Komplexe Abstimmung", value: "Wochen bis Monate", kind: "extended_external" },
+  ],
+  en: [
+    { label: "Internal review", value: "hours to days", kind: "same_day_or_internal" },
+    { label: "External responses", value: "weeks", kind: "standard_external" },
+    { label: "Complex coordination", value: "weeks to months", kind: "extended_external" },
+  ],
+};
+
+const defaultCriticalPathNotes = {
+  de: [
+    "Parallel möglich: vorbereitende Prüfungen, Rückfragen und Nachweise können je nach Vorgang gleichzeitig anlaufen.",
+    "Blockiert den kritischen Pfad: der nächste Schritt wartet auf Freigaben, Rückläufe oder eine dokumentierte Prüfung.",
+    "Planwerte, keine amtlichen Durchschnittswerte: Dauerklassen dienen der Demo und der Vorgangsplanung.",
+  ],
+  en: [
+    "Can run in parallel: preparatory reviews, questions and evidence can start at the same time depending on the matter.",
+    "Blocks the critical path: the next step waits for approvals, responses or documented review.",
+    "Planning values, not official averages: duration classes support the demo and matter planning.",
+  ],
+};
+
 const processModels = [
   {
     slug: "immobilienkaufvertrag",
@@ -94,7 +120,7 @@ const processModels = [
       title: "Immobilienkaufvertrag",
       summary:
         "Der Ablauf zeigt, welche Arbeiten parallel laufen können und welche Rückläufe den Vollzug typischerweise blockieren.",
-      steps: ["Aufnahme", "Grundbuch", "Entwurf", "Beurkundung", "Vollzug"],
+      steps: ["Aufnahme", "Grundbuch prüfen", "Entwurf", "Beurkundung", "Vollzug"],
       durationBands: [
         { label: "Interne Prüfung", value: "Stunden bis Tage", kind: "same_day_or_internal" },
         { label: "Externe Rückläufe", value: "Wochen", kind: "standard_external" },
@@ -110,7 +136,7 @@ const processModels = [
       title: "Real estate purchase agreement",
       summary:
         "The flow shows which work can run in parallel and which external responses typically block completion.",
-      steps: ["Intake", "Land register", "Draft", "Notarization", "Completion"],
+      steps: ["Intake", "Land register review", "Draft", "Notarization", "Completion"],
       durationBands: [
         { label: "Internal review", value: "hours to days", kind: "same_day_or_internal" },
         { label: "External responses", value: "weeks", kind: "standard_external" },
@@ -335,8 +361,10 @@ document.querySelectorAll("[data-process-model-viewer]").forEach((viewer) => {
     }
 
     if (durationBands) {
+      const bands = copy.durationBands || defaultDurationBands[language];
+
       durationBands.replaceChildren(
-        ...(copy.durationBands || []).map((band) => {
+        ...bands.map((band) => {
           const item = document.createElement("li");
           item.className = `process-duration-band ${band.kind || ""}`.trim();
           const label = document.createElement("span");
@@ -350,8 +378,10 @@ document.querySelectorAll("[data-process-model-viewer]").forEach((viewer) => {
     }
 
     if (criticalPathNotes) {
+      const notes = copy.criticalPathNotes || defaultCriticalPathNotes[language];
+
       criticalPathNotes.replaceChildren(
-        ...(copy.criticalPathNotes || []).map((note) => {
+        ...notes.map((note) => {
           const item = document.createElement("li");
           item.textContent = note;
           return item;

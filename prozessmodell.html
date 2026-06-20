@@ -43,8 +43,8 @@
           <p data-process-summary>Der Ablauf führt von der strukturierten Aufnahme über Entwurf und Beurkundung bis zum Vollzug mit Grundbuch- und Zahlungsbezug.</p>
         </div>
         <div class="process-model-actions">
-          <a class="button secondary" href="./#ablauf">Zurück zu den Vorgängen</a>
-          <a class="button secondary" href="https://github.com/notariat8/NaC/blob/main/bpmn/immobilienkaufvertrag.bpmn" data-process-reference>Technischen Referenzstand öffnen</a>
+          <a class="button secondary" href="./#ablauf">Zur Vorgangsübersicht</a>
+          <a class="button secondary" href="./">Zur Startseite</a>
           <a class="button primary" href="https://app.notariat8.de/login?source=notariat8&amp;entry=usecase&amp;usecase=immobilienkaufvertrag" data-process-app>In der App testen</a>
         </div>
       </section>
@@ -58,8 +58,20 @@
           <div class="process-model-scroll">
             <img data-process-svg src="assets/bpmn/immobilienkaufvertrag.svg" alt="BPMN-Prozessmodell Immobilienkaufvertrag">
           </div>
-          <figcaption>Öffentliche BPMN-Ansicht ohne Mandatsdaten. Maßgeblich bleibt der freigegebene Referenzstand.</figcaption>
+          <figcaption>Öffentliche BPMN-Ansicht ohne Mandatsdaten. Maßgeblich bleibt der freigegebene Referenzstand. <a class="text-link" href="https://github.com/notariat8/NaC/blob/main/bpmn/immobilienkaufvertrag.bpmn" data-process-reference>Referenzdetails öffnen</a></figcaption>
         </figure>
+
+        <aside class="process-model-demo-note" aria-label="Demo-Hinweis">
+          <p class="viewer-label">Demo-Hinweis</p>
+          <ul>
+            <li><strong>Planwerte</strong> zeigen steuerbare Dauerklassen.</li>
+            <li><strong>Kritischer Pfad</strong> zeigt wartende Abhängigkeiten.</li>
+            <li><strong>Parallelität</strong> zeigt Schritte, die gleichzeitig anlaufen können.</li>
+            <li><strong>XNP und Kartenleser</strong> bleiben ein lokales Arbeitsplatz-Gate vor Signatur und Einreichung.</li>
+            <li><strong>XNotar und XJustiz</strong> bleiben der Übergabepfad für Register- und Grundbuchbezug.</li>
+            <li><strong>NaC</strong> zeigt Struktur und Prüfung, ersetzt diese Systeme nicht und zeigt keine Mandatsdaten.</li>
+          </ul>
+        </aside>
 
         <div class="process-model-details">
           <article>
@@ -92,6 +104,9 @@
               <div><dt>Stand</dt><dd>öffentlich sichtbar</dd></div>
               <div><dt>Inhalt</dt><dd>Struktur und Prüfung</dd></div>
               <div><dt>Nicht enthalten</dt><dd>Mandatsdaten</dd></div>
+              <div><dt>Lokaler Schritt</dt><dd>XNP, Kartenleser und Signaturpfad am Arbeitsplatz</dd></div>
+              <div><dt>Übergabe</dt><dd>XNotar/XJustiz für Register und Grundbuch</dd></div>
+              <div><dt>Abgrenzung</dt><dd>NaC ersetzt keine Fach- oder Einreichungssysteme</dd></div>
             </dl>
           </article>
         </div>
