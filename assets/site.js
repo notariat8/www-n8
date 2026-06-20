@@ -93,14 +93,34 @@ const processModels = [
     de: {
       title: "Immobilienkaufvertrag",
       summary:
-        "Der Ablauf führt von der strukturierten Aufnahme über Entwurf und Beurkundung bis zum Vollzug mit Grundbuch- und Zahlungsbezug.",
-      steps: ["Aufnahme", "Grundbuch prüfen", "Entwurf", "Beurkundung", "Vollzug"],
+        "Der Ablauf zeigt, welche Arbeiten parallel laufen können und welche Rückläufe den Vollzug typischerweise blockieren.",
+      steps: ["Aufnahme", "Grundbuch", "Entwurf", "Beurkundung", "Vollzug"],
+      durationBands: [
+        { label: "Interne Prüfung", value: "Stunden bis Tage", kind: "same_day_or_internal" },
+        { label: "Externe Rückläufe", value: "Wochen", kind: "standard_external" },
+        { label: "Komplexer Vollzug", value: "Wochen bis Monate", kind: "extended_external" },
+      ],
+      criticalPathNotes: [
+        "Parallel möglich: Finanzamt, Gemeinde, Vormerkung, Finanzierung und Löschungsunterlagen können nach Beurkundung gleichzeitig anlaufen.",
+        "Blockiert den kritischen Pfad: Kaufpreisfälligkeit erst nach den relevanten Freigaben, Rückläufen und Rangprüfungen.",
+        "Planwerte, keine amtlichen Durchschnittswerte: Dauerklassen sind editierbare Parameter für die Vorgangsplanung.",
+      ],
     },
     en: {
       title: "Real estate purchase agreement",
       summary:
-        "The flow runs from structured intake through draft and notarization to completion with land register and payment references.",
-      steps: ["Intake", "Land register review", "Draft", "Notarization", "Completion"],
+        "The flow shows which work can run in parallel and which external responses typically block completion.",
+      steps: ["Intake", "Land register", "Draft", "Notarization", "Completion"],
+      durationBands: [
+        { label: "Internal review", value: "hours to days", kind: "same_day_or_internal" },
+        { label: "External responses", value: "weeks", kind: "standard_external" },
+        { label: "Complex execution", value: "weeks to months", kind: "extended_external" },
+      ],
+      criticalPathNotes: [
+        "Can run in parallel: tax office, municipality, priority notice, financing and release documents can start after notarization.",
+        "Blocks the critical path: purchase-price maturity waits for the relevant approvals, responses and rank checks.",
+        "Planning values, not official averages: duration classes are editable parameters for matter planning.",
+      ],
     },
   },
   {
@@ -275,6 +295,8 @@ document.querySelectorAll("[data-process-model-viewer]").forEach((viewer) => {
   const reference = viewer.querySelector("[data-process-reference]");
   const appLink = viewer.querySelector("[data-process-app]");
   const steps = viewer.querySelector("[data-process-steps]");
+  const durationBands = viewer.querySelector("[data-process-duration-bands]");
+  const criticalPathNotes = viewer.querySelector("[data-process-critical-path]");
   const options = viewer.querySelector("[data-process-model-options]");
 
   const render = (slug, replaceHistory = false) => {
@@ -307,6 +329,31 @@ document.querySelectorAll("[data-process-model-viewer]").forEach((viewer) => {
         ...copy.steps.map((step) => {
           const item = document.createElement("li");
           item.textContent = step;
+          return item;
+        })
+      );
+    }
+
+    if (durationBands) {
+      durationBands.replaceChildren(
+        ...(copy.durationBands || []).map((band) => {
+          const item = document.createElement("li");
+          item.className = `process-duration-band ${band.kind || ""}`.trim();
+          const label = document.createElement("span");
+          label.textContent = band.label;
+          const value = document.createElement("strong");
+          value.textContent = band.value;
+          item.append(label, value);
+          return item;
+        })
+      );
+    }
+
+    if (criticalPathNotes) {
+      criticalPathNotes.replaceChildren(
+        ...(copy.criticalPathNotes || []).map((note) => {
+          const item = document.createElement("li");
+          item.textContent = note;
           return item;
         })
       );
