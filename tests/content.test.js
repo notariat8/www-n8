@@ -473,34 +473,61 @@ test("public process model pages render BPMN assets without making GitHub the vi
   assert.equal(existsSync("assets/bpmn/immobilienkaufvertrag.svg"), true);
   assert.match(german, /data-process-model-viewer/i);
   assert.match(german, /assets\/bpmn\/immobilienkaufvertrag\.svg/i);
-  assert.match(german, /Technischen Referenzstand öffnen/i);
+  assert.match(german, /Referenzdetails öffnen/i);
   assert.match(german, /github\.com\/notariat8\/NaC\/blob\/main\/bpmn\/immobilienkaufvertrag\.bpmn/i);
   assert.doesNotMatch(german, /href="https:\/\/github\.com\/notariat8\/NaC\/blob\/main\/bpmn\/[^"]+">Prozessmodell ansehen/i);
 
   assert.match(english, /data-process-model-viewer/i);
   assert.match(english, /\.\.\/assets\/bpmn\/immobilienkaufvertrag\.svg/i);
-  assert.match(english, /Open technical reference/i);
+  assert.match(english, /Open reference details/i);
   assert.match(english, /github\.com\/notariat8\/NaC\/blob\/main\/bpmn\/immobilienkaufvertrag\.bpmn/i);
   assert.doesNotMatch(english, /href="https:\/\/github\.com\/notariat8\/NaC\/blob\/main\/bpmn\/[^"]+">View process model/i);
+});
+
+test("process model pages lead demos with local navigation and app transition", () => {
+  const german = readFileSync("prozessmodell.html", "utf8");
+  const english = readFileSync("en/process-model.html", "utf8");
+
+  assert.match(german, /href="\.\/#ablauf">Zur Vorgangsübersicht/i);
+  assert.match(german, /href="\.\/">Zur Startseite/i);
+  assert.match(german, /<a class="button primary" href="https:\/\/app\.notariat8\.de\/login\?source=notariat8&amp;entry=usecase&amp;usecase=immobilienkaufvertrag" data-process-app>In der App testen<\/a>/i);
+  assert.doesNotMatch(german, /class="button secondary" href="https:\/\/github\.com\/notariat8\/NaC\/blob\/main\/bpmn\/[^"]+" data-process-reference>Technischen Referenzstand öffnen/i);
+
+  assert.match(english, /href="\.\/#process">Back to matter overview/i);
+  assert.match(english, /href="\.\/">Back to home/i);
+  assert.match(english, /<a class="button primary" href="https:\/\/app\.notariat8\.de\/login\?source=notariat8&amp;entry=usecase&amp;usecase=immobilienkaufvertrag" data-process-app>Test in app<\/a>/i);
+  assert.doesNotMatch(english, /class="button secondary" href="https:\/\/github\.com\/notariat8\/NaC\/blob\/main\/bpmn\/[^"]+" data-process-reference>Open technical reference/i);
 });
 
 test("process model pages explain duration, parallel work and critical path as planning values", () => {
   const german = readFileSync("prozessmodell.html", "utf8");
   const english = readFileSync("en/process-model.html", "utf8");
   const script = readFileSync("assets/site.js", "utf8");
+  const germanPublicText = htmlToPublicText(german);
+  const englishPublicText = htmlToPublicText(english);
 
+  assert.match(german, /Demo-Hinweis/i);
   assert.match(german, /Dauer und kritischer Pfad/i);
   assert.match(german, /Planwerte, keine amtlichen Durchschnittswerte/i);
+  assert.match(germanPublicText, /Planwerte zeigen steuerbare Dauerklassen/i);
+  assert.match(germanPublicText, /Kritischer Pfad zeigt wartende Abhängigkeiten/i);
+  assert.match(germanPublicText, /Parallelität zeigt Schritte, die gleichzeitig anlaufen können/i);
   assert.match(german, /Parallel möglich/i);
   assert.match(german, /Blockiert den kritischen Pfad/i);
   assert.doesNotMatch(german, /Oracle|OCI|Cloud Infrastructure/i);
 
+  assert.match(english, /Demo note/i);
   assert.match(english, /Duration and critical path/i);
   assert.match(english, /Planning values, not official averages/i);
+  assert.match(englishPublicText, /Planning values show adjustable duration classes/i);
+  assert.match(englishPublicText, /Critical path shows waiting dependencies/i);
+  assert.match(englishPublicText, /Parallel work shows steps that can start at the same time/i);
   assert.match(english, /Can run in parallel/i);
   assert.match(english, /Blocks the critical path/i);
   assert.doesNotMatch(english, /Oracle|OCI|Cloud Infrastructure/i);
 
+  assert.match(script, /defaultDurationBands/i);
+  assert.match(script, /defaultCriticalPathNotes/i);
   assert.match(script, /durationBands/i);
   assert.match(script, /criticalPathNotes/i);
   assert.match(script, /standard_external/i);
