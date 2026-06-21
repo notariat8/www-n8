@@ -374,6 +374,95 @@ section[id] {
   border-left-color: var(--copper);
 }
 
+.demo-entry-grid,
+.demo-agenda {
+  margin: 0 auto 1rem;
+  max-width: 1180px;
+}
+
+.demo-entry-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.demo-entry {
+  background: #f7faf8;
+  border: 1px solid var(--line);
+  border-left: 6px solid var(--green);
+  border-radius: 8px;
+  color: var(--ink);
+  display: grid;
+  gap: 0.25rem;
+  padding: 1rem;
+  text-decoration: none;
+}
+
+.demo-entry:nth-child(2) {
+  border-left-color: var(--blue);
+}
+
+.demo-entry:hover,
+.demo-entry:focus-visible {
+  border-color: var(--green);
+  outline: none;
+}
+
+.demo-entry span {
+  color: var(--copper);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.demo-entry strong {
+  font-size: 1.05rem;
+}
+
+.demo-entry small {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.demo-agenda {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1.25rem;
+}
+
+.demo-agenda ol {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.demo-agenda li {
+  border-top: 1px solid var(--line);
+  min-width: 0;
+  padding-top: 0.75rem;
+}
+
+.demo-agenda strong,
+.demo-agenda span {
+  display: block;
+}
+
+.demo-agenda strong {
+  color: var(--ink);
+  font-size: 0.95rem;
+  line-height: 1.25;
+}
+
+.demo-agenda span {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 0.4rem;
+}
+
 .usecase-viewer {
   display: grid;
   gap: 1rem;
@@ -961,6 +1050,8 @@ section[id] {
   .card-grid,
   .governance-list,
   .artifact-layout,
+  .demo-entry-grid,
+  .demo-agenda ol,
   .usecase-viewer,
   .process-model-details,
   .app-transition-grid {
