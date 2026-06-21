@@ -115,7 +115,6 @@ const defaultCriticalPathNotes = {
 const processModels = [
   {
     slug: "immobilienkaufvertrag",
-    bpmnPath: "bpmn/immobilienkaufvertrag.bpmn",
     de: {
       title: "Immobilienkaufvertrag",
       summary:
@@ -151,7 +150,6 @@ const processModels = [
   },
   {
     slug: "grundschuld-hypothekenbestellung",
-    bpmnPath: "bpmn/usecases/grundschuld-hypothekenbestellung.bpmn",
     de: {
       title: "Grundschuld / Hypothekenbestellung",
       summary:
@@ -167,7 +165,6 @@ const processModels = [
   },
   {
     slug: "online-gmbh-gruendung",
-    bpmnPath: "bpmn/usecases/online-gmbh-gruendung.bpmn",
     de: {
       title: "GmbH-/UG-Gründung",
       summary:
@@ -183,7 +180,6 @@ const processModels = [
   },
   {
     slug: "handelsregisteranmeldung",
-    bpmnPath: "bpmn/usecases/handelsregisteranmeldung.bpmn",
     de: {
       title: "Handelsregisteranmeldung",
       summary:
@@ -199,7 +195,6 @@ const processModels = [
   },
   {
     slug: "unterschriftsbeglaubigung",
-    bpmnPath: "bpmn/usecases/unterschriftsbeglaubigung.bpmn",
     de: {
       title: "Beglaubigung von Unterschriften",
       summary:
@@ -215,7 +210,6 @@ const processModels = [
   },
   {
     slug: "testament-erbvertrag",
-    bpmnPath: "bpmn/usecases/testament-erbvertrag.bpmn",
     de: {
       title: "Testament / Erbvertrag",
       summary:
@@ -231,7 +225,6 @@ const processModels = [
   },
   {
     slug: "erbscheinsantrag-nachlass",
-    bpmnPath: "bpmn/usecases/erbscheinsantrag-nachlass.bpmn",
     de: {
       title: "Erbscheinsantrag / Nachlass",
       summary:
@@ -247,7 +240,6 @@ const processModels = [
   },
   {
     slug: "vorsorgevollmacht-patientenverfuegung",
-    bpmnPath: "bpmn/usecases/vorsorgevollmacht-patientenverfuegung.bpmn",
     de: {
       title: "Vorsorgevollmacht und Patientenverfügung",
       summary:
@@ -263,7 +255,6 @@ const processModels = [
   },
   {
     slug: "schenkungsvertrag-uebertragungsvertrag",
-    bpmnPath: "bpmn/usecases/schenkungsvertrag-uebertragungsvertrag.bpmn",
     de: {
       title: "Schenkungsvertrag / Übertragungsvertrag",
       summary:
@@ -279,7 +270,6 @@ const processModels = [
   },
   {
     slug: "ehevertrag-scheidungsfolgenvereinbarung",
-    bpmnPath: "bpmn/usecases/ehevertrag-scheidungsfolgenvereinbarung.bpmn",
     de: {
       title: "Ehevertrag / Scheidungsfolgenvereinbarung",
       summary:
@@ -318,7 +308,6 @@ document.querySelectorAll("[data-process-model-viewer]").forEach((viewer) => {
   const title = viewer.querySelector("[data-process-title]");
   const summary = viewer.querySelector("[data-process-summary]");
   const image = viewer.querySelector("[data-process-svg]");
-  const reference = viewer.querySelector("[data-process-reference]");
   const appLink = viewer.querySelector("[data-process-app]");
   const steps = viewer.querySelector("[data-process-steps]");
   const durationBands = viewer.querySelector("[data-process-duration-bands]");
@@ -340,10 +329,6 @@ document.querySelectorAll("[data-process-model-viewer]").forEach((viewer) => {
     if (image) {
       image.src = `${assetPrefix}${model.slug}.svg`;
       image.alt = `${labels.imageAlt} ${copy.title}`;
-    }
-
-    if (reference) {
-      reference.href = `https://github.com/notariat8/NaC/blob/main/${model.bpmnPath}`;
     }
 
     if (appLink) {

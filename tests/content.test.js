@@ -593,11 +593,12 @@ test("process model page frames the BPMN viewer as demo guidance, not a GitHub r
   const publicText = htmlToPublicText(html);
 
   assert.match(publicText, /Notariat8 Prozessmodell \(BPMN\)/i);
-  assert.match(publicText, /Diese Ansicht ersetzt GitHub nicht/i);
-  assert.match(publicText, /Sie macht den freigegebenen Ablauf im Gespräch lesbar/i);
-  assert.match(publicText, /GitHub bleibt der Referenzstand für die freigegebene Fassung/i);
-  assert.match(publicText, /Für die Demo genügt die Reihenfolge: Vorgang wählen, BPMN erklären, Grenzen benennen, App öffnen/i);
+  assert.match(publicText, /notariat8\.de ist die öffentliche Lesefläche für die Demo/i);
+  assert.match(publicText, /Der freigegebene Referenzstand bleibt prüfbar, aber die Vorführung beginnt hier im Browser/i);
+  assert.match(publicText, /Für die Demo genügt die Reihenfolge: Vorgang wählen, BPMN lesen, Grenzen benennen, App öffnen/i);
+  assert.match(publicText, /BPMN im Browser verstehen/i);
   assert.doesNotMatch(publicText, /GitHub-Ersatz/i);
+  assert.doesNotMatch(publicText, /Referenzdetails öffnen/i);
 });
 
 test("english process model page frames the BPMN viewer as demo guidance, not a GitHub replacement", () => {
@@ -605,29 +606,34 @@ test("english process model page frames the BPMN viewer as demo guidance, not a 
   const publicText = htmlToPublicText(html);
 
   assert.match(publicText, /notariat8 process model \(BPMN\)/i);
-  assert.match(publicText, /This view does not replace GitHub/i);
-  assert.match(publicText, /It makes the approved flow readable in discussion/i);
-  assert.match(publicText, /GitHub remains the reference for the approved version/i);
-  assert.match(publicText, /For the demo, the order is enough: choose matter, explain BPMN, name boundaries, open app/i);
+  assert.match(publicText, /notariat8\.de is the public reading surface for the demo/i);
+  assert.match(publicText, /The approved reference remains reviewable, but the presentation starts here in the browser/i);
+  assert.match(publicText, /For the demo, the order is enough: choose matter, read BPMN, name boundaries, open app/i);
+  assert.match(publicText, /Understand BPMN in the browser/i);
   assert.doesNotMatch(publicText, /GitHub replacement/i);
+  assert.doesNotMatch(publicText, /Open reference details/i);
 });
 
 test("public process model pages render BPMN assets without making GitHub the viewer", () => {
   const german = readFileSync("prozessmodell.html", "utf8");
   const english = readFileSync("en/process-model.html", "utf8");
+  const script = readFileSync("assets/site.js", "utf8");
 
   assert.equal(existsSync("assets/bpmn/immobilienkaufvertrag.svg"), true);
   assert.match(german, /data-process-model-viewer/i);
   assert.match(german, /assets\/bpmn\/immobilienkaufvertrag\.svg/i);
-  assert.match(german, /Referenzdetails öffnen/i);
-  assert.match(german, /github\.com\/notariat8\/NaC\/blob\/main\/bpmn\/immobilienkaufvertrag\.bpmn/i);
+  assert.match(german, /Demo-Einordnung auf notariat8\.de/i);
+  assert.doesNotMatch(german, /github\.com\/notariat8\/NaC\/blob\/main\/bpmn\/immobilienkaufvertrag\.bpmn/i);
   assert.doesNotMatch(german, /href="https:\/\/github\.com\/notariat8\/NaC\/blob\/main\/bpmn\/[^"]+">Prozessmodell ansehen/i);
 
   assert.match(english, /data-process-model-viewer/i);
   assert.match(english, /\.\.\/assets\/bpmn\/immobilienkaufvertrag\.svg/i);
-  assert.match(english, /Open reference details/i);
-  assert.match(english, /github\.com\/notariat8\/NaC\/blob\/main\/bpmn\/immobilienkaufvertrag\.bpmn/i);
+  assert.match(english, /Demo context on notariat8\.de/i);
+  assert.doesNotMatch(english, /github\.com\/notariat8\/NaC\/blob\/main\/bpmn\/immobilienkaufvertrag\.bpmn/i);
   assert.doesNotMatch(english, /href="https:\/\/github\.com\/notariat8\/NaC\/blob\/main\/bpmn\/[^"]+">View process model/i);
+
+  assert.doesNotMatch(script, /github\.com\/notariat8\/NaC\/blob\/main\/bpmn/i);
+  assert.doesNotMatch(script, /bpmnPath/i);
 });
 
 test("process model pages lead demos with local navigation and app transition", () => {
