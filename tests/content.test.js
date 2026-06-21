@@ -479,6 +479,19 @@ test("german home page makes the one-hour chamber demo path explicit", () => {
   assert.doesNotMatch(publicText, /produktive XNP-Anbindung ist vorhanden/i);
 });
 
+test("english home page makes the one-hour chamber demo path explicit", () => {
+  const html = readFileSync("en/index.html", "utf8");
+  const publicText = htmlToPublicText(html);
+
+  assert.match(publicText, /Demo path for one hour/i);
+  assert.match(publicText, /1\. Start with the matter overview/i);
+  assert.match(publicText, /2\. Explain the BPMN view in the browser/i);
+  assert.match(publicText, /3\. Clarify boundaries for XNP, card reader, XNotar and XJustiz/i);
+  assert.match(publicText, /4\. Move into the app without client data/i);
+  assert.match(publicText, /Not shown are internal provider information, real client data or XNP operation with real filings/i);
+  assert.doesNotMatch(publicText, /production XNP integration is available/i);
+});
+
 test("process model page frames the BPMN viewer as demo guidance, not a GitHub replacement", () => {
   const html = readFileSync("prozessmodell.html", "utf8");
   const publicText = htmlToPublicText(html);
@@ -489,6 +502,18 @@ test("process model page frames the BPMN viewer as demo guidance, not a GitHub r
   assert.match(publicText, /GitHub bleibt der Referenzstand für die freigegebene Fassung/i);
   assert.match(publicText, /Für die Demo genügt die Reihenfolge: Vorgang wählen, BPMN erklären, Grenzen benennen, App öffnen/i);
   assert.doesNotMatch(publicText, /GitHub-Ersatz/i);
+});
+
+test("english process model page frames the BPMN viewer as demo guidance, not a GitHub replacement", () => {
+  const html = readFileSync("en/process-model.html", "utf8");
+  const publicText = htmlToPublicText(html);
+
+  assert.match(publicText, /BPMN view for the demo path/i);
+  assert.match(publicText, /This view does not replace GitHub/i);
+  assert.match(publicText, /It makes the approved flow readable in discussion/i);
+  assert.match(publicText, /GitHub remains the reference for the approved version/i);
+  assert.match(publicText, /For the demo, the order is enough: choose matter, explain BPMN, name boundaries, open app/i);
+  assert.doesNotMatch(publicText, /GitHub replacement/i);
 });
 
 test("public process model pages render BPMN assets without making GitHub the viewer", () => {
