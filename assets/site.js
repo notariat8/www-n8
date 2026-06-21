@@ -119,7 +119,7 @@ const processModels = [
     de: {
       title: "Immobilienkaufvertrag",
       summary:
-        "Der Ablauf zeigt, welche Arbeiten parallel laufen können und welche Rückläufe den Vollzug typischerweise blockieren.",
+        "Der Ablauf zeigt, welche Arbeiten parallel laufen können, welche externen Rückläufe den Vollzug typischerweise blockieren und wo XNP, Register und Grundbuch als Zugangspunkte berührt werden.",
       steps: ["Aufnahme", "Grundbuch prüfen", "Entwurf", "Beurkundung", "Vollzug"],
       durationBands: [
         { label: "Interne Prüfung", value: "Stunden bis Tage", kind: "same_day_or_internal" },
@@ -135,7 +135,7 @@ const processModels = [
     en: {
       title: "Real estate purchase agreement",
       summary:
-        "The flow shows which work can run in parallel and which external responses typically block completion.",
+        "The flow shows which work can run in parallel, which external responses typically block completion and where XNP, registers and the land register are touched as access points.",
       steps: ["Intake", "Land register review", "Draft", "Notarization", "Completion"],
       durationBands: [
         { label: "Internal review", value: "hours to days", kind: "same_day_or_internal" },
