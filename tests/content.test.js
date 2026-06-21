@@ -466,6 +466,31 @@ test("home pages expose a data-free process viewer for selected approved flows",
   assert.doesNotMatch(english, /github\.com\/notariat8\/NaC\/blob\/main\/bpmn\/immobilienkaufvertrag\.bpmn">View process model/i);
 });
 
+test("german home page makes the one-hour chamber demo path explicit", () => {
+  const html = readFileSync("index.html", "utf8");
+  const publicText = htmlToPublicText(html);
+
+  assert.match(publicText, /Demo-Pfad für eine Stunde/i);
+  assert.match(publicText, /1\. Einstieg über die Vorgangsübersicht/i);
+  assert.match(publicText, /2\. BPMN-Ansicht im Browser erläutern/i);
+  assert.match(publicText, /3\. Grenzen zu XNP, Kartenleser, XNotar und XJustiz klären/i);
+  assert.match(publicText, /4\. Übergang in die App ohne Mandatsdaten/i);
+  assert.match(publicText, /Nicht gezeigt werden interne Anbieterinformationen, echte Mandatsdaten oder XNP-Betrieb mit echten Einreichungen/i);
+  assert.doesNotMatch(publicText, /produktive XNP-Anbindung ist vorhanden/i);
+});
+
+test("process model page frames the BPMN viewer as demo guidance, not a GitHub replacement", () => {
+  const html = readFileSync("prozessmodell.html", "utf8");
+  const publicText = htmlToPublicText(html);
+
+  assert.match(publicText, /BPMN-Ansicht für den Demo-Pfad/i);
+  assert.match(publicText, /Diese Ansicht ersetzt GitHub nicht/i);
+  assert.match(publicText, /Sie macht den freigegebenen Ablauf im Gespräch lesbar/i);
+  assert.match(publicText, /GitHub bleibt der Referenzstand für die freigegebene Fassung/i);
+  assert.match(publicText, /Für die Demo genügt die Reihenfolge: Vorgang wählen, BPMN erklären, Grenzen benennen, App öffnen/i);
+  assert.doesNotMatch(publicText, /GitHub-Ersatz/i);
+});
+
 test("public process model pages render BPMN assets without making GitHub the viewer", () => {
   const german = readFileSync("prozessmodell.html", "utf8");
   const english = readFileSync("en/process-model.html", "utf8");
