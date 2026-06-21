@@ -489,18 +489,32 @@ test("public demo route makes the BPMN process model obvious without integration
   assert.match(combined, /notariat8/i);
 
   assert.doesNotMatch(combined, /OCI|Oracle|Cloud Infrastructure|provider operation|Anbieterbetrieb/i);
+  assert.match(germanHome, /XNP und Kartenleser als lokale Bereitschaftsgrenzen/i);
+  assert.match(germanHome, /Register und Grundbuch als fachliche externe Zugriffspunkte/i);
+  assert.match(englishHome, /XNP and card reader as local readiness boundaries/i);
+  assert.match(englishHome, /registers and land register as professional external access points/i);
+  assert.match(germanProcessModel, /XNP und Kartenleser bleiben sichtbar/i);
+  assert.match(germanProcessModel, /Register- und Grundbuchzugänge bleiben sichtbar/i);
+  assert.match(englishProcessModel, /XNP and card reader remain visible/i);
+  assert.match(englishProcessModel, /register and land-register access points remain visible/i);
+
   assert.doesNotMatch(combined, /produktive XNP-Anbindung|production XNP integration|XNP operation with real filings|XNP-Betrieb mit echten Einreichungen/i);
-  assert.doesNotMatch(combined, /XNotar|XJustiz|Kartenleser|card reader|Signaturpfad|signature path/i);
   assert.doesNotMatch(combined, /echte Mandatsdaten|real client data/i);
 });
 
-test("public BPMN assets avoid internal system labels on the demo route", () => {
+test("public BPMN assets show external access points without internal operations", () => {
   const bpmnAssets = readdirSync("assets/bpmn")
     .filter((file) => file.endsWith(".svg"))
     .map((file) => [`assets/bpmn/${file}`, readFileSync(`assets/bpmn/${file}`, "utf8")]);
+  const combined = bpmnAssets.map(([, svg]) => svg).join(" ");
+
+  assert.match(combined, /XNP/i);
+  assert.match(combined, /Kartenleser/i);
+  assert.match(combined, /Grundbuch/i);
+  assert.match(combined, /Register/i);
 
   for (const [file, svg] of bpmnAssets) {
-    assert.doesNotMatch(svg, /XNP|xnp_local|IT-Betrieb|OCI|Oracle/i, file);
+    assert.doesNotMatch(svg, /xnp_local|IT-Betrieb|OCI|Oracle|produktive XNP-Anbindung|echter XNP-Betrieb|register_portal|land_register_portal|notary_app|paper_signature/i, file);
   }
 });
 
@@ -513,7 +527,7 @@ test("german home page makes the one-hour chamber demo path explicit", () => {
   assert.match(publicText, /2\. BPMN-Ansicht im Browser erläutern/i);
   assert.match(publicText, /3\. Grenzen des öffentlichen Demo-Stands klären/i);
   assert.match(publicText, /4\. Übergang in die App ohne Mandatsdaten/i);
-  assert.match(publicText, /Nicht gezeigt werden interne Anbieterinformationen, Mandatsdaten oder produktive Einreichungen/i);
+  assert.match(publicText, /Nicht gezeigt werden interne Betriebsdetails, Mandatsdaten, produktive Einreichungen oder echter XNP-Betrieb/i);
   assert.doesNotMatch(publicText, /produktive XNP-Anbindung ist vorhanden/i);
 });
 
@@ -526,7 +540,7 @@ test("english home page makes the one-hour chamber demo path explicit", () => {
   assert.match(publicText, /2\. Explain the BPMN view in the browser/i);
   assert.match(publicText, /3\. Clarify public demo boundaries/i);
   assert.match(publicText, /4\. Move into the app without client data/i);
-  assert.match(publicText, /Not shown are internal provider information, client data or production filings/i);
+  assert.match(publicText, /Not shown are internal operating details, client data, production filings or real XNP operation/i);
   assert.doesNotMatch(publicText, /production XNP integration is available/i);
 });
 
@@ -537,7 +551,7 @@ test("home pages guide a 60-minute chamber demo with browser-first entry points"
   assert.match(german, /60-Minuten-Ablauf/i);
   assert.match(german, /0-10 Minuten: Einstieg und Zielbild/i);
   assert.match(german, /10-30 Minuten: Vorgang und BPMN im Browser/i);
-  assert.match(german, /30-45 Minuten: öffentliche Demo-Grenzen/i);
+  assert.match(german, /30-45 Minuten: externe Zugriffspunkte und lokale Bereitschaft/i);
   assert.match(german, /45-60 Minuten: App-Übergang und Fragen/i);
   assert.match(german, /Einstieg 1: Vorgangsübersicht/i);
   assert.match(german, /Einstieg 2: Notariat8 Prozessmodell \(BPMN\)/i);
@@ -546,28 +560,32 @@ test("home pages guide a 60-minute chamber demo with browser-first entry points"
   assert.match(english, /60-minute agenda/i);
   assert.match(english, /0-10 minutes: entry point and target picture/i);
   assert.match(english, /10-30 minutes: matter and BPMN in the browser/i);
-  assert.match(english, /30-45 minutes: public demo boundaries/i);
+  assert.match(english, /30-45 minutes: external access points and local readiness/i);
   assert.match(english, /45-60 minutes: app transition and questions/i);
   assert.match(english, /Entry 1: matter overview/i);
   assert.match(english, /Entry 2: notariat8 process model \(BPMN\)/i);
   assert.match(english, /GitHub remains the reference, but is not the presentation surface/i);
 });
 
-test("home pages describe external systems only as public demo boundaries", () => {
+test("home pages describe XNP card reader registers and land register as guarded boundaries", () => {
   const german = htmlToPublicText(readFileSync("index.html", "utf8"));
   const english = htmlToPublicText(readFileSync("en/index.html", "utf8"));
 
-  assert.match(german, /Öffentliche Demo-Grenzen/i);
-  assert.match(german, /Notariat8 zeigt den fachlichen Ablauf als BPMN-Modell und App-Übergang/i);
-  assert.match(german, /Produktive Einreichungen und interne Betriebsdetails werden nicht behauptet und nicht gezeigt/i);
+  assert.match(german, /Externe Zugriffspunkte und lokale Bereitschaft/i);
+  assert.match(german, /XNP und Kartenleser als lokale Bereitschaftsgrenzen/i);
+  assert.match(german, /Register und Grundbuch als fachliche externe Zugriffspunkte/i);
+  assert.match(german, /Notariat8 zeigt diese Grenzen im Ablauf, ohne internen Betrieb, produktive Kopplung oder echte Einreichung zu behaupten/i);
   assert.doesNotMatch(german, /Cloud|OCI|Oracle|Anbieterbetrieb/i);
-  assert.doesNotMatch(german, /XNP|XNotar|XJustiz|Kartenleser|Signaturpfad|Grundbuchdaten aus XNP/i);
+  assert.doesNotMatch(german, /XNotar|XJustiz|Signaturpfad|Grundbuchdaten aus XNP/i);
+  assert.doesNotMatch(german, /produktive XNP-Anbindung|XNP-Betrieb mit echten Einreichungen/i);
 
-  assert.match(english, /Public demo boundaries/i);
-  assert.match(english, /Notariat8 shows the professional flow as a BPMN model and app transition/i);
-  assert.match(english, /Production filings and internal operating details are not claimed or shown/i);
+  assert.match(english, /External access points and local readiness/i);
+  assert.match(english, /XNP and card reader as local readiness boundaries/i);
+  assert.match(english, /registers and land register as professional external access points/i);
+  assert.match(english, /Notariat8 shows these boundaries in the flow without claiming internal operation, production coupling or real filing/i);
   assert.doesNotMatch(english, /Cloud|OCI|Oracle|provider operation/i);
-  assert.doesNotMatch(english, /XNP|XNotar|XJustiz|card reader|signature path|land register data from XNP/i);
+  assert.doesNotMatch(english, /XNotar|XJustiz|signature path|land register data from XNP/i);
+  assert.doesNotMatch(english, /production XNP integration|XNP operation with real filings/i);
 });
 
 test("process model page frames the BPMN viewer as demo guidance, not a GitHub replacement", () => {
@@ -661,28 +679,30 @@ test("process model pages explain duration, parallel work and critical path as p
   assert.match(script, /standard_external/i);
 });
 
-test("process model pages keep demo boundaries public and non-operational", () => {
+test("process model pages keep external access points visible and non-operational", () => {
   const german = readFileSync("prozessmodell.html", "utf8");
   const english = readFileSync("en/process-model.html", "utf8");
   const germanPublicText = htmlToPublicText(german);
   const englishPublicText = htmlToPublicText(english);
 
-  assert.match(germanPublicText, /Demo-Grenze hält interne Betriebsdetails aus der öffentlichen Darstellung heraus/i);
-  assert.match(germanPublicText, /Einreichungen werden als produktiver Betrieb nicht behauptet und nicht gezeigt/i);
+  assert.match(germanPublicText, /XNP und Kartenleser bleiben sichtbar als lokale Bereitschaftsgrenze/i);
+  assert.match(germanPublicText, /Register- und Grundbuchzugänge bleiben sichtbar als fachliche externe Zugriffspunkte/i);
   assert.match(germanPublicText, /Notariat8 zeigt Struktur und Prüfung im Prozessmodell und zeigt keine Mandatsdaten/i);
   assert.match(germanPublicText, /keine internen Betriebsdetails/i);
   assert.match(germanPublicText, /keine produktive Einreichung auf dieser Website/i);
-  assert.match(germanPublicText, /Notariat8 zeigt die öffentliche Prozesssicht/i);
-  assert.doesNotMatch(germanPublicText, /XNP|XNotar|XJustiz|Kartenleser|Signaturpfad/i);
+  assert.match(germanPublicText, /kein echter XNP-Betrieb/i);
+  assert.match(germanPublicText, /Notariat8 zeigt die öffentliche Prozesssicht mit externen Grenzen/i);
+  assert.doesNotMatch(germanPublicText, /XNotar|XJustiz|Signaturpfad/i);
   assert.doesNotMatch(germanPublicText, /produktive XNP-Anbindung|XNP produktiv|produktiv an XNP/i);
 
-  assert.match(englishPublicText, /Demo boundary keeps internal operating details out of the public presentation/i);
-  assert.match(englishPublicText, /Filings are not claimed or shown as production operation/i);
+  assert.match(englishPublicText, /XNP and card reader remain visible as a local readiness boundary/i);
+  assert.match(englishPublicText, /register and land-register access points remain visible as professional external access points/i);
   assert.match(englishPublicText, /Notariat8 shows structure and review in the process model and shows no client data/i);
   assert.match(englishPublicText, /no internal operating details/i);
   assert.match(englishPublicText, /no production filing on this website/i);
-  assert.match(englishPublicText, /Notariat8 shows the public process view/i);
-  assert.doesNotMatch(englishPublicText, /XNP|XNotar|XJustiz|card reader|signature path/i);
+  assert.match(englishPublicText, /no real XNP operation/i);
+  assert.match(englishPublicText, /Notariat8 shows the public process view with external boundaries/i);
+  assert.doesNotMatch(englishPublicText, /XNotar|XJustiz|signature path/i);
   assert.doesNotMatch(englishPublicText, /production XNP integration|XNP production|productive XNP/i);
 });
 
