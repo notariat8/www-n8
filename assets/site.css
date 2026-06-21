@@ -608,6 +608,11 @@ section[id] {
   margin-bottom: 1.25rem;
 }
 
+.process-model-hero {
+  padding-bottom: clamp(1.75rem, 4vw, 3rem);
+  padding-top: clamp(2rem, 5vw, 4rem);
+}
+
 .process-model-page h1 {
   font-size: clamp(2.3rem, 5vw, 4rem);
   hyphens: auto;
@@ -668,15 +673,17 @@ section[id] {
 
 .process-model-scroll {
   overflow-x: auto;
-  padding: 1rem;
+  padding: 0.75rem;
+  scroll-snap-type: x proximity;
 }
 
 .process-model-scroll img {
   display: block;
   height: auto;
   max-width: none;
-  min-width: 900px;
-  width: 1800px;
+  min-width: 1180px;
+  scroll-snap-align: start;
+  width: 2366px;
 }
 
 .process-model-canvas figcaption {
@@ -1088,6 +1095,26 @@ section[id] {
 
   .process-model-page h1 {
     font-size: 1.95rem;
+  }
+
+  .process-model-hero {
+    padding-bottom: 1.5rem;
+    padding-top: 1.75rem;
+  }
+
+  .process-model-selector {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 0.3rem;
+  }
+
+  .process-model-selector a {
+    flex: 0 0 auto;
+  }
+
+  .process-model-scroll img {
+    min-width: 980px;
+    width: 1600px;
   }
 
   .lead {
