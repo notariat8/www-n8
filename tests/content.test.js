@@ -215,7 +215,8 @@ test("german home page translates public process terms into notarial language", 
   assert.match(publicText, /fachliche Prozessmodellierung \(BPMN\)/i);
   assert.match(publicText, /zuerst digital abgebildet/i);
   assert.match(publicText, /Der öffentliche Stand zeigt Struktur und Prüfung, nicht Mandatsdaten\./i);
-  assert.match(publicText, /n8 zeigt Vorgänge\. Die App testet Abläufe\./i);
+  assert.match(publicText, /notariat8 zeigt Vorgänge\. Die App testet Abläufe\./i);
+  assert.doesNotMatch(publicText, /\bn8 zeigt Vorgänge\b/i);
 });
 
 test("english home page translates public process terms into professional matter language", () => {
@@ -239,7 +240,8 @@ test("english home page translates public process terms into professional matter
   assert.match(publicText, /process modeling \(BPMN\)/i);
   assert.match(publicText, /selected for digital handling first/i);
   assert.match(publicText, /The public reference shows structure and review, not client data\./i);
-  assert.match(publicText, /n8 shows matters\. The app tests flows\./i);
+  assert.match(publicText, /notariat8 shows matters\. The app tests flows\./i);
+  assert.doesNotMatch(publicText, /\bn8 shows matters\b/i);
 });
 
 test("public pages do not expose style-guide blocked terms", () => {
