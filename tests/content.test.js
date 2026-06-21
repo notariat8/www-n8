@@ -439,7 +439,7 @@ test("home pages expose a data-free process viewer for selected approved flows",
   const english = readFileSync("en/index.html", "utf8");
 
   for (const html of [german, english]) {
-    assert.match(html, /assets\/site\.css\?v=20260613-process-model/i);
+    assert.match(html, /assets\/site\.css\?v=20260621-process-model-readability/i);
     assert.match(html, /assets\/site\.js\?v=20260613-process-model/i);
   }
 
@@ -646,6 +646,23 @@ test("process model pages make XNP and XJustiz boundaries visible without produc
   assert.match(englishPublicText, /XNotar\/XJustiz for regulated electronic handovers/i);
   assert.match(englishPublicText, /Notariat8 does not replace professional or filing systems/i);
   assert.doesNotMatch(englishPublicText, /production XNP integration|XNP production|productive XNP/i);
+});
+
+test("process model page keeps the BPMN canvas readable for live demo presentation", () => {
+  const css = readFileSync("assets/site.css", "utf8");
+  const german = readFileSync("prozessmodell.html", "utf8");
+  const english = readFileSync("en/process-model.html", "utf8");
+
+  assert.match(css, /\.process-model-hero\s*\{/);
+  assert.match(css, /padding-top:\s*clamp\(2rem,\s*5vw,\s*4rem\)/);
+  assert.match(css, /scroll-snap-type:\s*x proximity/);
+  assert.match(css, /min-width:\s*1180px/);
+  assert.match(css, /width:\s*2366px/);
+  assert.match(css, /@media \(max-width: 520px\) \{[\s\S]*\.process-model-selector \{[\s\S]*flex-wrap: nowrap;/);
+  assert.match(css, /@media \(max-width: 520px\) \{[\s\S]*\.process-model-scroll img \{[\s\S]*width:\s*1600px/);
+
+  assert.match(german, /20260621-process-model-readability/);
+  assert.match(english, /20260621-process-model-readability/);
 });
 
 test("real estate process steps use review-oriented labels that fit the step tiles", () => {
