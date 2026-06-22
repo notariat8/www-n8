@@ -309,6 +309,7 @@ document.querySelectorAll("[data-process-model-viewer]").forEach((viewer) => {
   const summary = viewer.querySelector("[data-process-summary]");
   const image = viewer.querySelector("[data-process-svg]");
   const appLink = viewer.querySelector("[data-process-app]");
+  const languageLink = document.querySelector("[data-process-language-link]");
   const steps = viewer.querySelector("[data-process-steps]");
   const durationBands = viewer.querySelector("[data-process-duration-bands]");
   const criticalPathNotes = viewer.querySelector("[data-process-critical-path]");
@@ -332,7 +333,17 @@ document.querySelectorAll("[data-process-model-viewer]").forEach((viewer) => {
     }
 
     if (appLink) {
-      appLink.href = `https://app.notariat8.de/login?source=notariat8&entry=usecase&usecase=${encodeURIComponent(model.slug)}`;
+      const url = new URL("/login", appBaseUrl());
+      url.searchParams.set("source", "notariat8");
+      url.searchParams.set("entry", "usecase");
+      url.searchParams.set("usecase", model.slug);
+      appLink.href = url.toString();
+    }
+
+    if (languageLink) {
+      const crossLanguagePath =
+        language === "en" ? "../prozessmodell.html?vorgang=" : "en/process-model.html?matter=";
+      languageLink.href = `${crossLanguagePath}${encodeURIComponent(model.slug)}`;
     }
 
     if (steps) {
