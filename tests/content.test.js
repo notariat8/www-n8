@@ -423,6 +423,23 @@ test("home pages do not link app transition actions to the unexposed app root", 
   }
 });
 
+test("home app handoff copy explains safe login and readiness behavior", () => {
+  const german = readFileSync("index.html", "utf8");
+  const english = readFileSync("en/index.html", "utf8");
+
+  assert.match(german, /Bestehende Kunden öffnen nur die Anmeldung/i);
+  assert.match(german, /Interesse vormerken bereitet nur die Bereitschaftsprüfung vor/i);
+  assert.match(german, /keine Onboarding-Anfrage/i);
+  assert.match(german, /keine E-Mail/i);
+  assert.match(german, /keine Mandatsdaten, keine Dokumente und keine Zugangsdaten/i);
+
+  assert.match(english, /Existing customers open login only/i);
+  assert.match(english, /Registering interest only prepares the readiness check/i);
+  assert.match(english, /no onboarding request/i);
+  assert.match(english, /no email/i);
+  assert.match(english, /does not collect client data, documents or credentials/i);
+});
+
 test("home pages keep GitHub and BPMN modeling visible from the homepage", () => {
   const german = readFileSync("index.html", "utf8");
   const english = readFileSync("en/index.html", "utf8");
