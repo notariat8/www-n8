@@ -830,13 +830,13 @@ test("process model page keeps the BPMN canvas readable for live demo presentati
   assert.match(css, /\.process-model-hero\s*\{/);
   assert.match(css, /padding-top:\s*clamp\(2rem,\s*5vw,\s*4rem\)/);
   assert.match(css, /scroll-snap-type:\s*x proximity/);
-  assert.match(css, /min-width:\s*1180px/);
-  assert.match(css, /width:\s*2366px/);
+  assert.match(css, /min-width:\s*980px/);
+  assert.match(css, /width:\s*100%/);
   assert.match(css, /@media \(max-width: 520px\) \{[\s\S]*\.process-model-selector \{[\s\S]*flex-wrap: nowrap;/);
-  assert.match(css, /@media \(max-width: 520px\) \{[\s\S]*\.process-model-scroll img \{[\s\S]*width:\s*1600px/);
+  assert.match(css, /@media \(max-width: 520px\) \{[\s\S]*\.process-model-scroll img \{[\s\S]*min-width:\s*980px/);
 
-  assert.match(german, /20260621-process-model-readability/);
-  assert.match(english, /20260621-process-model-readability/);
+  assert.match(german, /20260622-process-model-fit-overview/);
+  assert.match(english, /20260622-process-model-fit-overview/);
 });
 
 test("real estate process steps use review-oriented labels that fit the step tiles", () => {
