@@ -489,6 +489,8 @@ test("home pages expose a data-free process viewer for selected approved flows",
   assert.match(german, /Vorsorgevollmacht und Patientenverfügung/i);
   assert.match(german, /github\.com\/notariat8\/NaC\/tree\/main\/usecases\/immobilienkaufvertrag/i);
   assert.match(german, /prozessmodell\.html\?vorgang=immobilienkaufvertrag/i);
+  assert.match(german, /Prozessmodell ansehen[\s\S]*Referenzstand auf GitHub[\s\S]*In der App testen/i);
+  assert.doesNotMatch(german, /Vorgang auf GitHub/i);
   assert.doesNotMatch(german, /github\.com\/notariat8\/NaC\/blob\/main\/bpmn\/immobilienkaufvertrag\.bpmn">Prozessmodell ansehen/i);
   assert.match(german, /app\.notariat8\.de\/login\?source=notariat8&amp;entry=usecase&amp;usecase=immobilienkaufvertrag/i);
   assert.match(german, /freigegebener Arbeits- und Prüfablauf, nur ohne Mandatsdaten/i);
@@ -500,6 +502,8 @@ test("home pages expose a data-free process viewer for selected approved flows",
   assert.match(english, /Approved work and review flow, only without client data/i);
   assert.match(english, /github\.com\/notariat8\/NaC\/tree\/main\/usecases\/immobilienkaufvertrag/i);
   assert.match(english, /process-model\.html\?matter=immobilienkaufvertrag/i);
+  assert.match(english, /View process model[\s\S]*Reference on GitHub[\s\S]*Test in app/i);
+  assert.doesNotMatch(english, /Matter on GitHub/i);
   assert.doesNotMatch(english, /github\.com\/notariat8\/NaC\/blob\/main\/bpmn\/immobilienkaufvertrag\.bpmn">View process model/i);
 });
 
