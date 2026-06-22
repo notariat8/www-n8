@@ -764,6 +764,27 @@ test("process model pages keep external access points visible and non-operationa
   assert.doesNotMatch(englishPublicText, /production XNP integration|XNP production|productive XNP/i);
 });
 
+test("process model pages provide a browser-first demo checklist for the chamber presentation", () => {
+  const german = htmlToPublicText(readFileSync("prozessmodell.html", "utf8"));
+  const english = htmlToPublicText(readFileSync("en/process-model.html", "utf8"));
+
+  assert.match(german, /Demo-Stationen/i);
+  assert.match(german, /Vorgang wählen/i);
+  assert.match(german, /BPMN-Bild lesen/i);
+  assert.match(german, /Dauer und kritischen Pfad erklären/i);
+  assert.match(german, /XNP, Kartenleser, Register und Grundbuch als Grenzen benennen/i);
+  assert.match(german, /App-Übergang nur ohne Mandatsdaten öffnen/i);
+  assert.doesNotMatch(german, /produktive XNP-Anbindung|echte Registerabfrage|echte Grundbuchabfrage|Oracle|OCI|Cloud Infrastructure/i);
+
+  assert.match(english, /Demo checkpoints/i);
+  assert.match(english, /Choose matter/i);
+  assert.match(english, /Read the BPMN picture/i);
+  assert.match(english, /Explain duration and critical path/i);
+  assert.match(english, /Name XNP, card reader, registers and land register as boundaries/i);
+  assert.match(english, /Open the app transition only without client data/i);
+  assert.doesNotMatch(english, /production XNP integration|real register query|real land-register query|Oracle|OCI|Cloud Infrastructure/i);
+});
+
 test("process model page keeps the BPMN canvas readable for live demo presentation", () => {
   const css = readFileSync("assets/site.css", "utf8");
   const german = readFileSync("prozessmodell.html", "utf8");
