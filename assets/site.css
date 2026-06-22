@@ -681,9 +681,9 @@ section[id] {
   display: block;
   height: auto;
   max-width: none;
-  min-width: 1180px;
+  min-width: 980px;
   scroll-snap-align: start;
-  width: 2366px;
+  width: 100%;
 }
 
 .process-model-canvas figcaption {
@@ -1114,7 +1114,7 @@ section[id] {
 
   .process-model-scroll img {
     min-width: 980px;
-    width: 1600px;
+    width: 100%;
   }
 
   .lead {
