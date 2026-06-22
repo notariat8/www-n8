@@ -886,4 +886,10 @@ test("repository governance page documents every notariat8 repository", () => {
   assert.match(html, /Software Bill of Materials \(SBOM\)/i);
   assert.match(html, /Software-Stückliste/i);
   assert.match(html, /Sie ersetzt keine eigene Sicherheits- oder Rechtsprüfung/i);
+  assert.match(html, /Demo-Evidenz/i);
+  assert.match(html, /geschützte Änderungsvorschläge/i);
+  assert.match(html, /statische Dokumente/i);
+  assert.match(html, /automatisierte Tests/i);
+  assert.match(html, /keine Mandatsdaten/i);
+  assert.match(html, /keine Cloud-Aktion/i);
 });
