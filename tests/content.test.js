@@ -691,6 +691,7 @@ test("public process model pages render BPMN assets without making GitHub the vi
 test("process model pages lead demos with local navigation and app transition", () => {
   const german = readFileSync("prozessmodell.html", "utf8");
   const english = readFileSync("en/process-model.html", "utf8");
+  const script = readFileSync("assets/site.js", "utf8");
 
   assert.match(german, /href="\.\/#ablauf">Zur Vorgangsübersicht/i);
   assert.match(german, /href="\.\/">Zur Startseite/i);
@@ -701,6 +702,42 @@ test("process model pages lead demos with local navigation and app transition", 
   assert.match(english, /href="\.\/">Back to home/i);
   assert.match(english, /<a class="button primary" href="https:\/\/app\.notariat8\.de\/login\?source=notariat8&amp;entry=usecase&amp;usecase=immobilienkaufvertrag" data-process-app>Test in app<\/a>/i);
   assert.doesNotMatch(english, /class="button secondary" href="https:\/\/github\.com\/notariat8\/NaC\/blob\/main\/bpmn\/[^"]+" data-process-reference>Open technical reference/i);
+
+  assert.match(script, /new URL\("\/login", appBaseUrl\(\)\)/i);
+  assert.doesNotMatch(script, /appLink\.href = `https:\/\/app\.notariat8\.de/i);
+});
+
+test("process model pages provide a complete non-JavaScript matter selector fallback", () => {
+  const german = readFileSync("prozessmodell.html", "utf8");
+  const english = readFileSync("en/process-model.html", "utf8");
+  const expected = [
+    "immobilienkaufvertrag",
+    "grundschuld-hypothekenbestellung",
+    "online-gmbh-gruendung",
+    "handelsregisteranmeldung",
+    "unterschriftsbeglaubigung",
+    "testament-erbvertrag",
+    "erbscheinsantrag-nachlass",
+    "vorsorgevollmacht-patientenverfuegung",
+    "schenkungsvertrag-uebertragungsvertrag",
+    "ehevertrag-scheidungsfolgenvereinbarung",
+  ];
+
+  for (const slug of expected) {
+    assert.match(german, new RegExp(`prozessmodell\\.html\\?vorgang=${slug}`));
+    assert.match(english, new RegExp(`process-model\\.html\\?matter=${slug}`));
+  }
+});
+
+test("process model language links preserve the selected matter", () => {
+  const german = readFileSync("prozessmodell.html", "utf8");
+  const english = readFileSync("en/process-model.html", "utf8");
+  const script = readFileSync("assets/site.js", "utf8");
+
+  assert.match(german, /class="language-link" href="en\/process-model\.html\?matter=immobilienkaufvertrag"/i);
+  assert.match(english, /class="language-link" href="\.\.\/prozessmodell\.html\?vorgang=immobilienkaufvertrag"/i);
+  assert.match(script, /data-process-language-link/i);
+  assert.match(script, /languageLink\.href =/i);
 });
 
 test("process model pages explain duration, parallel work and critical path as planning values", () => {
