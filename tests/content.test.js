@@ -553,6 +553,23 @@ test("public BPMN assets show external access points without internal operations
   }
 });
 
+test("public BPMN assets expose accessible titles and descriptions", () => {
+  const bpmnAssets = readdirSync("assets/bpmn")
+    .filter((file) => file.endsWith(".svg"))
+    .map((file) => [`assets/bpmn/${file}`, readFileSync(`assets/bpmn/${file}`, "utf8")]);
+
+  for (const [file, svg] of bpmnAssets) {
+    assert.match(svg, /role="img"/i, file);
+    assert.match(svg, /aria-label="[^"]+"/i, file);
+    assert.match(svg, /<title>notariat8 Prozessmodell: [^<]+<\/title>/i, file);
+    assert.match(
+      svg,
+      /<desc>Öffentliches BPMN-Demobild[^<]+ohne Mandatsdaten\.<\/desc>/i,
+      file,
+    );
+  }
+});
+
 test("german home page makes the one-hour chamber demo path explicit", () => {
   const html = readFileSync("index.html", "utf8");
   const publicText = htmlToPublicText(html);
