@@ -685,6 +685,22 @@ test("process model page frames the BPMN viewer as demo guidance, not a GitHub r
   assert.doesNotMatch(publicText, /Referenzdetails öffnen/i);
 });
 
+test("german process model page names critical real estate completion gates and the editor boundary", () => {
+  const html = readFileSync("prozessmodell.html", "utf8");
+  const publicText = htmlToPublicText(html);
+
+  assert.match(publicText, /Vorkaufsrecht/i);
+  assert.match(publicText, /Löschungsunterlagen/i);
+  assert.match(publicText, /Unbedenklichkeitsbescheinigung/i);
+  assert.match(publicText, /Eigentumsumschreibung/i);
+  assert.match(publicText, /kritischer Pfad/i);
+  assert.match(publicText, /BPMN-Editor/i);
+  assert.match(publicText, /lokal vorbereitet/i);
+  assert.match(publicText, /öffentliche Seite bleibt lesend/i);
+  assert.doesNotMatch(publicText, /produktive Einreichung ist möglich/i);
+  assert.doesNotMatch(publicText, /echte Mandatsdaten/i);
+});
+
 test("english process model page frames the BPMN viewer as demo guidance, not a GitHub replacement", () => {
   const html = readFileSync("en/process-model.html", "utf8");
   const publicText = htmlToPublicText(html);
@@ -696,6 +712,22 @@ test("english process model page frames the BPMN viewer as demo guidance, not a 
   assert.match(publicText, /Understand BPMN in the browser/i);
   assert.doesNotMatch(publicText, /GitHub replacement/i);
   assert.doesNotMatch(publicText, /Open reference details/i);
+});
+
+test("english process model page names critical real estate completion gates and the editor boundary", () => {
+  const html = readFileSync("en/process-model.html", "utf8");
+  const publicText = htmlToPublicText(html);
+
+  assert.match(publicText, /pre-emption/i);
+  assert.match(publicText, /release documents/i);
+  assert.match(publicText, /tax clearance/i);
+  assert.match(publicText, /transfer of title/i);
+  assert.match(publicText, /critical path/i);
+  assert.match(publicText, /BPMN editor/i);
+  assert.match(publicText, /prepared locally/i);
+  assert.match(publicText, /public page remains read-only/i);
+  assert.doesNotMatch(publicText, /production filing is available/i);
+  assert.doesNotMatch(publicText, /real client data/i);
 });
 
 test("public process model pages render BPMN assets without making GitHub the viewer", () => {
