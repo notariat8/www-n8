@@ -1,4 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" class="bpmn-svg" width="2151" height="320" viewBox="50 58 2151 320" role="img" aria-label="Erbscheinsantrag / Nachlassangelegenheiten">
+<title>notariat8 Prozessmodell: Erbscheinsantrag / Nachlassangelegenheiten</title>
+<desc>Öffentliches BPMN-Demobild für den Vorgang Erbscheinsantrag / Nachlassangelegenheiten mit fachlichen Arbeitsschritten, externen Zugriffspunkten und lokaler Bereitschaft ohne Mandatsdaten.</desc>
 <style>
   svg { background: #ffffff; font-family: Arial, Helvetica, sans-serif; }
   .flow { fill: none; stroke: #41516b; stroke-width: 2.2; }
