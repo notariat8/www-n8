@@ -909,6 +909,31 @@ test("process model pages provide a browser-first demo checklist for the chamber
   assert.doesNotMatch(english, /production XNP integration|real register query|real land-register query|Oracle|OCI|Cloud Infrastructure/i);
 });
 
+test("home demo path exposes the SNP ISV approval questions without production claims", () => {
+  const german = htmlToPublicText(readFileSync("index.html", "utf8"));
+  const english = htmlToPublicText(readFileSync("en/index.html", "utf8"));
+
+  assert.match(german, /SNP-Testzugang/i);
+  assert.match(german, /ISV-Freigabepaket|ISV-Listung/i);
+  assert.match(german, /Sandbox/i);
+  assert.match(german, /technischer Ansprechpartner/i);
+  assert.match(german, /Callback-Beispiele/i);
+  assert.match(german, /Fehlerklassen/i);
+  assert.match(german, /Zertifizierungsweg/i);
+  assert.match(german, /Pilotnotariat/i);
+  assert.doesNotMatch(german, /produktive XNP-Anbindung|produktiver XNP-Zugriff|echte XNP-Einreichung/i);
+
+  assert.match(english, /SNP test access/i);
+  assert.match(english, /ISV approval package|ISV listing/i);
+  assert.match(english, /sandbox/i);
+  assert.match(english, /technical contact/i);
+  assert.match(english, /callback examples/i);
+  assert.match(english, /error classes/i);
+  assert.match(english, /certification path/i);
+  assert.match(english, /pilot notary office/i);
+  assert.doesNotMatch(english, /production XNP integration|production XNP access|real XNP filing/i);
+});
+
 test("process model page keeps the BPMN canvas readable for live demo presentation", () => {
   const css = readFileSync("assets/site.css", "utf8");
   const german = readFileSync("prozessmodell.html", "utf8");
