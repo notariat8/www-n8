@@ -265,8 +265,10 @@ test("not found page provides demo-safe recovery links", () => {
   assert.match(publicText, /notariat8\.de/i);
   assert.match(publicText, /Vorgangsübersicht/i);
   assert.match(publicText, /Prozessmodell/i);
-  assert.match(html, /href="index\.html"/i);
-  assert.match(html, /href="prozessmodell\.html"/i);
+  assert.match(html, /href="\/"/i);
+  assert.match(html, /href="\/prozessmodell\.html"/i);
+  assert.match(html, /href="\/assets\/favicon\.svg"/i);
+  assert.match(html, /href="\/assets\/site\.css\?v=20260520-nac"/i);
   assert.doesNotMatch(publicText, /\bTenant\b/i);
   assert.doesNotMatch(publicText, /\bWorkspace\b/i);
   assert.doesNotMatch(publicText, /Oracle|OCI|Runtime|Function/i);
