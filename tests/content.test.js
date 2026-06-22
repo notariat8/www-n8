@@ -556,6 +556,7 @@ test("public BPMN assets show external access points without internal operations
 
   for (const [file, svg] of bpmnAssets) {
     assert.doesNotMatch(svg, /xnp_local|IT-Betrieb|OCI|Oracle|produktive XNP-Anbindung|echter XNP-Betrieb|register_portal|land_register_portal|notary_app|paper_signature/i, file);
+    assert.doesNotMatch(svg, />[^<]*(?:personal|internal|email)[^<]*</i, file);
   }
 });
 
