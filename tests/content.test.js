@@ -24,6 +24,13 @@ const sitePages = [
 
 const brandedSitePages = sitePages.filter(([, file]) => file !== "404.html");
 
+const publicDemoPages = [
+  ["German home page", "index.html"],
+  ["English home page", "en/index.html"],
+  ["German process model", "prozessmodell.html"],
+  ["English process model", "en/process-model.html"],
+];
+
 const styleGuidePath = "styleguide.json";
 const agentStyleGuidePath = "docs/agent-style-guide.md";
 
@@ -253,6 +260,32 @@ test("public pages do not expose style-guide blocked terms", () => {
 
     for (const { term } of styleGuide.blockedTerms) {
       assert.doesNotMatch(publicText, termRegExp(term), `${label}: ${term}`);
+    }
+  }
+});
+
+test("public demo texts do not claim production integrations, live queries, provider details, or mandate data", () => {
+  const styleGuide = readStyleGuide();
+
+  assert.ok(
+    Array.isArray(styleGuide.publicDemoGuardrails),
+    "styleguide.json must define publicDemoGuardrails"
+  );
+
+  for (const { label, pattern } of styleGuide.publicDemoGuardrails) {
+    assert.equal(typeof label, "string", "guardrail needs a label");
+    assert.equal(typeof pattern, "string", `${label} needs a pattern`);
+  }
+
+  for (const [pageLabel, file] of publicDemoPages) {
+    const publicText = htmlToPublicText(readFileSync(file, "utf8"));
+
+    for (const { label, pattern } of styleGuide.publicDemoGuardrails) {
+      assert.doesNotMatch(
+        publicText,
+        new RegExp(pattern, "i"),
+        `${pageLabel}: ${label}`
+      );
     }
   }
 });
