@@ -968,6 +968,27 @@ test("home demo path exposes the SNP ISV approval questions without production c
   assert.doesNotMatch(english, /production XNP integration|production XNP access|real XNP filing/i);
 });
 
+test("notarkammer demo quick path is visible from navigation and demo-safe", () => {
+  const germanHtml = readFileSync("index.html", "utf8");
+  const englishHtml = readFileSync("en/index.html", "utf8");
+  const german = htmlToPublicText(germanHtml);
+  const english = htmlToPublicText(englishHtml);
+
+  assert.match(germanHtml, /<a href="#demo-pfad">Notarkammer-Demo<\/a>/i);
+  assert.match(englishHtml, /<a href="#demo-path">Chamber demo<\/a>/i);
+
+  assert.match(german, /Schnelleinstieg: Immobilienkaufvertrag mit XNP\/SNP-Bezug/i);
+  assert.match(german, /Für die Vorführung sofort nutzbar: Vorgangsübersicht, BPMN-Bild und App-Übergang ohne Mandatsdaten/i);
+  assert.match(german, /Sprechfähig in einem Satz: sichtbar sind Ablauf, Prüfpunkte und fachliche Übergabegrenzen; nicht behauptet werden produktive XNP\/SNP-Nutzung, Providerdetails oder echte Einreichungen/i);
+
+  assert.match(english, /Quick path: real estate purchase agreement with XNP\/SNP context/i);
+  assert.match(english, /Ready for the presentation: matter overview, BPMN picture and app transition without client data/i);
+  assert.match(english, /One-sentence speaker line: visible are flow, review points and professional handover boundaries; not claimed are production XNP\/SNP use, provider details or real filings/i);
+
+  assert.doesNotMatch(german, /produktive XNP\/SNP-Nutzung ist verfügbar|echte Einreichungen werden ausgelöst/i);
+  assert.doesNotMatch(english, /provider details are shown|production XNP\/SNP use is available|real filings are triggered/i);
+});
+
 test("process model page keeps the BPMN canvas readable for live demo presentation", () => {
   const css = readFileSync("assets/site.css", "utf8");
   const german = readFileSync("prozessmodell.html", "utf8");
