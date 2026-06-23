@@ -543,11 +543,11 @@ test("public demo route makes the BPMN process model obvious without integration
   assert.match(germanHome, /Notariat8 Prozessmodell \(BPMN\) ansehen/i);
   assert.match(readFileSync("index.html", "utf8"), /<a href="prozessmodell\.html\?vorgang=immobilienkaufvertrag">Prozessmodell \(BPMN\)<\/a>/i);
   assert.match(germanHome, /Direkt zur öffentlichen BPMN-Ansicht/i);
-  assert.match(englishHome, /View notariat8 process model \(BPMN\)/i);
+  assert.match(englishHome, /View Notariat8 process model \(BPMN\)/i);
   assert.match(readFileSync("en/index.html", "utf8"), /<a href="process-model\.html\?matter=immobilienkaufvertrag">Process model \(BPMN\)<\/a>/i);
   assert.match(englishHome, /Go directly to the public BPMN view/i);
   assert.match(germanProcessModel, /Notariat8 Prozessmodell \(BPMN\)/i);
-  assert.match(englishProcessModel, /notariat8 process model \(BPMN\)/i);
+  assert.match(englishProcessModel, /Notariat8 process model \(BPMN\)/i);
   assert.match(combined, /notariat8/i);
 
   assert.doesNotMatch(combined, /OCI|Oracle|Cloud Infrastructure|provider operation|Anbieterbetrieb/i);
@@ -561,6 +561,8 @@ test("public demo route makes the BPMN process model obvious without integration
   assert.match(germanProcessModel, /Register- und Grundbuchzugänge bleiben sichtbar/i);
   assert.match(englishProcessModel, /XNP, XNotar and card reader remain visible/i);
   assert.match(englishProcessModel, /register and land-register access points remain visible/i);
+  assert.match(germanProcessModel, /SNP-Testzugang bleibt eine explizite Freigabefrage/i);
+  assert.match(englishProcessModel, /SNP test access stays an explicit approval question/i);
 
   assert.doesNotMatch(combined, /produktive XNP-Anbindung|production XNP integration|XNP operation with real filings|XNP-Betrieb mit echten Einreichungen/i);
   assert.doesNotMatch(combined, /echte Mandatsdaten|real client data/i);
