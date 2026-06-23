@@ -67,6 +67,36 @@
       "reason": "Externer Zweck nicht freigegeben."
     }
   ],
+  "publicDemoGuardrails": [
+    {
+      "label": "keine produktive XNP/SNP/XNotar-Integration behaupten",
+      "pattern": "(?<!keine )(?<!ohne )\\bproduktive(?:r|n|s)?\\s+(?:XNP|SNP|XNotar)[\\w\\s/-]{0,40}(?:Anbindung|Integration|Zugriff|Betrieb|Einreichung)"
+    },
+    {
+      "label": "do not claim production XNP/SNP/XNotar integration",
+      "pattern": "(?<!no )(?<!without )\\bproduction\\s+(?:XNP|SNP|XNotar)[\\w\\s/-]{0,40}(?:integration|access|operation|filing|coupling)"
+    },
+    {
+      "label": "keine echten Register- oder Grundbuchabfragen behaupten",
+      "pattern": "(?<!keine )(?<!ohne )\\bechte\\s+(?:Register|Grundbuch)[\\w\\s-]{0,30}(?:abfrage|abfragen|daten|abruf|abrufe)"
+    },
+    {
+      "label": "do not claim real register or land-register queries",
+      "pattern": "(?<!no )(?<!without )\\breal\\s+(?:register|land[- ]register)[\\w\\s-]{0,30}(?:query|queries|lookup|lookups|data|search)"
+    },
+    {
+      "label": "keine Oracle/OCI/Login-Providerdetails veröffentlichen",
+      "pattern": "\\b(?:Oracle|OCI|Oracle Cloud Infrastructure|Login-Provider|Identity Provider|OAuth|OIDC|SAML|Keycloak|Auth0)\\b"
+    },
+    {
+      "label": "keine Verarbeitung echter Mandatsdaten behaupten",
+      "pattern": "(?<!keine )(?<!ohne )\\b(?:Mandatsdaten|Zugangsdaten|Dokumente)[\\w\\s,]{0,40}\\b(?:werden|können|sind|liegen|speichern|gespeichert|verarbeitet|geladen)\\b"
+    },
+    {
+      "label": "do not claim handling of real client or mandate data",
+      "pattern": "(?<!no )(?<!without )\\b(?:client data|mandate data|credentials|documents)[\\w\\s,]{0,40}\\b(?:is|are|can be|will be|stored|processed|loaded|collected)\\b"
+    }
+  ],
   "explainOnlyTerms": [
     {
       "term": "SBOM",
