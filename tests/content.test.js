@@ -514,7 +514,7 @@ test("home pages expose a data-free process viewer for selected approved flows",
   }
 
   assert.match(german, /Vorgangsübersicht/i);
-  assert.match(german, /Notariat8 Prozessmodell \(BPMN\) ansehen/i);
+  assert.match(german, /Immobilienkaufvertrag-Demo öffnen/i);
   assert.match(german, /href="prozessmodell\.html\?vorgang=immobilienkaufvertrag"/i);
   assert.match(german, /Ausgewählte Vorgänge/i);
   assert.match(german, /Immobilienkaufvertrag/i);
@@ -529,7 +529,7 @@ test("home pages expose a data-free process viewer for selected approved flows",
   assert.match(german, /freigegebener Arbeits- und Prüfablauf, nur ohne Mandatsdaten/i);
 
   assert.match(english, /Matter overview/i);
-  assert.match(english, /View notariat8 process model \(BPMN\)/i);
+  assert.match(english, /Open real estate agreement demo/i);
   assert.match(english, /href="process-model\.html\?matter=immobilienkaufvertrag"/i);
   assert.match(english, /Selected matters/i);
   assert.match(english, /Approved work and review flow, only without client data/i);
@@ -573,10 +573,10 @@ test("public demo route makes the BPMN process model obvious without integration
     englishProcessModel,
   ].join(" ");
 
-  assert.match(germanHome, /Notariat8 Prozessmodell \(BPMN\) ansehen/i);
+  assert.match(germanHome, /Immobilienkaufvertrag-Demo öffnen/i);
   assert.match(readFileSync("index.html", "utf8"), /<a href="prozessmodell\.html\?vorgang=immobilienkaufvertrag">Prozessmodell \(BPMN\)<\/a>/i);
   assert.match(germanHome, /Direkt zur öffentlichen BPMN-Ansicht/i);
-  assert.match(englishHome, /View Notariat8 process model \(BPMN\)/i);
+  assert.match(englishHome, /Open real estate agreement demo/i);
   assert.match(readFileSync("en/index.html", "utf8"), /<a href="process-model\.html\?matter=immobilienkaufvertrag">Process model \(BPMN\)<\/a>/i);
   assert.match(englishHome, /Go directly to the public BPMN view/i);
   assert.match(germanProcessModel, /Notariat8 Prozessmodell \(BPMN\)/i);
@@ -594,8 +594,10 @@ test("public demo route makes the BPMN process model obvious without integration
   assert.match(germanProcessModel, /Register- und Grundbuchzugänge bleiben sichtbar/i);
   assert.match(englishProcessModel, /XNP, XNotar and card reader remain visible/i);
   assert.match(englishProcessModel, /register and land-register access points remain visible/i);
-  assert.match(germanProcessModel, /SNP-Testzugang bleibt eine explizite Freigabefrage/i);
-  assert.match(englishProcessModel, /SNP test access stays an explicit approval question/i);
+  assert.match(germanProcessModel, /SNP-Testzugang bleibt eine explizite Freigabefrage für den Softwareanbieter-Pfad/i);
+  assert.match(germanProcessModel, /behauptet keinen XNP-Zugriff im Produktivbetrieb/i);
+  assert.match(englishProcessModel, /SNP test access stays an explicit approval question for the software-vendor path/i);
+  assert.match(englishProcessModel, /does not claim XNP access in production/i);
 
   assert.doesNotMatch(combined, /produktive XNP-Anbindung|production XNP integration|XNP operation with real filings|XNP-Betrieb mit echten Einreichungen/i);
   assert.doesNotMatch(combined, /echte Mandatsdaten|real client data/i);
@@ -639,7 +641,7 @@ test("german home page makes the one-hour chamber demo path explicit", () => {
   const html = readFileSync("index.html", "utf8");
   const publicText = htmlToPublicText(html);
 
-  assert.match(publicText, /Demo-Pfad für eine Stunde/i);
+  assert.match(publicText, /Demo-Pfad Immobilienkaufvertrag/i);
   assert.match(publicText, /1\. Einstieg über die Vorgangsübersicht/i);
   assert.match(publicText, /2\. BPMN-Ansicht im Browser erläutern/i);
   assert.match(publicText, /3\. Grenzen des öffentlichen Demo-Stands klären/i);
@@ -652,7 +654,7 @@ test("english home page makes the one-hour chamber demo path explicit", () => {
   const html = readFileSync("en/index.html", "utf8");
   const publicText = htmlToPublicText(html);
 
-  assert.match(publicText, /Demo path for one hour/i);
+  assert.match(publicText, /Real estate agreement demo path/i);
   assert.match(publicText, /1\. Start with the matter overview/i);
   assert.match(publicText, /2\. Explain the BPMN view in the browser/i);
   assert.match(publicText, /3\. Clarify public demo boundaries/i);
@@ -976,28 +978,32 @@ test("process model pages provide a browser-first demo checklist for the chamber
   assert.doesNotMatch(english, /production XNP integration|real register query|real land-register query|Oracle|OCI|Cloud Infrastructure/i);
 });
 
-test("home demo path exposes the SNP ISV approval questions without production claims", () => {
+test("home demo path exposes SNP approval questions without production claims", () => {
   const german = htmlToPublicText(readFileSync("index.html", "utf8"));
   const english = htmlToPublicText(readFileSync("en/index.html", "utf8"));
 
   assert.match(german, /SNP-Testzugang/i);
-  assert.match(german, /ISV-Freigabepaket|ISV-Listung/i);
-  assert.match(german, /Sandbox/i);
-  assert.match(german, /technischer Ansprechpartner/i);
-  assert.match(german, /Callback-Beispiele/i);
-  assert.match(german, /Fehlerklassen/i);
+  assert.match(german, /Softwareanbieter/i);
+  assert.match(german, /Freigabefragen/i);
+  assert.match(german, /Testumgebung/i);
+  assert.match(german, /Schnittstellenbeispiele/i);
+  assert.match(german, /erwartbaren Fehlersituationen/i);
+  assert.match(german, /technische Klärung/i);
   assert.match(german, /Zertifizierungsweg/i);
   assert.match(german, /Pilotnotariat/i);
+  assert.doesNotMatch(german, /ISV|Sandbox|Callback-Beispiele|Fehlerklassen/i);
   assert.doesNotMatch(german, /produktive XNP-Anbindung|produktiver XNP-Zugriff|echte XNP-Einreichung/i);
 
   assert.match(english, /SNP test access/i);
-  assert.match(english, /ISV approval package|ISV listing/i);
-  assert.match(english, /sandbox/i);
-  assert.match(english, /technical contact/i);
-  assert.match(english, /callback examples/i);
-  assert.match(english, /error classes/i);
+  assert.match(english, /software vendor/i);
+  assert.match(english, /approval questions/i);
+  assert.match(english, /test environment/i);
+  assert.match(english, /interface examples/i);
+  assert.match(english, /expected error situations/i);
+  assert.match(english, /technical clarification/i);
   assert.match(english, /certification path/i);
   assert.match(english, /pilot notary office/i);
+  assert.doesNotMatch(english, /ISV|sandbox|callback examples|error classes/i);
   assert.doesNotMatch(english, /production XNP integration|production XNP access|real XNP filing/i);
 });
 
@@ -1011,15 +1017,34 @@ test("notarkammer demo quick path is visible from navigation and demo-safe", () 
   assert.match(englishHtml, /<a href="#demo-path">Chamber demo<\/a>/i);
 
   assert.match(german, /Schnelleinstieg: Immobilienkaufvertrag mit XNP\/SNP-Bezug/i);
+  assert.match(german, /Demo-Pfad Immobilienkaufvertrag/i);
+  assert.match(german, /Immobilienkaufvertrag mit XNP\/SNP-Bezug, XNotar und Vollzug/i);
+  assert.match(german, /ohne produktive XNP-, SNP- oder XNotar-Aktion/i);
   assert.match(german, /Für die Vorführung sofort nutzbar: Vorgangsübersicht, BPMN-Bild und App-Übergang ohne Mandatsdaten/i);
-  assert.match(german, /Sprechfähig in einem Satz: sichtbar sind Ablauf, Prüfpunkte und fachliche Übergabegrenzen; nicht behauptet werden produktive XNP\/SNP-Nutzung, Providerdetails oder echte Einreichungen/i);
+  assert.match(german, /Sprechfähig in einem Satz: sichtbar sind Ablauf, Prüfpunkte und fachliche Übergabegrenzen; nicht behauptet werden produktive XNP\/SNP-Nutzung, interne technische Details oder echte Einreichungen/i);
 
   assert.match(english, /Quick path: real estate purchase agreement with XNP\/SNP context/i);
+  assert.match(english, /Real estate agreement demo path/i);
+  assert.match(english, /real estate purchase agreement with XNP\/SNP context, XNotar and completion/i);
+  assert.match(english, /without production XNP, SNP or XNotar action/i);
   assert.match(english, /Ready for the presentation: matter overview, BPMN picture and app transition without client data/i);
-  assert.match(english, /One-sentence speaker line: visible are flow, review points and professional handover boundaries; not claimed are production XNP\/SNP use, provider details or real filings/i);
+  assert.match(english, /One-sentence speaker line: visible are flow, review points and professional handover boundaries; not claimed are production XNP\/SNP use, internal technical details or real filings/i);
 
   assert.doesNotMatch(german, /produktive XNP\/SNP-Nutzung ist verfügbar|echte Einreichungen werden ausgelöst/i);
   assert.doesNotMatch(english, /provider details are shown|production XNP\/SNP use is available|real filings are triggered/i);
+});
+
+test("public demo copy avoids provider and implementation jargon", () => {
+  const combinedPublicText = publicDemoPages
+    .map(([, file]) => htmlToPublicText(readFileSync(file, "utf8")))
+    .join(" ");
+
+  assert.doesNotMatch(combinedPublicText, /Providerdetails|provider details/i);
+  assert.doesNotMatch(combinedPublicText, /\bISV\b/i);
+  assert.doesNotMatch(combinedPublicText, /\bSandbox\b/i);
+  assert.doesNotMatch(combinedPublicText, /Callback/i);
+  assert.doesNotMatch(combinedPublicText, /Fehlerklassen|error classes/i);
+  assert.doesNotMatch(combinedPublicText, /Login-Provider|Identity Provider|OAuth|OIDC|SAML|Keycloak/i);
 });
 
 test("process model page keeps the BPMN canvas readable for live demo presentation", () => {
