@@ -153,14 +153,14 @@ const processModels = [
     de: {
       title: "Grundschuld / Hypothekenbestellung",
       summary:
-        "Der Ablauf bündelt Grundbuchbezug, Gläubigervorgaben, Entwurf, Beurkundung und Einreichung in einem prüfbaren Ablauf.",
-      steps: ["Aufnahme", "Gläubigervorgaben", "Entwurf", "Beurkundung", "Einreichung"],
+        "Der Ablauf bündelt Grundbuchbezug, Gläubigervorgaben, Entwurf, Beurkundung und Einreichungsvorbereitung in einem prüfbaren Ablauf.",
+      steps: ["Aufnahme", "Gläubigervorgaben", "Entwurf", "Beurkundung", "Vorbereitung"],
     },
     en: {
       title: "Land charge / mortgage order",
       summary:
-        "The flow combines land register context, lender requirements, draft, notarization and filing in one reviewable sequence.",
-      steps: ["Intake", "Lender terms", "Draft", "Notarization", "Filing"],
+        "The flow combines land register context, lender requirements, draft, notarization and filing preparation in one reviewable sequence.",
+      steps: ["Intake", "Lender terms", "Draft", "Notarization", "Preparation"],
     },
   },
   {
@@ -174,7 +174,7 @@ const processModels = [
     en: {
       title: "GmbH-/UG formation",
       summary:
-        "The flow shows digital company formation with party intake, articles, notarization, register filing and evidence.",
+        "The flow shows digital company formation with party intake, articles, notarization, register path and evidence.",
       steps: ["Parties", "Articles", "Notarization", "Register", "Evidence"],
     },
   },
@@ -183,13 +183,13 @@ const processModels = [
     de: {
       title: "Handelsregisteranmeldung",
       summary:
-        "Der Ablauf verbindet Beschluss- oder Anmeldungsgrundlage, Vertretungsprüfung, Entwurf, Signatur und Registereinreichung.",
+        "Der Ablauf verbindet Beschluss- oder Anmeldungsgrundlage, Vertretungsprüfung, Entwurf, Signatur und Registerpfad.",
       steps: ["Anlass", "Vertretung", "Entwurf", "Signatur", "Register"],
     },
     en: {
-      title: "Commercial register filing",
+      title: "Commercial register application",
       summary:
-        "The flow connects the filing basis, representation review, draft, signature and register submission.",
+        "The flow connects the register basis, representation review, draft, signature and register path.",
       steps: ["Trigger", "Representation", "Draft", "Signature", "Register"],
     },
   },
