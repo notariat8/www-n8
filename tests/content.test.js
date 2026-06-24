@@ -561,6 +561,28 @@ test("home pages make Immobilienkaufvertrag the primary XNP XNotar Vollzug demo 
   assert.match(english, /no client data/i);
 });
 
+test("primary navigation names the XNP demo path without production integration claims", () => {
+  const german = readFileSync("index.html", "utf8");
+  const english = readFileSync("en/index.html", "utf8");
+
+  assert.match(
+    german,
+    /<a href="prozessmodell\.html\?vorgang=immobilienkaufvertrag">XNP-Immobilien-Demo<\/a>/i
+  );
+  assert.match(
+    english,
+    /<a href="process-model\.html\?matter=immobilienkaufvertrag">XNP real estate demo<\/a>/i
+  );
+
+  for (const html of [german, english]) {
+    const publicText = htmlToPublicText(html);
+
+    assert.doesNotMatch(publicText, /produktive XNP-Anbindung|production XNP integration/i);
+    assert.doesNotMatch(publicText, /produktiver XNP-Zugriff|production XNP access/i);
+    assert.doesNotMatch(publicText, /produktiver XNP-Betrieb|production XNP operation/i);
+  }
+});
+
 test("public demo route makes the BPMN process model obvious without integration claims", () => {
   const germanHome = htmlToPublicText(readFileSync("index.html", "utf8"));
   const englishHome = htmlToPublicText(readFileSync("en/index.html", "utf8"));
@@ -574,10 +596,10 @@ test("public demo route makes the BPMN process model obvious without integration
   ].join(" ");
 
   assert.match(germanHome, /Immobilienkaufvertrag-Demo öffnen/i);
-  assert.match(readFileSync("index.html", "utf8"), /<a href="prozessmodell\.html\?vorgang=immobilienkaufvertrag">Prozessmodell \(BPMN\)<\/a>/i);
+  assert.match(readFileSync("index.html", "utf8"), /<a href="prozessmodell\.html\?vorgang=immobilienkaufvertrag">XNP-Immobilien-Demo<\/a>/i);
   assert.match(germanHome, /Direkt zur öffentlichen BPMN-Ansicht/i);
   assert.match(englishHome, /Open real estate agreement demo/i);
-  assert.match(readFileSync("en/index.html", "utf8"), /<a href="process-model\.html\?matter=immobilienkaufvertrag">Process model \(BPMN\)<\/a>/i);
+  assert.match(readFileSync("en/index.html", "utf8"), /<a href="process-model\.html\?matter=immobilienkaufvertrag">XNP real estate demo<\/a>/i);
   assert.match(englishHome, /Go directly to the public BPMN view/i);
   assert.match(germanProcessModel, /Notariat8 Prozessmodell \(BPMN\)/i);
   assert.match(englishProcessModel, /Notariat8 process model \(BPMN\)/i);
