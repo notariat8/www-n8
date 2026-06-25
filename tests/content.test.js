@@ -1082,6 +1082,26 @@ test("public demo copy avoids provider and implementation jargon", () => {
   assert.doesNotMatch(combinedPublicText, /Login-Provider|Identity Provider|OAuth|OIDC|SAML|Keycloak/i);
 });
 
+test("secondary public process summaries avoid operational filing wording", () => {
+  const combinedPublicText = publicDemoPages
+    .map(([, file]) => htmlToPublicText(readFileSync(file, "utf8")))
+    .join(" ");
+  const siteScript = readFileSync("assets/site.js", "utf8");
+  const combinedText = `${combinedPublicText} ${siteScript}`;
+
+  assert.match(combinedText, /Einreichungsvorbereitung/i);
+  assert.match(combinedText, /Registerpfad/i);
+  assert.match(combinedText, /filing preparation/i);
+  assert.match(combinedText, /register path/i);
+  assert.match(combinedText, /Commercial register application/i);
+  assert.doesNotMatch(combinedText, /Commercial register filing/i);
+  assert.doesNotMatch(combinedText, /filing in one reviewable sequence/i);
+  assert.doesNotMatch(combinedText, /register filing and evidence/i);
+  assert.doesNotMatch(combinedText, /register submission/i);
+  assert.doesNotMatch(combinedText, /Einreichung in einem prüfbaren Ablauf/i);
+  assert.doesNotMatch(combinedText, /Registereinreichung/i);
+});
+
 test("process model page keeps the BPMN canvas readable for live demo presentation", () => {
   const css = readFileSync("assets/site.css", "utf8");
   const german = readFileSync("prozessmodell.html", "utf8");
